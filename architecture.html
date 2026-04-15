@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Kavach Architecture — Parametric Payout Engine</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #F5F0E8;  /* soft beige paper */
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    /* main card — subtle, human‑crafted feel */
+    .arch-card {
+      max-width: 1280px;
+      width: 100%;
+      background: #FEFCF8;
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+      border: 1px solid #E6DED3;
+      overflow: hidden;
+    }
+
+    .arch-header {
+      padding: 1rem 2rem;
+      background: #FFFFFF;
+      border-bottom: 1px solid #EAE3D8;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .arch-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: -0.2px;
+      color: #2C2418;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .arch-badge {
+      background: #F0EBE2;
+      border-radius: 40px;
+      padding: 0.25rem 0.9rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #5C4B3A;
+      letter-spacing: 0.3px;
+      border: 0.5px solid #D9CFC2;
+    }
+
+    .svg-container {
+      padding: 1.8rem 1rem 1.8rem 1rem;
+      position: relative;
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: visible;
+      background: #FEFCF8;
+    }
+
+    .kv-svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      min-width: 880px;
+    }
+
+    /* tooltip — clean, neutral */
+    .custom-tooltip {
+      position: fixed;
+      background: #2C2418;
+      border-radius: 0.75rem;
+      padding: 0.65rem 1.1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 450;
+      color: #FEFCF8;
+      max-width: 260px;
+      pointer-events: none;
+      z-index: 1000;
+      border-left: 2px solid #CBB99A;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: opacity 0.15s, transform 0.15s;
+      opacity: 0;
+      transform: translateY(4px);
+      line-height: 1.4;
+    }
+
+    .custom-tooltip.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* node hover — very subtle */
+    .kv-node {
+      cursor: pointer;
+      transition: all 0.1s ease;
+    }
+
+    .kv-node:hover rect,
+    .kv-node:hover ellipse {
+      stroke-width: 1.8;
+      stroke: #8B7355;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.05));
+    }
+
+    /* dashed flow lines */
+    .kv-flow {
+      stroke-dasharray: 6 5;
+      animation: dashFlow 1s linear infinite;
+    }
+
+    @keyframes dashFlow {
+      to {
+        stroke-dashoffset: -22;
+      }
+    }
+
+    /* subtle pulse for ML node */
+    .pulse-ring {
+      animation: softPulse 2.5s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    @keyframes softPulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.4;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 0.15;
+      }
+    }
+
+    .svg-container::-webkit-scrollbar {
+      height: 5px;
+    }
+    .svg-container::-webkit-scrollbar-track {
+      background: #EDE6DC;
+      border-radius: 10px;
+    }
+    .svg-container::-webkit-scrollbar-thumb {
+      background: #B8A68B;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="arch-card">
+  <div class="arch-header">
+    <div class="arch-title">
+      <span>KAVACH · PARAMETRIC PAYOUT ENGINE</span>
+    </div>
+    <div class="arch-badge">Hyperledger Fabric · ML Trust Scoring · &lt;15min payout</div>
+  </div>
+  <div class="svg-container">
+    <svg class="kv-svg" viewBox="0 0 880 780" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- subtle gradients, no heavy shine -->
+        <linearGradient id="layer1Grad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#FFFFFF"/>
+          <stop offset="100%" stop-color="#F9F5EF"/>
+        </linearGradient>
+        <linearGradient id="layer2Grad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#FFFFFF"/>
+          <stop offset="100%" stop-color="#F6F1EA"/>
+        </linearGradient>
+        <linearGradient id="layer3Grad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#FFFFFF"/>
+          <stop offset="100%" stop-color="#F4EDE4"/>
+        </linearGradient>
+        <marker id="arrowMarker" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#8B7355" stroke-width="1.2" stroke-linecap="round"/>
+        </marker>
+      </defs>
+
+      <!-- very light paper texture background -->
+      <rect width="100%" height="100%" fill="#FEFCF8" />
+      <pattern id="fineGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#E8E0D6" stroke-width="0.4" opacity="0.4"/>
+      </pattern>
+      <rect width="100%" height="100%" fill="url(#fineGrid)" />
+
+      <!-- ================= LAYER 1 ================= -->
+      <text x="30" y="42" fill="#7A6A58" font-size="10" font-weight="600" letter-spacing="1.5" font-family="'Inter',sans-serif">📡 LAYER 1 — DATA SOURCES</text>
+
+      <g class="kv-node" data-tip="India Meteorological Department (IMD) API — real‑time weather alerts, cyclone warnings, and rainfall data across 700+ districts.">
+        <rect x="30" y="60" width="160" height="64" rx="8" fill="url(#layer1Grad)" stroke="#D1C4B4" stroke-width="1"/>
+        <foreignObject x="30" y="60" width="160" height="64">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; text-align:center;">
+            <div style="font-size:16px;">🌦️</div>
+            <div style="font-size:12px; font-weight:600; color:#2C2418;">IMD API</div>
+            <div style="font-size:9px; color:#8B7355;">Govt weather data</div>
+          </div>
+        </foreignObject>
+      </g>
+
+      <g class="kv-node" data-tip="Skymet private weather feed — hyperlocal precipitation, lightning intensity, and 1km storm resolution.">
+        <rect x="220" y="60" width="160" height="64" rx="8" fill="url(#layer1Grad)" stroke="#D1C4B4" stroke-width="1"/>
+        <foreignObject x="220" y="60" width="160" height="64">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;">
+            <div style="font-size:16px;">⛈️</div>
+            <div style="font-size:12px; font-weight:600; color:#2C2418;">Skymet</div>
+            <div style="font-size:9px; color:#8B7355;">Private feed</div>
+          </div>
+        </foreignObject>
+      </g>
+
+      <g class="kv-node" data-tip="Municipal Disaster Management Authority — real‑time flood zones, road closures, and city‑level emergency alerts.">
+        <rect x="410" y="60" width="190" height="64" rx="8" fill="url(#layer1Grad)" stroke="#D1C4B4" stroke-width="1"/>
+        <foreignObject x="410" y="60" width="190" height="64">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;">
+            <div style="font-size:16px;">🏛️</div>
+            <div style="font-size:12px; font-weight:600; color:#2C2418;">Municipal DMA</div>
+            <div style="font-size:9px; color:#8B7355;">Hazard alerts</div>
+          </div>
+        </foreignObject>
+      </g>
+
+      <g class="kv-node" data-tip="Platform Partner API — live rider coordinates, shift status, active order metadata from Zomato, Swiggy, Uber.">
+        <rect x="630" y="60" width="180" height="64" rx="8" fill="url(#layer1Grad)" stroke="#D1C4B4" stroke-width="1"/>
+        <foreignObject x="630" y="60" width="180" height="64">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;">
+            <div style="font-size:16px;">🛵</div>
+            <div style="font-size:12px; font-weight:600; color:#2C2418;">Platform API</div>
+            <div style="font-size:9px; color:#8B7355;">Rider &amp; order data</div>
+          </div>
+        </foreignObject>
+      </g>
+
+      <!-- arrows layer 1 → 2 -->
+      <path class="kv-flow" d="M110 124 L280 188" stroke="#8B7355" stroke-width="1.3" fill="none" marker-end="url(#arrowMarker)"/>
+      <path class="kv-flow" d="M300 124 L340 188" stroke="#8B7355" stroke-width="1.3" fill="none" marker-end="url(#arrowMarker)"/>
+      <path class="kv-flow" d="M505 124 L440 188" stroke="#8B7355" stroke-width="1.3" fill="none" marker-end="url(#arrowMarker)"/>
+      <path class="kv-flow" d="M720 124 L530 188" stroke="#8B7355" stroke-width="1.3" fill="none" marker-end="url(#arrowMarker)"/>
+
+      <!-- ================= LAYER 2 ================= -->
+      <text x="30" y="178" fill="#7A6A58" font-size="10" font-weight="600" letter-spacing="1.5" font-family="'Inter',sans-serif">⚙️ LAYER 2 — INTELLIGENT PROCESSING</text>
+
+      <g class="kv-node" data-tip="Weather Intelligence Engine: cross‑validates IMD, Skymet, municipal feeds, eliminates false positives using consensus.">
+        <rect x="240" y="192" width="280" height="56" rx="10" fill="url(#layer2Grad)" stroke="#D1C4B4" stroke-width="1"/>
+        <foreignObject x="240" y="192" width="280" height="56">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;">
+            <div style="font-size:13px; font-weight:600; color:#2C2418;">🌐 Weather Intelligence Engine</div>
+            <div style="font-size:9.5px; color:#8B7355;">Multi‑source aggregation + validation</div>
+          </div>
+        </foreignObject>
+      </g>
+
+      <path class="kv-flow" d="M380 248 L380 276" stroke="#8B7355" stroke-width="1.3" fill="none" marker-end="url(#arrowMarker)"/>
+
+      <g class="kv-node" data-tip="Zone Grid Activator: maps weather polygons to 2km² delivery zones, assigns RED/YELLOW/GREEN risk levels.">
+        <rect x="260" y="276" width="240" height="56" rx="10" fill="url(#layer2Grad)" stroke="#D1C4B4" stroke-width="1"/>
+        <foreignObject x="260" y="276" width="240" height="56">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;">
+            <div style="font-size:13px; font-weight:600; color:#2C2418;">🗺️ Zone Grid Activator</div>
+            <div style="font-size:9.5px; color:#8B7355;">Geo‑zone mapping & risk tiering</div>
+          </div>
+        </foreignObject>
+      </g>
+
+      <path class="kv-flow" d="M380 332 L380 360" stroke="#8B7355" stroke-width="1.3" fill="none" marker-end="url(#arrowMarker)"/>
+
+      <g class="kv-node" data-tip="Rider Eligibility Engine: matches live rider location, shift window, and affected zones — filters ineligible riders.">
+        <rect x="255" y="360" width="250" height="56" rx="10" fill="url(#layer2Grad)" stroke="#D1C4B4" stroke-width="1"/>
+        <foreignObject x="255" y="360" width="250" height="56">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;">
+            <div style="font-size:13px; font-weight:600; color:#2C2418;">✅ Rider Eligibility Engine</div>
+            <div style="font-size:9.5px; color:#8B7355;">Location × zone × shift validation</div>
+          </div>
+        </foreignObject>
+      </g>
+
+      <path class="kv-flow" d="M380 416 L380 444" stroke="#8B7355" stroke-width="1.3" fill="none" marker-end="url(#arrowMarker)"/>
+
+      <!-- ML Trust Scoring with soft pulse ring -->
+      <g class="kv-node" data-tip="ML Trust Scoring Model (XGBoost) — analyses 6 signals: GPS trajectory, gyroscope, barometric pressure, cell tower, work history, order status.">
+        <ellipse cx="380" cy="484" rx="145" ry="30" fill="none" stroke="#B8A68B" stroke-width="1.2" class="pulse-ring"/>
+        <rect x="235" y="458" width="290" height="52" rx="24" fill="#F9F5EF" stroke="#B8A68B" stroke-width="1.2"/>
+        <foreignObject x="235" y="458" width="290" height="52">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;">
+            <div style="font-size:12px; font-weight:700; color:#2C2418;">🤖 ML Trust Scoring Model</div>
+            <div style="font-size:9px; color:#8B7355;">6‑dimension fraud signal analysis</div>
+          </div>
+        </foreignObject>
+      </g>
+
+      <path class="kv-flow" d="M380 510 L380 538" stroke="#8B7355" stroke-width="1.3" fill="none" marker-end="url(#arrowMarker)"/>
+
+      <g class="kv-node" data-tip="Three‑Tier Decision Engine: Score >75 → Auto‑approve. 45–75 → Hold for review. &lt;45 → Reject or manual investigation.">
+        <rect x="248" y="538" width="264" height="56" rx="10" fill="#F4EDE4" stroke="#CBB99A" stroke-width="1.2"/>
+        <foreignObject x="248" y="538" width="264" height="56">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;">
+            <div style="font-size:13px; font-weight:600; color:#2C2418;">📊 Three‑Tier Decision Engine</div>
+            <div style="font-size:9.5px; color:#8B7355;">Auto‑approve / Hold / Reject</div>
+          </div>
+        </foreignObject>
+      </g>
+
+      <!-- arrows to output layer -->
+      <path class="kv-flow" d="M310 594 L160 636" stroke="#8B7355" stroke-width="1.3" fill="none" marker-end="url(#arrowMarker)"/>
+      <path class="kv-flow" d="M380 594 L440 636" stroke="#8B7355" stroke-width="1.3" fill="none" marker-end="url(#arrowMarker)"/>
+      <path class="kv-flow" d="M520 594 L670 636" stroke="#8B7355" stroke-width="1.3" fill="none" marker-end="url(#arrowMarker)"/>
+
+      <!-- ================= LAYER 3 ================= -->
+      <text x="30" y="626" fill="#7A6A58" font-size="10" font-weight="600" letter-spacing="1.5" font-family="'Inter',sans-serif">💰 LAYER 3 — PAYOUT &amp; AUDIT</text>
+
+      <g class="kv-node" data-tip="Razorpay UPI Payout: instant transfer to rider's bank account. Average latency &lt;6 seconds after approval.">
+        <rect x="30" y="648" width="210" height="64" rx="8" fill="url(#layer3Grad)" stroke="#D1C4B4" stroke-width="1"/>
+        <foreignObject x="30" y="648" width="210" height="64">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;">
+            <div style="font-size:16px;">💸</div>
+            <div style="font-size:11px; font-weight:600; color:#2C2418;">UPI via Razorpay</div>
+            <div style="font-size:8.5px; color:#8B7355;">Instant payout</div>
+          </div>
+        </foreignObject>
+      </g>
+
+      <g class="kv-node" data-tip="Hyperledger Fabric: immutable ledger storing every payout trigger, score, and transaction hash for audit and compliance.">
+        <rect x="280" y="648" width="240" height="64" rx="8" fill="url(#layer3Grad)" stroke="#D1C4B4" stroke-width="1"/>
+        <foreignObject x="280" y="648" width="240" height="64">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;">
+            <div style="font-size:16px;">🔗</div>
+            <div style="font-size:11px; font-weight:600; color:#2C2418;">Hyperledger Fabric</div>
+            <div style="font-size:8.5px; color:#8B7355;">Immutable audit trail</div>
+          </div>
+        </foreignObject>
+      </g>
+
+      <g class="kv-node" data-tip="Push notification to rider's device with payout confirmation, amount, and reference ID. Real‑time user experience.">
+        <rect x="560" y="648" width="240" height="64" rx="8" fill="url(#layer3Grad)" stroke="#D1C4B4" stroke-width="1"/>
+        <foreignObject x="560" y="648" width="240" height="64">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;">
+            <div style="font-size:16px;">📱</div>
+            <div style="font-size:11px; font-weight:600; color:#2C2418;">Push Notification</div>
+            <div style="font-size:8.5px; color:#8B7355;">Confirmation alert</div>
+          </div>
+        </foreignObject>
+      </g>
+
+      <!-- very subtle decorative dots (hand-drawn feel) -->
+      <circle cx="45" cy="200" r="1.5" fill="#CBB99A" opacity="0.4"/>
+      <circle cx="820" cy="440" r="1.8" fill="#CBB99A" opacity="0.35"/>
+      <circle cx="100" cy="520" r="1.2" fill="#CBB99A" opacity="0.5"/>
+      <circle cx="750" cy="700" r="1.5" fill="#CBB99A" opacity="0.4"/>
+    </svg>
+  </div>
+  <div style="padding: 0.8rem 1.8rem 1.2rem; border-top: 1px solid #EAE3D8; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+    <div style="display: flex; gap: 1.2rem;">
+      <div style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #B8A68B; border-radius: 2px;"></span><span style="font-size: 10px; color: #7A6A58;">Data ingestion</span></div>
+      <div style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #CBB99A; border-radius: 2px;"></span><span style="font-size: 10px; color: #7A6A58;">Decision engine</span></div>
+      <div style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #D1C4B4; border-radius: 2px;"></span><span style="font-size: 10px; color: #7A6A58;">Payout & ledger</span></div>
+    </div>
+    <div style="font-size: 9px; color: #A18F78;">⚡ Parametric trigger → ML trust score → UPI in &lt;15min</div>
+  </div>
+</div>
+
+<div class="custom-tooltip" id="archTooltip"></div>
+
+<script>
+  (function() {
+    const tooltip = document.getElementById('archTooltip');
+    const nodes = document.querySelectorAll('.kv-node');
+
+    function showTooltip(event, text) {
+      tooltip.innerHTML = text;
+      tooltip.classList.add('visible');
+      let x = event.clientX + 14;
+      let y = event.clientY + 14;
+      const rect = tooltip.getBoundingClientRect();
+      const vw = window.innerWidth, vh = window.innerHeight;
+      if (x + (rect.width || 240) > vw) x = event.clientX - (rect.width || 240) - 10;
+      if (y + (rect.height || 70) > vh) y = event.clientY - (rect.height || 70) - 10;
+      tooltip.style.left = x + 'px';
+      tooltip.style.top = y + 'px';
+    }
+
+    function hideTooltip() {
+      tooltip.classList.remove('visible');
+    }
+
+    nodes.forEach(node => {
+      const tip = node.getAttribute('data-tip');
+      if (!tip) return;
+      node.addEventListener('mouseenter', (e) => showTooltip(e, tip));
+      node.addEventListener('mousemove', (e) => {
+        let x = e.clientX + 14;
+        let y = e.clientY + 14;
+        const rect = tooltip.getBoundingClientRect();
+        const vw = window.innerWidth;
+        if (x + (rect.width || 240) > vw) x = e.clientX - (rect.width || 240) - 10;
+        if (y + (rect.height || 70) > window.innerHeight) y = e.clientY - (rect.height || 70) - 10;
+        tooltip.style.left = x + 'px';
+        tooltip.style.top = y + 'px';
+      });
+      node.addEventListener('mouseleave', hideTooltip);
+    });
+  })();
+</script>
+</body>
+</html>

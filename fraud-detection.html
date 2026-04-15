@@ -1,0 +1,175 @@
+<div style="font-family: 'DM Sans', sans-serif; background:#ffffff; color:#0F1923; padding:20px;">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+.container {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.panel {
+  flex: 1;
+  min-width: 300px;
+}
+
+.slider-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type=range] {
+  width: 100%;
+}
+
+.presets button {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  border: none;
+  background: #E85C2B;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.gauge {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 600;
+  transition: background 0.5s ease;
+}
+
+.decision {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: 600;
+}
+
+.explain {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+</style>
+
+<div class="presets">
+  <button onclick="setPreset([90,85,88,80,75,95])">Genuine stranded rider</button>
+  <button onclick="setPreset([60,55,70,50,65,80])">Weak signal (bad weather)</button>
+  <button onclick="setPreset([95,10,15,20,40,5])">GPS spoof attempt</button>
+</div>
+
+<div class="container">
+  
+  <!-- LEFT PANEL -->
+  <div class="panel">
+    
+    <div class="slider-group">
+      <label>Does GPS show natural travel into zone?</label>
+      <input type="range" min="0" max="100" value="50" id="s1">
+    </div>
+
+    <div class="slider-group">
+      <label>Accelerometer/gyroscope data active?</label>
+      <input type="range" min="0" max="100" value="50" id="s2">
+    </div>
+
+    <div class="slider-group">
+      <label>Pressure consistent with storm zone?</label>
+      <input type="range" min="0" max="100" value="50" id="s3">
+    </div>
+
+    <div class="slider-group">
+      <label>Device cell tower matches claimed zone?</label>
+      <input type="range" min="0" max="100" value="50" id="s4">
+    </div>
+
+    <div class="slider-group">
+      <label>Rider has worked in this area before?</label>
+      <input type="range" min="0" max="100" value="50" id="s5">
+    </div>
+
+    <div class="slider-group">
+      <label>No active delivery order during claim?</label>
+      <input type="range" min="0" max="100" value="50" id="s6">
+    </div>
+
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="panel">
+    <div class="gauge" id="gauge">50</div>
+    <div class="decision" id="decision"></div>
+    <div class="explain" id="explain"></div>
+  </div>
+
+</div>
+
+<script>
+const sliders = ["s1","s2","s3","s4","s5","s6"].map(id => document.getElementById(id));
+
+function getColor(score){
+  if(score < 45) return "#dc2626";
+  if(score < 75) return "#eab308";
+  return "#16a34a";
+}
+
+function update(){
+  const values = sliders.map(s => +s.value);
+  const score = Math.round(values.reduce((a,b)=>a+b)/values.length);
+
+  const gauge = document.getElementById("gauge");
+  gauge.innerText = score;
+  gauge.style.background = getColor(score);
+
+  const decision = document.getElementById("decision");
+  const explain = document.getElementById("explain");
+
+  if(score < 45){
+    decision.innerText = "Tier 3 — Payout paused. Human review queued.";
+    decision.style.color = "#dc2626";
+  } else if(score < 75){
+    decision.innerText = "Tier 2 — Short hold. Verification requested.";
+    decision.style.color = "#eab308";
+  } else {
+    decision.innerText = "Tier 1 — Auto-approved. UPI transfer initiated.";
+    decision.style.color = "#16a34a";
+  }
+
+  // explanation logic
+  let labels = [
+    "GPS trajectory",
+    "Motion sensors",
+    "Barometric pressure",
+    "Cell tower match",
+    "Work history",
+    "Order validation"
+  ];
+
+  let pairs = values.map((v,i)=>({v,label:labels[i]}));
+  pairs.sort((a,b)=>b.v - a.v);
+
+  explain.innerText = "Strongest signals: " + pairs.slice(0,2).map(p=>p.label).join(", ");
+}
+
+function setPreset(arr){
+  sliders.forEach((s,i)=>s.value = arr[i]);
+  update();
+}
+
+sliders.forEach(s => s.addEventListener("input", update));
+
+update();
+</script>
+</div>

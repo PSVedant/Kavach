@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Kavach — Parametric weather payout system for India's gig delivery workers."/>
+  <title>Kavach — Financial Protection for Gig Workers</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    /* NEW DARK THEME COLORS */
+    :root{--primary:#73877B;--primary-light:#8DA196;--primary-dark:#5C6D63;--primary-soft:#2A3A33;--accent:#FFD166;--accent-dark:#E6B800;--accent-soft:#3A3A2A;--secondary-accent:#7A6C8F;--navy:#0F1412;--text:#F4F7F5;--text-secondary:#AAB7B0;--muted:#AAB7B0;--border:#1F2A26;--card:#1A201E;--surface:#1A201E;--alert:#FF5A5F}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;color:var(--text);background:var(--navy)}
+    /* NAV */
+    .kv-nav{display:flex;align-items:center;justify-content:space-between;padding:14px 32px;border-bottom:0.5px solid var(--border);background:var(--card);position:sticky;top:0;z-index:200}
+    .kv-logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--primary);letter-spacing:-0.5px}
+    .kv-nav-links{display:flex;align-items:center;gap:2px}
+    .kv-nav-link{font-size:12px;color:var(--text-secondary);text-decoration:none;padding:6px 12px;border-radius:8px;transition:background 0.15s,color 0.15s;white-space:nowrap}
+    .kv-nav-link:hover{background:var(--surface);color:var(--text)}
+    .kv-nav-cta{font-size:12px;background:var(--accent);color:var(--navy);border:none;border-radius:8px;padding:7px 16px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;margin-left:6px;text-decoration:none;white-space:nowrap}
+    .kv-pill{font-size:11px;font-weight:500;background:var(--primary-soft);color:var(--primary-light);border-radius:20px;padding:4px 10px;border:0.5px solid var(--primary-light);margin-left:8px}
+    @media(max-width:768px){.kv-nav-links{display:none}.kv-nav{padding:14px 20px}}
+    /* SHARED */
+    .kv-section{padding:72px 32px;max-width:900px;margin:0 auto}
+    .kv-section-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:36px;display:flex;align-items:center;gap:12px}
+    .kv-section-label::after{content:'';flex:1;height:0.5px;background:var(--border)}
+    .kv-divider{height:0.5px;background:var(--border)}
+    .kv-btn-primary{background:var(--accent);color:var(--navy);border:none;border-radius:8px;padding:13px 26px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.15s}
+    .kv-btn-primary:hover{background:var(--accent-dark)}
+    .kv-btn-ghost{background:transparent;color:var(--text);border:0.5px solid var(--border);border-radius:8px;padding:13px 26px;font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;text-decoration:none;display:inline-block}
+    .kv-btn-ghost:hover{background:var(--surface)}
+    /* HERO */
+    .kv-hero{padding:80px 32px 64px;max-width:900px;margin:0 auto}
+    .kv-eyebrow{font-size:12px;font-weight:500;letter-spacing:0.08em;color:var(--primary);text-transform:uppercase;margin-bottom:18px}
+    .kv-h1{font-family:'DM Serif Display',serif;font-size:52px;line-height:1.08;letter-spacing:-1.5px;color:var(--text);margin-bottom:22px}
+    .kv-h1 em{font-style:italic;color:var(--accent)}
+    .kv-hero-sub{font-size:17px;color:var(--text-secondary);max-width:540px;line-height:1.7;margin-bottom:38px}
+    .kv-cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    @media(max-width:600px){.kv-h1{font-size:34px}}
+    /* PROBLEM */
+    .kv-story-card{background:var(--navy);border-radius:20px;padding:40px 44px;color:#fff;position:relative;overflow:hidden;border:1px solid var(--border)}
+    .kv-story-bg{position:absolute;top:-50px;right:-50px;width:240px;height:240px;border-radius:50%;background:rgba(115,135,123,0.1);pointer-events:none}
+    .kv-story-name{font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px}
+    .kv-story-quote{font-family:'DM Serif Display',serif;font-size:27px;line-height:1.35;color:#fff;margin-bottom:22px;font-style:italic}
+    .kv-story-meta{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.8}
+    .kv-stats-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+    .kv-stat{background:var(--surface);border:0.5px solid var(--border);border-radius:14px;padding:22px}
+    .kv-stat-num{font-family:'DM Serif Display',serif;font-size:32px;color:var(--primary);line-height:1;margin-bottom:6px}
+    .kv-stat-label{font-size:12px;color:var(--text-secondary);line-height:1.5}
+    @media(max-width:560px){.kv-stats-grid{grid-template-columns:1fr 1fr}.kv-story-card{padding:28px 24px}.kv-story-quote{font-size:20px}}
+    /* SIMULATION */
+    .kv-sim-box{background:var(--card);border:0.5px solid var(--border);border-radius:18px;overflow:hidden}
+    .kv-sim-header{padding:20px 26px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--card)}
+    .kv-sim-title{font-weight:500;font-size:14px;color:var(--text)}
+    .kv-sim-body{padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;background:var(--card)}
+    @media(max-width:640px){.kv-sim-body{grid-template-columns:1fr}}
+    .kv-map-mock{background:var(--surface);border-radius:12px;height:180px;margin-bottom:22px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border:0.5px solid var(--border)}
+    .kv-map-label{font-size:12px;color:var(--text-secondary);z-index:2;position:relative;text-align:center}
+    .kv-zone-ring{position:absolute;width:130px;height:130px;border-radius:50%;border:2px dashed var(--accent);opacity:0;transition:opacity 0.5s}
+    .kv-zone-ring.active{opacity:1;animation:kvPR 2s infinite}
+    @keyframes kvPR{0%,100%{transform:scale(1);opacity:0.8}50%{transform:scale(1.12);opacity:0.35}}
+    .kv-rider-dot{position:absolute;width:12px;height:12px;background:var(--accent);border-radius:50%;border:2px solid #fff;display:none;top:50%;left:50%;transform:translate(-50%,-50%)}
+    .kv-timeline{display:flex;flex-direction:column}
+    .kv-step{display:flex;align-items:flex-start;gap:14px;padding:10px 0;opacity:0.3;transition:opacity 0.4s}
+    .kv-step.active{opacity:1}.kv-step.done{opacity:0.65}
+    .kv-step-dot{width:26px;height:26px;border-radius:50%;background:var(--surface);border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--text-secondary);flex-shrink:0;margin-top:2px;transition:all 0.3s}
+    .kv-step.active .kv-step-dot{background:var(--primary);border-color:var(--primary);color:#fff}
+    .kv-step.done .kv-step-dot{background:#dcfce7;border-color:#86efac;color:#166534}
+    .kv-step-bar{width:2px;background:var(--border);margin-left:12px;height:10px}
+    .kv-step-name{font-size:13px;font-weight:500;margin-bottom:1px}
+    .kv-step-detail{font-size:11px;color:var(--text-secondary)}
+    .kv-phone-mock{background:var(--navy);border-radius:24px;padding:20px;max-width:240px;margin:0 auto;border:0.5px solid var(--border)}
+    .kv-notif{background:rgba(255,255,255,0.07);border-radius:14px;padding:14px;display:flex;gap:12px;opacity:0;transition:opacity 0.5s}
+    .kv-notif.visible{opacity:1}
+    .kv-notif-icon{width:36px;height:36px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;color:var(--navy)}
+    .kv-notif-app{font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:3px;font-weight:500;letter-spacing:0.04em}
+    .kv-notif-msg{font-size:12px;color:#fff;line-height:1.45}
+    .kv-notif-amount{font-size:19px;font-weight:600;color:#4ade80;margin-top:8px;display:none}
+    .kv-blockchain-entry{margin-top:14px;background:rgba(255,255,255,0.04);border-radius:10px;padding:12px;font-size:10px;color:rgba(255,255,255,0.35);font-family:monospace;display:none}
+    .kv-bl-title{font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:6px}
+    .kv-sim-footer{padding:16px 26px;border-top:0.5px solid var(--border);display:flex;align-items:center;gap:16px;background:var(--card)}
+    .kv-progress-wrap{flex:1}
+    .kv-progress-track{height:4px;background:var(--surface);border-radius:4px;overflow:hidden}
+    .kv-progress-bar{height:100%;background:var(--primary);border-radius:4px;width:0%;transition:width 0.3s linear}
+    .kv-progress-label{font-size:11px;color:var(--text-secondary);margin-top:5px}
+    /* ARCHITECTURE */
+    .arch-card{width:100%;background:var(--card);border-radius:1.5rem;box-shadow:0 4px 12px rgba(0,0,0,0.3);border:1px solid var(--border);overflow:hidden}
+    .arch-header{padding:1rem 2rem;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:0.8rem}
+    .arch-title{font-weight:600;font-size:1rem;letter-spacing:-0.2px;color:var(--text);font-family:'Inter',sans-serif}
+    .arch-badge{background:var(--primary-soft);border-radius:40px;padding:0.25rem 0.9rem;font-size:0.7rem;font-weight:500;color:var(--primary-light);letter-spacing:0.3px;border:0.5px solid var(--border);font-family:'Inter',sans-serif}
+    .arch-svg-wrap{padding:1.8rem 1rem;position:relative;width:100%;overflow-x:auto;background:var(--card)}
+    .arch-svg{display:block;width:100%;height:auto;min-width:880px}
+    .arch-tip{position:fixed;background:var(--navy);border-radius:0.75rem;padding:0.65rem 1.1rem;font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--text);max-width:260px;pointer-events:none;z-index:1000;border-left:2px solid var(--accent);box-shadow:0 8px 20px rgba(0,0,0,0.3);transition:opacity 0.15s,transform 0.15s;opacity:0;transform:translateY(4px);line-height:1.4}
+    .arch-tip.visible{opacity:1;transform:translateY(0)}
+    .arch-node{cursor:pointer}
+    .arch-node:hover rect,.arch-node:hover ellipse{stroke-width:1.8;stroke:var(--primary)}
+    .arch-flow{stroke-dasharray:6 5;animation:archDF 1s linear infinite}
+    @keyframes archDF{to{stroke-dashoffset:-22}}
+    .arch-pulse{animation:archPulse 2.5s ease-in-out infinite;transform-origin:center}
+    @keyframes archPulse{0%,100%{transform:scale(1);opacity:0.4}50%{transform:scale(1.05);opacity:0.15}}
+    /* RIDER EXPERIENCE */
+    #rider-experience{background:var(--navy);position:relative;overflow:hidden}
+    .re-inner{max-width:900px;margin:0 auto;padding:72px 32px}
+    .re-lbl{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:36px;display:flex;align-items:center;gap:12px}
+    .re-lbl::after{content:'';flex:1;height:0.5px;background:rgba(255,255,255,0.1)}
+    .re-stage{display:flex;gap:20px;justify-content:center;align-items:flex-end;width:100%}
+    .re-pw{display:flex;flex-direction:column;align-items:center;gap:14px;flex:1;min-width:0}
+    .re-label{font-size:13px;font-weight:500;color:rgba(255,255,255,0.65);text-align:center}
+    .re-phone{width:100%;max-width:210px;aspect-ratio:9/19;background:#111;border-radius:32px;border:3px solid #2a2a2a;box-shadow:0 0 0 1px #3a3a3a,0 24px 70px rgba(0,0,0,0.7),inset 0 0 0 1px #1e1e1e;position:relative;overflow:hidden;display:flex;flex-direction:column}
+    .re-phone::before{content:'';position:absolute;right:-5px;top:80px;width:4px;height:50px;background:#2a2a2a;border-radius:0 3px 3px 0}
+    .re-phone::after{content:'';position:absolute;left:-5px;top:70px;width:4px;height:36px;background:#2a2a2a;border-radius:3px 0 0 3px;box-shadow:0 44px 0 #2a2a2a}
+    .re-cam{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:10px;height:10px;background:#0a0a0a;border-radius:50%;border:1px solid #222;z-index:10}
+    .re-sb{height:28px;background:#0f0f0f;display:flex;align-items:center;justify-content:space-between;padding:0 14px 0 10px;flex-shrink:0}
+    .re-sbt{font-size:10px;font-weight:600;color:#fff}
+    .re-scr{flex:1;background:#181818;display:flex;flex-direction:column;position:relative;overflow:hidden}
+    .re-nb{height:20px;background:#0f0f0f;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .re-np{width:32px;height:3px;background:#555;border-radius:2px}
+    .re-s1 .re-scr{background:linear-gradient(175deg,#1a1a2e 0%,#16213e 60%,#0f3460 100%)}
+    .re-s1-wall{flex:1;display:flex;flex-direction:column;padding:12px 10px 8px;gap:8px}
+    .re-s1-clk{font-size:28px;font-weight:300;color:#fff;text-align:center}
+    .re-s1-dt{font-size:9px;color:rgba(255,255,255,0.5);text-align:center;margin-top:2px;letter-spacing:0.05em}
+    .re-s1-ntf{background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:8px 10px;display:flex;align-items:center;gap:8px}
+    .re-s1-ico{width:26px;height:26px;background:linear-gradient(135deg,var(--accent),#FFD166);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;animation:reB 2.8s ease-in-out infinite}
+    @keyframes reB{0%,100%{box-shadow:0 0 6px rgba(255,209,102,0.4)}50%{box-shadow:0 0 14px rgba(255,209,102,0.8)}}
+    .re-s1-nap{font-size:8px;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase}
+    .re-s1-nmsg{font-size:9.5px;font-weight:500;color:rgba(255,255,255,0.9);line-height:1.3;margin-top:1px}
+    .re-s1-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:6px}
+    .re-s1-ai{aspect-ratio:1;border-radius:10px;background:rgba(255,255,255,0.08)}
+    .c1{background:#1a73e8}.c2{background:#34a853}.c3{background:#ea4335}.c4{background:#fbbc04}.c5{background:#0f9d58}.c6{background:#8430ce}.c7{background:var(--accent)}.c8{background:#00897b}
+    .re-s2 .re-scr{background:linear-gradient(175deg,#1c1008 0%,#2a1500 60%,#1a0a00 100%)}
+    .re-s2-wall{flex:1;display:flex;flex-direction:column;padding:12px 10px 8px;gap:8px}
+    .re-s2-push{background:rgba(30,15,0,0.85);border:1px solid rgba(255,209,102,0.35);border-radius:14px;padding:10px;position:relative;overflow:hidden}
+    .re-s2-ph{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+    .re-s2-pai{width:18px;height:18px;background:linear-gradient(135deg,var(--accent),#FFD166);border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .re-s2-pan{font-size:9px;font-weight:700;color:rgba(255,255,255,0.6);letter-spacing:0.1em;text-transform:uppercase;flex:1}
+    .re-s2-badge{position:absolute;top:8px;right:8px;width:10px;height:10px;background:var(--accent);border-radius:50%;animation:rePB 1.4s ease-in-out infinite}
+    @keyframes rePB{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,209,102,0.7)}50%{transform:scale(1.1);box-shadow:0 0 0 5px rgba(255,209,102,0)}}
+    .re-s2-ptit{font-size:11px;font-weight:600;color:#fff;line-height:1.3}
+    .re-s2-pbod{font-size:9.5px;color:rgba(255,255,255,0.65);line-height:1.4;margin-top:3px}
+    .re-rain{position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:0.2}
+    .re-rd{position:absolute;top:-10%;width:1px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,0.9));animation:reFall linear infinite}
+    @keyframes reFall{to{transform:translateY(130%)}}
+    .re-s3 .re-scr{background:linear-gradient(175deg,#041a0e 0%,#062a14 50%,#031a09 100%)}
+    .re-s3-con{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 12px;text-align:center}
+    .re-s3-cw{width:48px;height:48px;position:relative;margin-bottom:10px}
+    .re-s3-circ{width:48px;height:48px;border-radius:50%;background:rgba(34,197,94,0.15);border:2px solid #22c55e;display:flex;align-items:center;justify-content:center}
+    .re-s3-ring{position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(34,197,94,0.4);animation:reRO 2s ease-out infinite}
+    .re-s3-ring:nth-child(2){animation-delay:0.5s}.re-s3-ring:nth-child(3){animation-delay:1s}
+    @keyframes reRO{0%{transform:scale(1);opacity:0.6}100%{transform:scale(2.2);opacity:0}}
+    .re-s3-amt{font-size:30px;font-weight:700;color:#4ade80;letter-spacing:-1px;line-height:1}
+    .re-s3-crd{font-size:10px;font-weight:500;color:rgba(74,222,128,0.7);letter-spacing:0.04em;margin-top:3px}
+    .re-s3-div{width:40px;height:1px;background:rgba(255,255,255,0.1);margin:10px auto}
+    .re-s3-ev{font-size:9px;font-weight:600;color:var(--accent);letter-spacing:0.06em;text-transform:uppercase}
+    .re-s3-tm{font-size:9px;color:rgba(255,255,255,0.4);margin-top:2px}
+    .re-s3-upi{display:flex;align-items:center;gap:5px;margin-top:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:5px 9px}
+    .re-s3-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:reBlink 1.5s ease-in-out infinite}
+    @keyframes reBlink{0%,100%{opacity:1}50%{opacity:0.3}}
+    .re-s3-utxt{font-size:8px;font-weight:500;color:rgba(255,255,255,0.5)}
+    .re-s3-tag{font-size:8px;color:rgba(255,255,255,0.28);line-height:1.6;margin-top:10px}
+    @media(max-width:520px){.re-stage{gap:10px}}
+    /* FRAUD */
+    .fd-wrap{color:var(--text)}
+    .fd-presets{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+    .fd-presets button{padding:8px 14px;border:none;background:var(--primary);color:var(--navy);border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;transition:background 0.15s}
+    .fd-presets button:hover{background:var(--primary-dark)}
+    .fd-container{display:flex;gap:32px;flex-wrap:wrap}
+    .fd-panel{flex:1;min-width:280px}
+    .fd-sg{margin-bottom:18px}
+    .fd-sg label{font-size:13px;display:block;margin-bottom:5px;color:var(--text)}
+    .fd-sg input[type=range]{width:100%;accent-color:var(--primary)}
+    .fd-gauge{width:160px;height:160px;border-radius:50%;margin:auto;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:600;color:#fff;transition:background 0.5s ease}
+    .fd-dec{text-align:center;margin-top:14px;font-weight:600;font-size:13px}
+    .fd-exp{text-align:center;margin-top:8px;font-size:12px;color:var(--text-secondary)}
+    /* IMPACT */
+    .ic-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:36px}
+    .ic-card{background:var(--surface);border:0.5px solid var(--border);padding:22px;border-radius:14px;text-align:center;transition:transform 0.3s ease}
+    .ic-card:hover{transform:translateY(-3px)}
+    .ic-snum{font-size:30px;font-weight:700;color:var(--primary)}
+    .ic-slbl{font-size:13px;margin-top:6px;color:var(--text-secondary)}
+    .ic-calc{background:var(--surface);border:0.5px solid var(--border);padding:28px;border-radius:16px}
+    .ic-calc h2{margin-bottom:22px;font-size:18px;font-weight:500;color:var(--text)}
+    .ic-ig{margin-bottom:18px}
+    .ic-ig label{display:block;font-size:13px;margin-bottom:6px;color:var(--text)}
+    .ic-ig input[type=range]{width:100%;accent-color:var(--primary)}
+    .ic-ig select{width:100%;padding:8px 12px;border:0.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--card);color:var(--text)}
+    .ic-outputs{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:22px}
+    .ic-oc{background:var(--primary);color:var(--navy);padding:18px;border-radius:12px}
+    .ic-ov{font-size:20px;font-weight:700}
+    .ic-ol{font-size:12px;margin-top:4px;opacity:0.88;color:var(--navy)}
+    /* TEAM + FOOTER */
+    .kv-team-row{display:flex;gap:10px;flex-wrap:wrap}
+    .kv-team-chip{background:var(--surface);border:0.5px solid var(--border);border-radius:10px;padding:12px 18px}
+    .kv-team-chip-name{font-weight:500;font-size:13px;margin-bottom:2px;color:var(--text)}
+    .kv-team-chip-role{font-size:11px;color:var(--text-secondary)}
+    .kv-footer{border-top:0.5px solid var(--border);padding:28px 32px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--text-secondary);flex-wrap:wrap;gap:12px;background:var(--card)}
+    .kv-footer-logo{font-family:'DM Serif Display',serif;font-size:20px;color:var(--primary)}
+    .kv-sticky{position:fixed;bottom:28px;right:28px;background:var(--accent);color:var(--navy);border:none;border-radius:50px;padding:13px 22px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;z-index:300;box-shadow:0 4px 20px rgba(255,209,102,0.4);text-decoration:none;display:none;transition:transform 0.15s,box-shadow 0.15s}
+    .kv-sticky:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(255,209,102,0.5)}
+    .kv-sticky.show{display:inline-block}
+  </style>
+</head>
+<body>
+
+<nav class="kv-nav">
+  <div class="kv-logo">Kavach</div>
+  <div class="kv-nav-links">
+    <a href="#problem" class="kv-nav-link">Problem</a>
+    <a href="#simulation" class="kv-nav-link">Simulation</a>
+    <a href="#architecture" class="kv-nav-link">Architecture</a>
+    <a href="#rider-experience" class="kv-nav-link">Rider</a>
+    <a href="#fraud" class="kv-nav-link">Fraud</a>
+    <a href="#impact" class="kv-nav-link">Impact</a>
+    <a href="#simulation" class="kv-nav-cta">Watch demo →</a>
+  </div>
+  <span class="kv-pill">DEV Trails 2026</span>
+</nav>
+
+<div class="kv-hero">
+  <div class="kv-eyebrow">Team GuideX · Guidewire DevTrails 2026</div>
+  <h1 class="kv-h1">When the storm hits,<br><em>the money already moved.</em></h1>
+  <p class="kv-hero-sub">Kavach is a parametric payout system for India's 15 million gig delivery workers. No claim. No form. No call centre. When a verified weather event hits, money reaches the rider in under 15 minutes.</p>
+  <div class="kv-cta-row">
+    <a href="#simulation" class="kv-btn-primary">Watch a payout happen →</a>
+    <a href="#problem" class="kv-btn-ghost">The problem</a>
+  </div>
+</div>
+
+<div class="kv-divider"></div>
+
+<section id="problem">
+  <div class="kv-section">
+    <div class="kv-section-label">The problem</div>
+    <div class="kv-story-card">
+      <div class="kv-story-bg"></div>
+      <div class="kv-story-name">Rajan · 27 · Delivery rider, Chennai</div>
+      <div class="kv-story-quote">"Last monsoon I borrowed ₹3,000 from my neighbour to cover rent. A three-day red alert. Took me six weeks to pay it back."</div>
+      <div class="kv-story-meta">Makes ~₹750 on a good day &nbsp;·&nbsp; Loses 4–6 working days every northeast monsoon<br>No weather leave &nbsp;·&nbsp; No paid downtime &nbsp;·&nbsp; No system built for this</div>
+    </div>
+    <div class="kv-stats-grid">
+      <div class="kv-stat"><div class="kv-stat-num">15M+</div><div class="kv-stat-label">Delivery workers in India. Every one earns per delivery.</div></div>
+      <div class="kv-stat"><div class="kv-stat-num">₹2,500</div><div class="kv-stat-label">Average income lost per severe weather event per rider</div></div>
+      <div class="kv-stat"><div class="kv-stat-num">14</div><div class="kv-stat-label">Severe weather events per Tier-1 city per year (avg)</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="kv-divider"></div>
+
+<section id="simulation">
+  <div class="kv-section">
+    <div class="kv-section-label">Live simulation</div>
+    <div class="kv-sim-box">
+      <div class="kv-sim-header">
+        <div class="kv-sim-title">Kavach payout engine</div>
+        <div id="sim-status" style="font-size:12px;color:var(--text-secondary)">Ready</div>
+      </div>
+      <div class="kv-sim-body">
+        <div>
+          <div class="kv-map-mock">
+            <div class="kv-zone-ring" id="zone-ring"></div>
+            <div class="kv-rider-dot" id="rider-dot"></div>
+            <div class="kv-map-label" id="map-label">Chennai grid · All zones nominal</div>
+          </div>
+          <div class="kv-timeline">
+            <div class="kv-step" id="step-1"><div class="kv-step-dot">1</div><div><div class="kv-step-name">Weather event detected</div><div class="kv-step-detail">IMD red alert — coastal Chennai</div></div></div>
+            <div class="kv-step-bar"></div>
+            <div class="kv-step" id="step-2"><div class="kv-step-dot">2</div><div><div class="kv-step-name">Zone grid activated</div><div class="kv-step-detail">2km×2km cells flip to red-alert status</div></div></div>
+            <div class="kv-step-bar"></div>
+            <div class="kv-step" id="step-3"><div class="kv-step-dot">3</div><div><div class="kv-step-name">Rider eligibility check</div><div class="kv-step-detail">Profile verified, shift window overlaps</div></div></div>
+            <div class="kv-step-bar"></div>
+            <div class="kv-step" id="step-4"><div class="kv-step-dot">4</div><div><div class="kv-step-name">Multi-signal trust scoring</div><div class="kv-step-detail">GPS, motion, pressure, platform logs</div></div></div>
+            <div class="kv-step-bar"></div>
+            <div class="kv-step" id="step-5"><div class="kv-step-dot">5</div><div><div class="kv-step-name">Payout approved — score 88/100</div><div class="kv-step-detail">UPI transfer initiated via Razorpay</div></div></div>
+            <div class="kv-step-bar"></div>
+            <div class="kv-step" id="step-6"><div class="kv-step-dot">6</div><div><div class="kv-step-name">Blockchain ledger entry written</div><div class="kv-step-detail">Hyperledger Fabric · Immutable audit trail</div></div></div>
+          </div>
+        </div>
+        <div>
+          <div class="kv-phone-mock">
+            <div style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center;margin-bottom:14px;letter-spacing:0.06em;text-transform:uppercase">Rajan's phone</div>
+            <div class="kv-notif" id="notif-box">
+              <div class="kv-notif-icon">🛡</div>
+              <div>
+                <div class="kv-notif-app">KAVACH</div>
+                <div class="kv-notif-msg">Severe weather in your area. Your protection has been triggered.</div>
+                <div class="kv-notif-amount" id="notif-amount">₹400 credited ✓</div>
+              </div>
+            </div>
+            <div class="kv-blockchain-entry" id="blockchain-entry">
+              <div class="kv-bl-title">Hyperledger entry</div>
+              <div>txn: kv_2026_04_01_rajan_chn</div>
+              <div>trigger: IMD_RED_MA13</div>
+              <div>score: 88 → tier_1_auto</div>
+              <div>amount: ₹400.00 via UPI</div>
+              <div>status: CONFIRMED ✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="kv-sim-footer">
+        <div class="kv-progress-wrap">
+          <div class="kv-progress-track"><div class="kv-progress-bar" id="prog-bar"></div></div>
+          <div class="kv-progress-label" id="prog-label">Press "Trigger storm" to start</div>
+        </div>
+        <button class="kv-btn-primary" id="sim-btn" onclick="startSim()">Trigger storm</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="kv-divider"></div>
+
+<!-- ARCHITECTURE — ADITYA (updated colors to match dark theme) -->
+<section id="architecture">
+  <div class="kv-section">
+    <div class="kv-section-label">System architecture</div>
+    <div class="arch-card">
+      <div class="arch-header">
+        <div class="arch-title">KAVACH · PARAMETRIC PAYOUT ENGINE</div>
+        <div class="arch-badge">Hyperledger Fabric · ML Trust Scoring · &lt;15min payout</div>
+      </div>
+      <div class="arch-svg-wrap">
+        <svg class="arch-svg" viewBox="0 0 880 780" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1A201E"/><stop offset="100%" stop-color="#0F1412"/></linearGradient>
+            <linearGradient id="g2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1A201E"/><stop offset="100%" stop-color="#0F1412"/></linearGradient>
+            <linearGradient id="g3" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1A201E"/><stop offset="100%" stop-color="#0F1412"/></linearGradient>
+            <marker id="am" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="#73877B" stroke-width="1.2" stroke-linecap="round"/></marker>
+          </defs>
+          <rect width="100%" height="100%" fill="#0F1412"/>
+          <pattern id="fg" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0L0 0 0 20" fill="none" stroke="#1F2A26" stroke-width="0.4" opacity="0.4"/></pattern>
+          <rect width="100%" height="100%" fill="url(#fg)"/>
+          <text x="30" y="42" fill="#AAB7B0" font-size="10" font-weight="600" letter-spacing="1.5" font-family="Inter,sans-serif">📡 LAYER 1 — DATA SOURCES</text>
+          <g class="arch-node" data-tip="India Meteorological Department API — real-time weather alerts, cyclone warnings, and rainfall data across 700+ districts."><rect x="30" y="60" width="160" height="64" rx="8" fill="url(#g1)" stroke="#1F2A26" stroke-width="1"/><text x="110" y="86" text-anchor="middle" font-size="15" font-family="Inter,sans-serif">🌦️</text><text x="110" y="103" text-anchor="middle" font-size="12" font-weight="600" fill="#F4F7F5" font-family="Inter,sans-serif">IMD API</text><text x="110" y="117" text-anchor="middle" font-size="9" fill="#AAB7B0" font-family="Inter,sans-serif">Govt weather data</text></g>
+          <g class="arch-node" data-tip="Skymet private weather feed — hyperlocal precipitation, lightning intensity, 1km storm resolution."><rect x="220" y="60" width="160" height="64" rx="8" fill="url(#g1)" stroke="#1F2A26" stroke-width="1"/><text x="300" y="86" text-anchor="middle" font-size="15" font-family="Inter,sans-serif">⛈️</text><text x="300" y="103" text-anchor="middle" font-size="12" font-weight="600" fill="#F4F7F5" font-family="Inter,sans-serif">Skymet</text><text x="300" y="117" text-anchor="middle" font-size="9" fill="#AAB7B0" font-family="Inter,sans-serif">Private feed</text></g>
+          <g class="arch-node" data-tip="Municipal Disaster Management Authority — real-time flood zones, road closures, and city-level emergency alerts."><rect x="410" y="60" width="190" height="64" rx="8" fill="url(#g1)" stroke="#1F2A26" stroke-width="1"/><text x="505" y="86" text-anchor="middle" font-size="15" font-family="Inter,sans-serif">🏛️</text><text x="505" y="103" text-anchor="middle" font-size="12" font-weight="600" fill="#F4F7F5" font-family="Inter,sans-serif">Municipal DMA</text><text x="505" y="117" text-anchor="middle" font-size="9" fill="#AAB7B0" font-family="Inter,sans-serif">Hazard alerts</text></g>
+          <g class="arch-node" data-tip="Platform Partner API — live rider coordinates, shift status, active order metadata from Zomato, Swiggy, Uber."><rect x="630" y="60" width="180" height="64" rx="8" fill="url(#g1)" stroke="#1F2A26" stroke-width="1"/><text x="720" y="86" text-anchor="middle" font-size="15" font-family="Inter,sans-serif">🛵</text><text x="720" y="103" text-anchor="middle" font-size="12" font-weight="600" fill="#F4F7F5" font-family="Inter,sans-serif">Platform API</text><text x="720" y="117" text-anchor="middle" font-size="9" fill="#AAB7B0" font-family="Inter,sans-serif">Rider &amp; order data</text></g>
+          <path class="arch-flow" d="M110 124 L280 188" stroke="#73877B" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
+          <path class="arch-flow" d="M300 124 L340 188" stroke="#73877B" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
+          <path class="arch-flow" d="M505 124 L440 188" stroke="#73877B" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
+          <path class="arch-flow" d="M720 124 L530 188" stroke="#73877B" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
+          <text x="30" y="178" fill="#AAB7B0" font-size="10" font-weight="600" letter-spacing="1.5" font-family="Inter,sans-serif">⚙️ LAYER 2 — INTELLIGENT PROCESSING</text>
+          <g class="arch-node" data-tip="Weather Intelligence Engine: cross-validates IMD, Skymet, municipal feeds, eliminates false positives using consensus."><rect x="240" y="192" width="280" height="56" rx="10" fill="url(#g2)" stroke="#1F2A26" stroke-width="1"/><text x="380" y="216" text-anchor="middle" font-size="13" font-weight="600" fill="#F4F7F5" font-family="Inter,sans-serif">🌐 Weather Intelligence Engine</text><text x="380" y="234" text-anchor="middle" font-size="9.5" fill="#AAB7B0" font-family="Inter,sans-serif">Multi-source aggregation + validation</text></g>
+          <path class="arch-flow" d="M380 248 L380 276" stroke="#73877B" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
+          <g class="arch-node" data-tip="Zone Grid Activator: maps weather polygons to 2km² delivery zones, assigns RED/YELLOW/GREEN risk levels."><rect x="260" y="276" width="240" height="56" rx="10" fill="url(#g2)" stroke="#1F2A26" stroke-width="1"/><text x="380" y="300" text-anchor="middle" font-size="13" font-weight="600" fill="#F4F7F5" font-family="Inter,sans-serif">🗺️ Zone Grid Activator</text><text x="380" y="318" text-anchor="middle" font-size="9.5" fill="#AAB7B0" font-family="Inter,sans-serif">Geo-zone mapping &amp; risk tiering</text></g>
+          <path class="arch-flow" d="M380 332 L380 360" stroke="#73877B" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
+          <g class="arch-node" data-tip="Rider Eligibility Engine: matches live rider location, shift window, and affected zones — filters ineligible riders."><rect x="255" y="360" width="250" height="56" rx="10" fill="url(#g2)" stroke="#1F2A26" stroke-width="1"/><text x="380" y="384" text-anchor="middle" font-size="13" font-weight="600" fill="#F4F7F5" font-family="Inter,sans-serif">✅ Rider Eligibility Engine</text><text x="380" y="402" text-anchor="middle" font-size="9.5" fill="#AAB7B0" font-family="Inter,sans-serif">Location × zone × shift validation</text></g>
+          <path class="arch-flow" d="M380 416 L380 444" stroke="#73877B" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
+          <g class="arch-node" data-tip="ML Trust Scoring Model (XGBoost) — analyses 6 signals: GPS trajectory, gyroscope, barometric pressure, cell tower, work history, order status.">
+            <ellipse cx="380" cy="484" rx="145" ry="30" fill="none" stroke="#7A6C8F" stroke-width="1.2" class="arch-pulse"/>
+            <rect x="235" y="458" width="290" height="52" rx="24" fill="#1A201E" stroke="#7A6C8F" stroke-width="1.2"/>
+            <text x="380" y="480" text-anchor="middle" font-size="12" font-weight="700" fill="#FFD166" font-family="Inter,sans-serif">🤖 ML Trust Scoring Model</text>
+            <text x="380" y="498" text-anchor="middle" font-size="9" fill="#AAB7B0" font-family="Inter,sans-serif">6-dimension fraud signal analysis</text>
+          </g>
+          <path class="arch-flow" d="M380 510 L380 538" stroke="#73877B" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
+          <g class="arch-node" data-tip="Three-Tier Decision Engine: Score &gt;75 → Auto-approve. 45–75 → Hold. &lt;45 → Reject or manual investigation."><rect x="248" y="538" width="264" height="56" rx="10" fill="#1A201E" stroke="#FFD166" stroke-width="1.2"/><text x="380" y="562" text-anchor="middle" font-size="13" font-weight="600" fill="#F4F7F5" font-family="Inter,sans-serif">📊 Three-Tier Decision Engine</text><text x="380" y="580" text-anchor="middle" font-size="9.5" fill="#AAB7B0" font-family="Inter,sans-serif">Auto-approve / Hold / Reject</text></g>
+          <path class="arch-flow" d="M310 594 L160 636" stroke="#73877B" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
+          <path class="arch-flow" d="M380 594 L440 636" stroke="#73877B" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
+          <path class="arch-flow" d="M520 594 L670 636" stroke="#73877B" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
+          <text x="30" y="626" fill="#AAB7B0" font-size="10" font-weight="600" letter-spacing="1.5" font-family="Inter,sans-serif">💰 LAYER 3 — PAYOUT &amp; AUDIT</text>
+          <g class="arch-node" data-tip="Razorpay UPI Payout: instant transfer to rider's bank account. Average latency under 6 seconds after approval."><rect x="30" y="648" width="210" height="64" rx="8" fill="url(#g3)" stroke="#1F2A26" stroke-width="1"/><text x="135" y="672" text-anchor="middle" font-size="16" font-family="Inter,sans-serif">💸</text><text x="135" y="692" text-anchor="middle" font-size="11" font-weight="600" fill="#F4F7F5" font-family="Inter,sans-serif">UPI via Razorpay</text><text x="135" y="706" text-anchor="middle" font-size="8.5" fill="#AAB7B0" font-family="Inter,sans-serif">Instant payout</text></g>
+          <g class="arch-node" data-tip="Hyperledger Fabric: immutable ledger storing every payout trigger, score, and transaction hash for audit and compliance."><rect x="280" y="648" width="240" height="64" rx="8" fill="url(#g3)" stroke="#1F2A26" stroke-width="1"/><text x="400" y="672" text-anchor="middle" font-size="16" font-family="Inter,sans-serif">🔗</text><text x="400" y="692" text-anchor="middle" font-size="11" font-weight="600" fill="#F4F7F5" font-family="Inter,sans-serif">Hyperledger Fabric</text><text x="400" y="706" text-anchor="middle" font-size="8.5" fill="#AAB7B0" font-family="Inter,sans-serif">Immutable audit trail</text></g>
+          <g class="arch-node" data-tip="Push notification to rider's device with payout confirmation, amount, and reference ID. Real-time user experience."><rect x="560" y="648" width="240" height="64" rx="8" fill="url(#g3)" stroke="#1F2A26" stroke-width="1"/><text x="680" y="672" text-anchor="middle" font-size="16" font-family="Inter,sans-serif">📱</text><text x="680" y="692" text-anchor="middle" font-size="11" font-weight="600" fill="#F4F7F5" font-family="Inter,sans-serif">Push Notification</text><text x="680" y="706" text-anchor="middle" font-size="8.5" fill="#AAB7B0" font-family="Inter,sans-serif">Confirmation alert</text></g>
+        </svg>
+      </div>
+      <div style="padding:0.8rem 1.8rem 1.2rem;border-top:1px solid var(--border);display:flex;gap:1rem;flex-wrap:wrap;justify-content:space-between;align-items:center">
+        <div style="display:flex;gap:1.2rem">
+          <span style="font-size:10px;color:#AAB7B0;font-family:Inter,sans-serif;display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;background:#73877B;border-radius:2px;display:inline-block"></span>Data ingestion</span>
+          <span style="font-size:10px;color:#AAB7B0;font-family:Inter,sans-serif;display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;background:#FFD166;border-radius:2px;display:inline-block"></span>Decision engine</span>
+          <span style="font-size:10px;color:#AAB7B0;font-family:Inter,sans-serif;display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;background:#7A6C8F;border-radius:2px;display:inline-block"></span>Payout &amp; ledger</span>
+        </div>
+        <div style="font-size:9px;color:#AAB7B0;font-family:Inter,sans-serif">⚡ Parametric trigger → ML trust score → UPI in &lt;15min</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="kv-divider"></div>
+
+<!-- RIDER EXPERIENCE — RAJNI (unchanged structure, colors updated via CSS variables already) -->
+<section id="rider-experience">
+  <div class="re-inner">
+    <div class="re-lbl">Rider experience</div>
+    <div class="re-stage">
+      <div class="re-pw">
+        <div class="re-phone re-s1">
+          <div class="re-cam"></div>
+          <div class="re-sb"><span class="re-sbt">9:41</span></div>
+          <div class="re-scr">
+            <div class="re-s1-wall">
+              <div><div class="re-s1-clk">9:41</div><div class="re-s1-dt">Tuesday, April 1</div></div>
+              <div class="re-s1-ntf">
+                <div class="re-s1-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5.5 3.5 10.7 8 12 4.5-1.3 8-6.5 8-12V6L12 2z" fill="white" opacity="0.95"/><path d="M9 12l2 2 4-4" stroke="#FFD166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div><div class="re-s1-nap">Kavach</div><div class="re-s1-nmsg">Active · You're protected today</div></div>
+              </div>
+              <div class="re-s1-grid"><div class="re-s1-ai c1"></div><div class="re-s1-ai c2"></div><div class="re-s1-ai c3"></div><div class="re-s1-ai c4"></div><div class="re-s1-ai c5"></div><div class="re-s1-ai c6"></div><div class="re-s1-ai c7"></div><div class="re-s1-ai c8"></div></div>
+            </div>
+          </div>
+          <div class="re-nb"><div class="re-np"></div></div>
+        </div>
+        <div class="re-label">Normal day</div>
+      </div>
+      <div class="re-pw">
+        <div class="re-phone re-s2">
+          <div class="re-cam"></div>
+          <div class="re-sb"><span class="re-sbt">14:07</span></div>
+          <div class="re-scr">
+            <div class="re-rain" id="re-rain"></div>
+            <div class="re-s2-wall">
+              <div><div class="re-s1-clk" style="color:#fff;font-weight:300;font-size:28px;text-align:center">14:07</div><div class="re-s1-dt" style="color:rgba(255,255,255,0.45)">Tuesday, April 1</div></div>
+              <div class="re-s2-push">
+                <div class="re-s2-badge"></div>
+                <div class="re-s2-ph"><div class="re-s2-pai"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5.5 3.5 10.7 8 12 4.5-1.3 8-6.5 8-12V6L12 2z" fill="white"/></svg></div><span class="re-s2-pan">Kavach</span></div>
+                <div class="re-s2-ptit">⚠️ Severe weather in your area</div>
+                <div class="re-s2-pbod">Your protection has been triggered. Stand by.</div>
+              </div>
+            </div>
+          </div>
+          <div class="re-nb"><div class="re-np"></div></div>
+        </div>
+        <div class="re-label">Storm hits</div>
+      </div>
+      <div class="re-pw">
+        <div class="re-phone re-s3">
+          <div class="re-cam"></div>
+          <div class="re-sb"><span class="re-sbt">14:16</span></div>
+          <div class="re-scr">
+            <div class="re-s3-con">
+              <div class="re-s3-cw">
+                <div class="re-s3-ring"></div><div class="re-s3-ring"></div><div class="re-s3-ring"></div>
+                <div class="re-s3-circ"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              </div>
+              <div class="re-s3-amt">₹400 credited</div>
+              <div class="re-s3-crd">directly to your account</div>
+              <div class="re-s3-div"></div>
+              <div class="re-s3-ev">Coastal Chennai Red Alert</div>
+              <div class="re-s3-tm">8 min 42 sec after trigger</div>
+              <div class="re-s3-upi"><div class="re-s3-dot"></div><div class="re-s3-utxt">UPI transfer complete</div></div>
+              <div class="re-s3-tag">No claim filed.<br>No form filled.<br>No call made.</div>
+            </div>
+          </div>
+          <div class="re-nb"><div class="re-np"></div></div>
+        </div>
+        <div class="re-label">Money received</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="kv-divider"></div>
+
+<!-- FRAUD DETECTION — SHUBHANKAR -->
+<section id="fraud">
+  <div class="kv-section">
+    <div class="kv-section-label">Fraud detection</div>
+    <div class="fd-wrap">
+      <div class="fd-presets">
+        <button onclick="fdSet([90,85,88,80,75,95])">Genuine stranded rider</button>
+        <button onclick="fdSet([60,55,70,50,65,80])">Weak signal (bad weather)</button>
+        <button onclick="fdSet([95,10,15,20,40,5])">GPS spoof attempt</button>
+      </div>
+      <div class="fd-container">
+        <div class="fd-panel">
+          <div class="fd-sg"><label>Does GPS show natural travel into zone?</label><input type="range" min="0" max="100" value="50" id="fd1"></div>
+          <div class="fd-sg"><label>Accelerometer/gyroscope data active?</label><input type="range" min="0" max="100" value="50" id="fd2"></div>
+          <div class="fd-sg"><label>Pressure consistent with storm zone?</label><input type="range" min="0" max="100" value="50" id="fd3"></div>
+          <div class="fd-sg"><label>Device cell tower matches claimed zone?</label><input type="range" min="0" max="100" value="50" id="fd4"></div>
+          <div class="fd-sg"><label>Rider has worked in this area before?</label><input type="range" min="0" max="100" value="50" id="fd5"></div>
+          <div class="fd-sg"><label>No active delivery order during claim?</label><input type="range" min="0" max="100" value="50" id="fd6"></div>
+        </div>
+        <div class="fd-panel">
+          <div class="fd-gauge" id="fd-gauge">50</div>
+          <div class="fd-dec" id="fd-dec"></div>
+          <div class="fd-exp" id="fd-exp"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="kv-divider"></div>
+
+<!-- IMPACT — HANEESH -->
+<section id="impact">
+  <div class="kv-section">
+    <div class="kv-section-label">Impact</div>
+    <div class="ic-stats">
+      <div class="ic-card"><div class="ic-snum" data-target="15000000">0</div><div class="ic-slbl">Delivery workers in India</div></div>
+      <div class="ic-card"><div class="ic-snum" data-target="2500">0</div><div class="ic-slbl">Avg income lost per weather event</div></div>
+      <div class="ic-card"><div class="ic-snum" data-target="14">0</div><div class="ic-slbl">Severe weather events per year</div></div>
+      <div class="ic-card"><div class="ic-snum">&lt;15 min</div><div class="ic-slbl">Target payout time from alert</div></div>
+    </div>
+    <div class="ic-calc">
+      <h2>Calculate Kavach's impact</h2>
+      <div class="ic-ig"><label>Platform partners: <span id="icPv">2</span></label><input type="range" id="icp" min="1" max="10" value="2"></div>
+      <div class="ic-ig"><label>Riders per platform: <span id="icRv">50,000</span></label><input type="range" id="icr" min="10000" max="100000" step="10000" value="50000"></div>
+      <div class="ic-ig"><label>City tier</label><select id="ict"><option value="14">Tier 1 (14 events/year)</option><option value="9">Tier 2 (9 events/year)</option><option value="6">Tier 3 (6 events/year)</option></select></div>
+      <div class="ic-outputs">
+        <div class="ic-oc"><div class="ic-ov" id="ic-tr">0</div><div class="ic-ol">Total riders enrolled</div></div>
+        <div class="ic-oc"><div class="ic-ov" id="ic-ir">0</div><div class="ic-ol">Income protected / rider / year</div></div>
+        <div class="ic-oc"><div class="ic-ov" id="ic-ti">0</div><div class="ic-ol">Total income protected</div></div>
+        <div class="ic-oc"><div class="ic-ov" id="ic-mr">0</div><div class="ic-ol">Monthly platform revenue</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="kv-divider"></div>
+
+<section id="team">
+  <div class="kv-section" style="padding-bottom:40px">
+    <div class="kv-section-label">Team GuideX</div>
+    <div class="kv-team-row">
+      <div class="kv-team-chip"><div class="kv-team-chip-name">PS Vedant</div><div class="kv-team-chip-role">Team Lead</div></div>
+      <div class="kv-team-chip"><div class="kv-team-chip-name">Rajni</div><div class="kv-team-chip-role">Member</div></div>
+      <div class="kv-team-chip"><div class="kv-team-chip-name">Shubhankar Raj</div><div class="kv-team-chip-role">Member</div></div>
+      <div class="kv-team-chip"><div class="kv-team-chip-name">Aditya Shekhar Singh</div><div class="kv-team-chip-role">Member</div></div>
+      <div class="kv-team-chip"><div class="kv-team-chip-name">B. Haneesh</div><div class="kv-team-chip-role">Member</div></div>
+    </div>
+    <div style="margin-top:20px;font-size:13px;color:var(--text-secondary)">Built at DEV Trails 2026. Rajan should not have to borrow money from his neighbour when it rains. That is the whole point.</div>
+  </div>
+</section>
+
+<footer class="kv-footer">
+  <div class="kv-footer-logo">Kavach</div>
+  <div>Financial protection for India's gig workers · Team GuideX · DEV Trails 2026</div>
+</footer>
+
+<a href="#simulation" class="kv-sticky" id="sticky">Watch demo ↓</a>
+<div class="arch-tip" id="arch-tip"></div>
+
+<script>
+/* sticky */
+window.addEventListener('scroll',function(){document.getElementById('sticky').classList.toggle('show',window.scrollY>400)});
+
+/* simulation */
+var sR=false,sD=false;
+function startSim(){
+  if(sR)return;
+  if(sD){resetSim();return;}
+  sR=true;
+  var btn=document.getElementById('sim-btn');
+  btn.textContent='Running...';btn.disabled=true;
+  var steps=[
+    {id:'step-1',delay:0,lbl:'IMD API: red alert received...'},
+    {id:'step-2',delay:1200,lbl:'Zone grid: 14 cells activated'},
+    {id:'step-3',delay:2200,lbl:'Eligibility engine: 3 checks passed'},
+    {id:'step-4',delay:3400,lbl:'ML scoring: 6 signals evaluated'},
+    {id:'step-5',delay:5200,lbl:'UPI transfer: ₹400 → Rajan'},
+    {id:'step-6',delay:6400,lbl:'Ledger entry: written to Hyperledger'}
+  ];
+  document.getElementById('zone-ring').classList.add('active');
+  document.getElementById('rider-dot').style.display='block';
+  document.getElementById('map-label').textContent='RED ALERT: Coastal Chennai zones active';
+  document.getElementById('map-label').style.color='#FF5A5F';
+  document.getElementById('sim-status').textContent='Running...';
+  document.getElementById('notif-box').classList.add('visible');
+  var st=Date.now(),pi=setInterval(function(){
+    var p=Math.min(100,Math.round((Date.now()-st)/7200*100));
+    document.getElementById('prog-bar').style.width=p+'%';
+    if(p>=100)clearInterval(pi);
+  },50);
+  steps.forEach(function(s,i){
+    setTimeout(function(){
+      if(i>0){var pr=document.getElementById(steps[i-1].id);pr.classList.remove('active');pr.classList.add('done');pr.querySelector('.kv-step-dot').textContent='✓';}
+      document.getElementById(s.id).classList.add('active');
+      document.getElementById('prog-label').textContent=s.lbl;
+    },s.delay);
+  });
+  setTimeout(function(){
+    var l=document.getElementById('step-6');l.classList.remove('active');l.classList.add('done');l.querySelector('.kv-step-dot').textContent='✓';
+    document.getElementById('notif-amount').style.display='block';
+    document.getElementById('blockchain-entry').style.display='block';
+    document.getElementById('sim-status').textContent='✓ Complete — 7.2s elapsed';
+    document.getElementById('sim-status').style.color='#4ade80';
+    document.getElementById('prog-label').textContent='Rajan has been paid. Ledger updated.';
+    btn.textContent='Run again';btn.disabled=false;sR=false;sD=true;
+  },7200);
+}
+function resetSim(){
+  sD=false;
+  var btn=document.getElementById('sim-btn');btn.textContent='Trigger storm';
+  document.getElementById('sim-status').textContent='Ready';document.getElementById('sim-status').style.color='';
+  document.getElementById('zone-ring').classList.remove('active');
+  document.getElementById('rider-dot').style.display='none';
+  document.getElementById('map-label').textContent='Chennai grid · All zones nominal';document.getElementById('map-label').style.color='';
+  document.getElementById('notif-box').classList.remove('visible');
+  document.getElementById('notif-amount').style.display='none';
+  document.getElementById('blockchain-entry').style.display='none';
+  document.getElementById('prog-bar').style.width='0%';
+  document.getElementById('prog-label').textContent='Press "Trigger storm" to start';
+  [1,2,3,4,5,6].forEach(function(n){var el=document.getElementById('step-'+n);el.classList.remove('active','done');el.querySelector('.kv-step-dot').textContent=n;});
+}
+
+/* arch tooltips */
+(function(){
+  var tip=document.getElementById('arch-tip');
+  document.querySelectorAll('.arch-node').forEach(function(n){
+    var t=n.getAttribute('data-tip');if(!t)return;
+    n.addEventListener('mouseenter',function(e){tip.innerHTML=t;tip.classList.add('visible');mv(e);});
+    n.addEventListener('mousemove',mv);
+    n.addEventListener('mouseleave',function(){tip.classList.remove('visible');});
+  });
+  function mv(e){var x=e.clientX+14,y=e.clientY+14,w=tip.offsetWidth||240,h=tip.offsetHeight||60;if(x+w>window.innerWidth)x=e.clientX-w-10;if(y+h>window.innerHeight)y=e.clientY-h-10;tip.style.left=x+'px';tip.style.top=y+'px';}
+})();
+
+/* rider rain */
+(function(){var r=document.getElementById('re-rain');if(!r)return;for(var i=0;i<22;i++){var d=document.createElement('div');d.className='re-rd';d.style.cssText='left:'+Math.random()*100+'%;height:'+(14+Math.random()*22)+'px;animation-duration:'+(0.4+Math.random()*0.5)+'s;animation-delay:'+(-Math.random()*1.5)+'s';r.appendChild(d);}})();
+
+/* fraud */
+var fdS=['fd1','fd2','fd3','fd4','fd5','fd6'].map(function(id){return document.getElementById(id);});
+function fdClr(s){return s<45?'#FF5A5F':s<75?'#FFD166':'#4ade80';}
+function fdUpd(){
+  var v=fdS.map(function(s){return+s.value;}),sc=Math.round(v.reduce(function(a,b){return a+b;})/v.length);
+  var g=document.getElementById('fd-gauge');g.innerText=sc;g.style.background=fdClr(sc);
+  var d=document.getElementById('fd-dec');
+  if(sc<45){d.innerText='Tier 3 — Payout paused. Human review queued.';d.style.color='#FF5A5F';}
+  else if(sc<75){d.innerText='Tier 2 — Short hold. Verification requested.';d.style.color='#FFD166';}
+  else{d.innerText='Tier 1 — Auto-approved. UPI transfer initiated.';d.style.color='#4ade80';}
+  var lb=['GPS trajectory','Motion sensors','Barometric pressure','Cell tower match','Work history','Order validation'];
+  var pr=v.map(function(val,i){return{v:val,l:lb[i]};}).sort(function(a,b){return b.v-a.v;});
+  document.getElementById('fd-exp').innerText='Strongest signals: '+pr.slice(0,2).map(function(p){return p.l;}).join(', ');
+}
+function fdSet(a){fdS.forEach(function(s,i){s.value=a[i];});fdUpd();}
+fdS.forEach(function(s){s.addEventListener('input',fdUpd);});fdUpd();
+
+/* impact */
+function icF(n){return'₹'+n.toLocaleString('en-IN');}
+function icN(n){return n.toLocaleString('en-IN');}
+function icA(id,end,fmt){var el=document.getElementById(id),s=0,step=Math.max(1,Math.ceil(end/50));function r(){s+=step;if(s>=end){el.textContent=fmt(end);}else{el.textContent=fmt(s);requestAnimationFrame(r);}}r();}
+function icUpd(){
+  var p=+document.getElementById('icp').value,r=+document.getElementById('icr').value,e=+document.getElementById('ict').value;
+  document.getElementById('icPv').textContent=p;document.getElementById('icRv').textContent=icN(r);
+  icA('ic-tr',p*r,icN);icA('ic-ir',e*1850,icF);icA('ic-ti',p*r*e*1850,icF);icA('ic-mr',p*r*100,icF);
+}
+document.getElementById('icp').oninput=icUpd;document.getElementById('icr').oninput=icUpd;document.getElementById('ict').onchange=icUpd;icUpd();
+var icObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var el=e.target,t=+el.dataset.target,c=0,step=Math.ceil(t/60);function r(){c+=step;if(c>=t){el.textContent=icN(t);}else{el.textContent=icN(c);requestAnimationFrame(r);}}r();icObs.unobserve(el);}});},{threshold:0.5});
+document.querySelectorAll('.ic-snum[data-target]').forEach(function(c){icObs.observe(c);});
+
+async function getFraudScore(signals) {
+  const res = await fetch("http://127.0.0.1:8000/fraud-score", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(signals)
+  });
+  return await res.json();
+}
+</script>
+</body>
+</html>

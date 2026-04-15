@@ -1,0 +1,238 @@
+<div id="kavach-impact" style="font-family: 'DM Sans', sans-serif; max-width: 860px; margin: auto;">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    #kavach-impact {
+      color: #222;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: 700;
+      color: #E85C2B;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      margin-top: 6px;
+      color: #555;
+    }
+
+    .calculator {
+      background: #fff;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+    }
+
+    .calculator h2 {
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    input[type=range], select {
+      width: 100%;
+    }
+
+    .outputs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .output-card {
+      background: #E85C2B;
+      color: #fff;
+      padding: 16px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .output-value {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .output-label {
+      font-size: 13px;
+      margin-top: 4px;
+      opacity: 0.9;
+    }
+  </style>
+
+  <!-- PART 1: STATS -->
+  <div class="stats">
+    <div class="card">
+      <div class="stat-number" data-target="15000000">0</div>
+      <div class="stat-label">Delivery workers in India</div>
+    </div>
+    <div class="card">
+      <div class="stat-number" data-target="2500">0</div>
+      <div class="stat-label">Avg income lost per weather event</div>
+    </div>
+    <div class="card">
+      <div class="stat-number" data-target="14">0</div>
+      <div class="stat-label">Severe weather events per year</div>
+    </div>
+    <div class="card">
+      <div class="stat-number">&lt;15 min</div>
+      <div class="stat-label">Target payout time</div>
+    </div>
+  </div>
+
+  <!-- PART 2: CALCULATOR -->
+  <div class="calculator">
+    <h2>Calculate Kavach's impact</h2>
+
+    <div class="input-group">
+      <label>Platform partners: <span id="partnersVal">2</span></label>
+      <input type="range" id="partners" min="1" max="10" value="2">
+    </div>
+
+    <div class="input-group">
+      <label>Riders per platform: <span id="ridersVal">50,000</span></label>
+      <input type="range" id="riders" min="10000" max="100000" step="10000" value="50000">
+    </div>
+
+    <div class="input-group">
+      <label>City tier</label>
+      <select id="tier">
+        <option value="14">Tier 1 (14 events/year)</option>
+        <option value="9">Tier 2 (9 events/year)</option>
+        <option value="6">Tier 3 (6 events/year)</option>
+      </select>
+    </div>
+
+    <div class="outputs">
+      <div class="output-card">
+        <div class="output-value" id="totalRiders">0</div>
+        <div class="output-label">Total riders enrolled</div>
+      </div>
+
+      <div class="output-card">
+        <div class="output-value" id="incomePerRider">0</div>
+        <div class="output-label">Income protected / rider / year</div>
+      </div>
+
+      <div class="output-card">
+        <div class="output-value" id="totalIncome">0</div>
+        <div class="output-label">Total income protected</div>
+      </div>
+
+      <div class="output-card">
+        <div class="output-value" id="monthlyRevenue">0</div>
+        <div class="output-label">Monthly platform revenue</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Number formatting (Indian)
+    function formatINR(num) {
+      return '₹' + num.toLocaleString('en-IN');
+    }
+
+    function formatNumber(num) {
+      return num.toLocaleString('en-IN');
+    }
+
+    function updateCalc() {
+      const partners = +document.getElementById('partners').value;
+      const riders = +document.getElementById('riders').value;
+      const events = +document.getElementById('tier').value;
+
+      document.getElementById('partnersVal').textContent = partners;
+      document.getElementById('ridersVal').textContent = formatNumber(riders);
+
+      const totalRiders = partners * riders;
+      const incomePerRider = events * 1850;
+      const totalIncome = totalRiders * incomePerRider;
+      const revenue = totalRiders * 100;
+
+      animateValue('totalRiders', totalRiders, formatNumber);
+      animateValue('incomePerRider', incomePerRider, formatINR);
+      animateValue('totalIncome', totalIncome, formatINR);
+      animateValue('monthlyRevenue', revenue, formatINR);
+    }
+
+    function animateValue(id, end, formatter) {
+      const el = document.getElementById(id);
+      let start = 0;
+      const duration = 400;
+      const step = Math.ceil(end / (duration / 16));
+
+      function update() {
+        start += step;
+        if (start >= end) {
+          el.textContent = formatter(end);
+        } else {
+          el.textContent = formatter(start);
+          requestAnimationFrame(update);
+        }
+      }
+      update();
+    }
+
+    document.getElementById('partners').oninput = updateCalc;
+    document.getElementById('riders').oninput = updateCalc;
+    document.getElementById('tier').onchange = updateCalc;
+
+    updateCalc();
+
+    // Counter animation on scroll
+    const counters = document.querySelectorAll('.stat-number[data-target]');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = +el.dataset.target;
+          let count = 0;
+          const step = Math.ceil(target / 60);
+
+          function update() {
+            count += step;
+            if (count >= target) {
+              el.textContent = formatNumber(target);
+            } else {
+              el.textContent = formatNumber(count);
+              requestAnimationFrame(update);
+            }
+          }
+          update();
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(c => observer.observe(c));
+  </script>
+</div>
