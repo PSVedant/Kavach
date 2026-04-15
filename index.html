@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" href="data:,">
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Kavach — Parametric weather payout system for India's gig delivery workers."/>
@@ -8,11 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    /* NEW DARK THEME COLORS */
     :root{--primary:#73877B;--primary-light:#8DA196;--primary-dark:#5C6D63;--primary-soft:#2A3A33;--accent:#FFD166;--accent-dark:#E6B800;--accent-soft:#3A3A2A;--secondary-accent:#7A6C8F;--navy:#0F1412;--text:#F4F7F5;--text-secondary:#AAB7B0;--muted:#AAB7B0;--border:#1F2A26;--card:#1A201E;--surface:#1A201E;--alert:#FF5A5F}
     html{scroll-behavior:smooth}
     body{font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;color:var(--text);background:var(--navy)}
-    /* NAV */
     .kv-nav{display:flex;align-items:center;justify-content:space-between;padding:14px 32px;border-bottom:0.5px solid var(--border);background:var(--card);position:sticky;top:0;z-index:200}
     .kv-logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--primary);letter-spacing:-0.5px}
     .kv-nav-links{display:flex;align-items:center;gap:2px}
@@ -21,7 +20,6 @@
     .kv-nav-cta{font-size:12px;background:var(--accent);color:var(--navy);border:none;border-radius:8px;padding:7px 16px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;margin-left:6px;text-decoration:none;white-space:nowrap}
     .kv-pill{font-size:11px;font-weight:500;background:var(--primary-soft);color:var(--primary-light);border-radius:20px;padding:4px 10px;border:0.5px solid var(--primary-light);margin-left:8px}
     @media(max-width:768px){.kv-nav-links{display:none}.kv-nav{padding:14px 20px}}
-    /* SHARED */
     .kv-section{padding:72px 32px;max-width:900px;margin:0 auto}
     .kv-section-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:36px;display:flex;align-items:center;gap:12px}
     .kv-section-label::after{content:'';flex:1;height:0.5px;background:var(--border)}
@@ -30,7 +28,6 @@
     .kv-btn-primary:hover{background:var(--accent-dark)}
     .kv-btn-ghost{background:transparent;color:var(--text);border:0.5px solid var(--border);border-radius:8px;padding:13px 26px;font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;text-decoration:none;display:inline-block}
     .kv-btn-ghost:hover{background:var(--surface)}
-    /* HERO */
     .kv-hero{padding:80px 32px 64px;max-width:900px;margin:0 auto}
     .kv-eyebrow{font-size:12px;font-weight:500;letter-spacing:0.08em;color:var(--primary);text-transform:uppercase;margin-bottom:18px}
     .kv-h1{font-family:'DM Serif Display',serif;font-size:52px;line-height:1.08;letter-spacing:-1.5px;color:var(--text);margin-bottom:22px}
@@ -38,7 +35,6 @@
     .kv-hero-sub{font-size:17px;color:var(--text-secondary);max-width:540px;line-height:1.7;margin-bottom:38px}
     .kv-cta-row{display:flex;gap:12px;flex-wrap:wrap}
     @media(max-width:600px){.kv-h1{font-size:34px}}
-    /* PROBLEM */
     .kv-story-card{background:var(--navy);border-radius:20px;padding:40px 44px;color:#fff;position:relative;overflow:hidden;border:1px solid var(--border)}
     .kv-story-bg{position:absolute;top:-50px;right:-50px;width:240px;height:240px;border-radius:50%;background:rgba(115,135,123,0.1);pointer-events:none}
     .kv-story-name{font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px}
@@ -49,7 +45,6 @@
     .kv-stat-num{font-family:'DM Serif Display',serif;font-size:32px;color:var(--primary);line-height:1;margin-bottom:6px}
     .kv-stat-label{font-size:12px;color:var(--text-secondary);line-height:1.5}
     @media(max-width:560px){.kv-stats-grid{grid-template-columns:1fr 1fr}.kv-story-card{padding:28px 24px}.kv-story-quote{font-size:20px}}
-    /* SIMULATION */
     .kv-sim-box{background:var(--card);border:0.5px solid var(--border);border-radius:18px;overflow:hidden}
     .kv-sim-header{padding:20px 26px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--card)}
     .kv-sim-title{font-weight:500;font-size:14px;color:var(--text)}
@@ -84,7 +79,6 @@
     .kv-progress-track{height:4px;background:var(--surface);border-radius:4px;overflow:hidden}
     .kv-progress-bar{height:100%;background:var(--primary);border-radius:4px;width:0%;transition:width 0.3s linear}
     .kv-progress-label{font-size:11px;color:var(--text-secondary);margin-top:5px}
-    /* ARCHITECTURE */
     .arch-card{width:100%;background:var(--card);border-radius:1.5rem;box-shadow:0 4px 12px rgba(0,0,0,0.3);border:1px solid var(--border);overflow:hidden}
     .arch-header{padding:1rem 2rem;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:0.8rem}
     .arch-title{font-weight:600;font-size:1rem;letter-spacing:-0.2px;color:var(--text);font-family:'Inter',sans-serif}
@@ -99,7 +93,6 @@
     @keyframes archDF{to{stroke-dashoffset:-22}}
     .arch-pulse{animation:archPulse 2.5s ease-in-out infinite;transform-origin:center}
     @keyframes archPulse{0%,100%{transform:scale(1);opacity:0.4}50%{transform:scale(1.05);opacity:0.15}}
-    /* RIDER EXPERIENCE */
     #rider-experience{background:var(--navy);position:relative;overflow:hidden}
     .re-inner{max-width:900px;margin:0 auto;padding:72px 32px}
     .re-lbl{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:36px;display:flex;align-items:center;gap:12px}
@@ -159,7 +152,6 @@
     .re-s3-utxt{font-size:8px;font-weight:500;color:rgba(255,255,255,0.5)}
     .re-s3-tag{font-size:8px;color:rgba(255,255,255,0.28);line-height:1.6;margin-top:10px}
     @media(max-width:520px){.re-stage{gap:10px}}
-    /* FRAUD */
     .fd-wrap{color:var(--text)}
     .fd-presets{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
     .fd-presets button{padding:8px 14px;border:none;background:var(--primary);color:var(--navy);border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;transition:background 0.15s}
@@ -172,7 +164,6 @@
     .fd-gauge{width:160px;height:160px;border-radius:50%;margin:auto;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:600;color:#fff;transition:background 0.5s ease}
     .fd-dec{text-align:center;margin-top:14px;font-weight:600;font-size:13px}
     .fd-exp{text-align:center;margin-top:8px;font-size:12px;color:var(--text-secondary)}
-    /* IMPACT */
     .ic-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:36px}
     .ic-card{background:var(--surface);border:0.5px solid var(--border);padding:22px;border-radius:14px;text-align:center;transition:transform 0.3s ease}
     .ic-card:hover{transform:translateY(-3px)}
@@ -188,7 +179,6 @@
     .ic-oc{background:var(--primary);color:var(--navy);padding:18px;border-radius:12px}
     .ic-ov{font-size:20px;font-weight:700}
     .ic-ol{font-size:12px;margin-top:4px;opacity:0.88;color:var(--navy)}
-    /* TEAM + FOOTER */
     .kv-team-row{display:flex;gap:10px;flex-wrap:wrap}
     .kv-team-chip{background:var(--surface);border:0.5px solid var(--border);border-radius:10px;padding:12px 18px}
     .kv-team-chip-name{font-weight:500;font-size:13px;margin-bottom:2px;color:var(--text)}
@@ -198,6 +188,11 @@
     .kv-sticky{position:fixed;bottom:28px;right:28px;background:var(--accent);color:var(--navy);border:none;border-radius:50px;padding:13px 22px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;z-index:300;box-shadow:0 4px 20px rgba(255,209,102,0.4);text-decoration:none;display:none;transition:transform 0.15s,box-shadow 0.15s}
     .kv-sticky:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(255,209,102,0.5)}
     .kv-sticky.show{display:inline-block}
+    #historyModal{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;max-width:500px;width:90%;max-height:70vh;overflow-y:auto;z-index:1000;box-shadow:0 10px 40px rgba(0,0,0,0.5)}
+    #modalOverlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:999}
+    .history-table{width:100%;border-collapse:collapse}
+    .history-table th,.history-table td{padding:8px;text-align:left;border-bottom:0.5px solid var(--border)}
+    .history-table th{color:var(--primary);font-weight:600}
   </style>
 </head>
 <body>
@@ -206,16 +201,18 @@
   <div class="kv-logo">Kavach</div>
   <div class="kv-nav-links">
     <a href="#problem" class="kv-nav-link">Problem</a>
-    <a href="#simulation" class="kv-nav-link">Simulation</a>
+    <a href="#fraud" class="kv-nav-link">Fraud Detection</a>
+    <a href="#simulation" class="kv-nav-link">Live Demo</a>
     <a href="#architecture" class="kv-nav-link">Architecture</a>
-    <a href="#rider-experience" class="kv-nav-link">Rider</a>
-    <a href="#fraud" class="kv-nav-link">Fraud</a>
+    <a href="#rider-experience" class="kv-nav-link">Rider Journey</a>
+    <a href="#monitoring" class="kv-nav-link">Monitoring</a>
     <a href="#impact" class="kv-nav-link">Impact</a>
-    <a href="#simulation" class="kv-nav-cta">Watch demo →</a>
+    <a href="#simulation" class="kv-nav-cta">Try Demo →</a>
   </div>
   <span class="kv-pill">DEV Trails 2026</span>
 </nav>
 
+<!-- HERO SECTION -->
 <div class="kv-hero">
   <div class="kv-eyebrow">Team GuideX · Guidewire DevTrails 2026</div>
   <h1 class="kv-h1">When the storm hits,<br><em>the money already moved.</em></h1>
@@ -228,6 +225,7 @@
 
 <div class="kv-divider"></div>
 
+<!-- SECTION 1: THE PROBLEM - Why this matters -->
 <section id="problem">
   <div class="kv-section">
     <div class="kv-section-label">The problem</div>
@@ -235,7 +233,7 @@
       <div class="kv-story-bg"></div>
       <div class="kv-story-name">Rajan · 27 · Delivery rider, Chennai</div>
       <div class="kv-story-quote">"Last monsoon I borrowed ₹3,000 from my neighbour to cover rent. A three-day red alert. Took me six weeks to pay it back."</div>
-      <div class="kv-story-meta">Makes ~₹750 on a good day &nbsp;·&nbsp; Loses 4–6 working days every northeast monsoon<br>No weather leave &nbsp;·&nbsp; No paid downtime &nbsp;·&nbsp; No system built for this</div>
+      <div class="kv-story-meta">Makes ~₹750 on a good day · Loses 4–6 working days every northeast monsoon<br>No weather leave · No paid downtime · No system built for this</div>
     </div>
     <div class="kv-stats-grid">
       <div class="kv-stat"><div class="kv-stat-num">15M+</div><div class="kv-stat-label">Delivery workers in India. Every one earns per delivery.</div></div>
@@ -247,12 +245,44 @@
 
 <div class="kv-divider"></div>
 
+<!-- SECTION 2: FRAUD DETECTION - How we ensure fairness (BEFORE showing the simulation) -->
+<section id="fraud">
+  <div class="kv-section">
+    <div class="kv-section-label">How we prevent fraud</div>
+    <div class="fd-wrap">
+      <div class="fd-presets">
+        <button onclick="fdSet([90,85,88,80,75,95])">✅ Genuine stranded rider</button>
+        <button onclick="fdSet([60,55,70,50,65,80])">⚠️ Weak signal (bad weather)</button>
+        <button onclick="fdSet([95,10,15,20,40,5])">🚫 GPS spoof attempt</button>
+      </div>
+      <div class="fd-container">
+        <div class="fd-panel">
+          <div class="fd-sg"><label>📡 GPS natural travel into zone?</label><input type="range" min="0" max="100" value="50" id="fd1"></div>
+          <div class="fd-sg"><label>📱 Accelerometer/gyroscope data active?</label><input type="range" min="0" max="100" value="50" id="fd2"></div>
+          <div class="fd-sg"><label>🌡️ Pressure consistent with storm zone?</label><input type="range" min="0" max="100" value="50" id="fd3"></div>
+          <div class="fd-sg"><label>📶 Cell tower matches claimed zone?</label><input type="range" min="0" max="100" value="50" id="fd4"></div>
+          <div class="fd-sg"><label>📅 Work history in this area?</label><input type="range" min="0" max="100" value="50" id="fd5"></div>
+          <div class="fd-sg"><label>📦 No active delivery order during claim?</label><input type="range" min="0" max="100" value="50" id="fd6"></div>
+        </div>
+        <div class="fd-panel">
+          <div class="fd-gauge" id="fd-gauge">50</div>
+          <div class="fd-dec" id="fd-dec"></div>
+          <div class="fd-exp" id="fd-exp"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="kv-divider"></div>
+
+<!-- SECTION 3: LIVE SIMULATION - See it in action -->
 <section id="simulation">
   <div class="kv-section">
     <div class="kv-section-label">Live simulation</div>
     <div class="kv-sim-box">
       <div class="kv-sim-header">
-        <div class="kv-sim-title">Kavach payout engine</div>
+        <div class="kv-sim-title">⚡ Kavach payout engine</div>
         <div id="sim-status" style="font-size:12px;color:var(--text-secondary)">Ready</div>
       </div>
       <div class="kv-sim-body">
@@ -269,31 +299,31 @@
             <div class="kv-step-bar"></div>
             <div class="kv-step" id="step-3"><div class="kv-step-dot">3</div><div><div class="kv-step-name">Rider eligibility check</div><div class="kv-step-detail">Profile verified, shift window overlaps</div></div></div>
             <div class="kv-step-bar"></div>
-            <div class="kv-step" id="step-4"><div class="kv-step-dot">4</div><div><div class="kv-step-name">Multi-signal trust scoring</div><div class="kv-step-detail">GPS, motion, pressure, platform logs</div></div></div>
+            <div class="kv-step" id="step-4"><div class="kv-step-dot">4</div><div><div class="kv-step-name">ML fraud scoring</div><div class="kv-step-detail" id="step4-detail">Analyzing 6 signals...</div></div></div>
             <div class="kv-step-bar"></div>
-            <div class="kv-step" id="step-5"><div class="kv-step-dot">5</div><div><div class="kv-step-name">Payout approved — score 88/100</div><div class="kv-step-detail">UPI transfer initiated via Razorpay</div></div></div>
+            <div class="kv-step" id="step-5"><div class="kv-step-dot">5</div><div><div class="kv-step-name">Payout decision</div><div class="kv-step-detail" id="step5-detail">Processing...</div></div></div>
             <div class="kv-step-bar"></div>
-            <div class="kv-step" id="step-6"><div class="kv-step-dot">6</div><div><div class="kv-step-name">Blockchain ledger entry written</div><div class="kv-step-detail">Hyperledger Fabric · Immutable audit trail</div></div></div>
+            <div class="kv-step" id="step-6"><div class="kv-step-dot">6</div><div><div class="kv-step-name">Blockchain ledger entry</div><div class="kv-step-detail">Hyperledger Fabric · Immutable audit trail</div></div></div>
           </div>
         </div>
         <div>
           <div class="kv-phone-mock">
-            <div style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center;margin-bottom:14px;letter-spacing:0.06em;text-transform:uppercase">Rajan's phone</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.3);text-align:center;margin-bottom:14px;">📱 Rajan's device</div>
             <div class="kv-notif" id="notif-box">
-              <div class="kv-notif-icon">🛡</div>
+              <div class="kv-notif-icon">🛡️</div>
               <div>
                 <div class="kv-notif-app">KAVACH</div>
-                <div class="kv-notif-msg">Severe weather in your area. Your protection has been triggered.</div>
-                <div class="kv-notif-amount" id="notif-amount">₹400 credited ✓</div>
+                <div class="kv-notif-msg" id="notif-msg">Weather alert triggered. Processing claim...</div>
+                <div class="kv-notif-amount" id="notif-amount"></div>
               </div>
             </div>
             <div class="kv-blockchain-entry" id="blockchain-entry">
-              <div class="kv-bl-title">Hyperledger entry</div>
-              <div>txn: kv_2026_04_01_rajan_chn</div>
-              <div>trigger: IMD_RED_MA13</div>
-              <div>score: 88 → tier_1_auto</div>
-              <div>amount: ₹400.00 via UPI</div>
-              <div>status: CONFIRMED ✓</div>
+              <div class="kv-bl-title">🔗 Hyperledger entry</div>
+              <div id="blockchain-txn">txn: pending</div>
+              <div id="blockchain-trigger">trigger: IMD_RED_MA13</div>
+              <div id="blockchain-score">score: --</div>
+              <div id="blockchain-amount">amount: --</div>
+              <div id="blockchain-status">status: pending</div>
             </div>
           </div>
         </div>
@@ -303,7 +333,7 @@
           <div class="kv-progress-track"><div class="kv-progress-bar" id="prog-bar"></div></div>
           <div class="kv-progress-label" id="prog-label">Press "Trigger storm" to start</div>
         </div>
-        <button class="kv-btn-primary" id="sim-btn" onclick="startSim()">Trigger storm</button>
+        <button class="kv-btn-primary" id="sim-btn" onclick="startSim()">🌧️ Trigger storm</button>
       </div>
     </div>
   </div>
@@ -311,7 +341,7 @@
 
 <div class="kv-divider"></div>
 
-<!-- ARCHITECTURE — ADITYA (updated colors to match dark theme) -->
+<!-- SECTION 4: SYSTEM ARCHITECTURE - How it works under the hood -->
 <section id="architecture">
   <div class="kv-section">
     <div class="kv-section-label">System architecture</div>
@@ -347,14 +377,14 @@
           <path class="arch-flow" d="M380 332 L380 360" stroke="#73877B" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
           <g class="arch-node" data-tip="Rider Eligibility Engine: matches live rider location, shift window, and affected zones — filters ineligible riders."><rect x="255" y="360" width="250" height="56" rx="10" fill="url(#g2)" stroke="#1F2A26" stroke-width="1"/><text x="380" y="384" text-anchor="middle" font-size="13" font-weight="600" fill="#F4F7F5" font-family="Inter,sans-serif">✅ Rider Eligibility Engine</text><text x="380" y="402" text-anchor="middle" font-size="9.5" fill="#AAB7B0" font-family="Inter,sans-serif">Location × zone × shift validation</text></g>
           <path class="arch-flow" d="M380 416 L380 444" stroke="#73877B" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
-          <g class="arch-node" data-tip="ML Trust Scoring Model (XGBoost) — analyses 6 signals: GPS trajectory, gyroscope, barometric pressure, cell tower, work history, order status.">
+          <g class="arch-node" data-tip="ML Trust Scoring Model (Logistic Regression) — analyses 6 signals: GPS trajectory, gyroscope, barometric pressure, cell tower, work history, order status.">
             <ellipse cx="380" cy="484" rx="145" ry="30" fill="none" stroke="#7A6C8F" stroke-width="1.2" class="arch-pulse"/>
             <rect x="235" y="458" width="290" height="52" rx="24" fill="#1A201E" stroke="#7A6C8F" stroke-width="1.2"/>
             <text x="380" y="480" text-anchor="middle" font-size="12" font-weight="700" fill="#FFD166" font-family="Inter,sans-serif">🤖 ML Trust Scoring Model</text>
             <text x="380" y="498" text-anchor="middle" font-size="9" fill="#AAB7B0" font-family="Inter,sans-serif">6-dimension fraud signal analysis</text>
           </g>
           <path class="arch-flow" d="M380 510 L380 538" stroke="#73877B" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
-          <g class="arch-node" data-tip="Three-Tier Decision Engine: Score &gt;75 → Auto-approve. 45–75 → Hold. &lt;45 → Reject or manual investigation."><rect x="248" y="538" width="264" height="56" rx="10" fill="#1A201E" stroke="#FFD166" stroke-width="1.2"/><text x="380" y="562" text-anchor="middle" font-size="13" font-weight="600" fill="#F4F7F5" font-family="Inter,sans-serif">📊 Three-Tier Decision Engine</text><text x="380" y="580" text-anchor="middle" font-size="9.5" fill="#AAB7B0" font-family="Inter,sans-serif">Auto-approve / Hold / Reject</text></g>
+          <g class="arch-node" data-tip="Three-Tier Decision Engine: Score >75 → Auto-approve. 45–75 → Hold. <45 → Reject or manual investigation."><rect x="248" y="538" width="264" height="56" rx="10" fill="#1A201E" stroke="#FFD166" stroke-width="1.2"/><text x="380" y="562" text-anchor="middle" font-size="13" font-weight="600" fill="#F4F7F5" font-family="Inter,sans-serif">📊 Three-Tier Decision Engine</text><text x="380" y="580" text-anchor="middle" font-size="9.5" fill="#AAB7B0" font-family="Inter,sans-serif">Auto-approve / Hold / Reject</text></g>
           <path class="arch-flow" d="M310 594 L160 636" stroke="#73877B" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
           <path class="arch-flow" d="M380 594 L440 636" stroke="#73877B" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
           <path class="arch-flow" d="M520 594 L670 636" stroke="#73877B" stroke-width="1.3" fill="none" marker-end="url(#am)"/>
@@ -378,7 +408,7 @@
 
 <div class="kv-divider"></div>
 
-<!-- RIDER EXPERIENCE — RAJNI (unchanged structure, colors updated via CSS variables already) -->
+<!-- SECTION 5: RIDER EXPERIENCE - What the user sees -->
 <section id="rider-experience">
   <div class="re-inner">
     <div class="re-lbl">Rider experience</div>
@@ -431,11 +461,11 @@
                 <div class="re-s3-ring"></div><div class="re-s3-ring"></div><div class="re-s3-ring"></div>
                 <div class="re-s3-circ"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
               </div>
-              <div class="re-s3-amt">₹400 credited</div>
+              <div class="re-s3-amt" id="re-s3-amount">₹400 credited</div>
               <div class="re-s3-crd">directly to your account</div>
               <div class="re-s3-div"></div>
               <div class="re-s3-ev">Coastal Chennai Red Alert</div>
-              <div class="re-s3-tm">8 min 42 sec after trigger</div>
+              <div class="re-s3-tm" id="re-s3-status">Approved</div>
               <div class="re-s3-upi"><div class="re-s3-dot"></div><div class="re-s3-utxt">UPI transfer complete</div></div>
               <div class="re-s3-tag">No claim filed.<br>No form filled.<br>No call made.</div>
             </div>
@@ -450,41 +480,44 @@
 
 <div class="kv-divider"></div>
 
-<!-- FRAUD DETECTION — SHUBHANKAR -->
-<section id="fraud">
+<!-- SECTION 6: LIVE MONITORING - Track real payouts -->
+<section id="monitoring">
   <div class="kv-section">
-    <div class="kv-section-label">Fraud detection</div>
-    <div class="fd-wrap">
-      <div class="fd-presets">
-        <button onclick="fdSet([90,85,88,80,75,95])">Genuine stranded rider</button>
-        <button onclick="fdSet([60,55,70,50,65,80])">Weak signal (bad weather)</button>
-        <button onclick="fdSet([95,10,15,20,40,5])">GPS spoof attempt</button>
-      </div>
-      <div class="fd-container">
-        <div class="fd-panel">
-          <div class="fd-sg"><label>Does GPS show natural travel into zone?</label><input type="range" min="0" max="100" value="50" id="fd1"></div>
-          <div class="fd-sg"><label>Accelerometer/gyroscope data active?</label><input type="range" min="0" max="100" value="50" id="fd2"></div>
-          <div class="fd-sg"><label>Pressure consistent with storm zone?</label><input type="range" min="0" max="100" value="50" id="fd3"></div>
-          <div class="fd-sg"><label>Device cell tower matches claimed zone?</label><input type="range" min="0" max="100" value="50" id="fd4"></div>
-          <div class="fd-sg"><label>Rider has worked in this area before?</label><input type="range" min="0" max="100" value="50" id="fd5"></div>
-          <div class="fd-sg"><label>No active delivery order during claim?</label><input type="range" min="0" max="100" value="50" id="fd6"></div>
-        </div>
-        <div class="fd-panel">
-          <div class="fd-gauge" id="fd-gauge">50</div>
-          <div class="fd-dec" id="fd-dec"></div>
-          <div class="fd-exp" id="fd-exp"></div>
-        </div>
-      </div>
+    <div class="kv-section-label">Live monitoring dashboard</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:20px;">
+      <div class="ic-card"><div class="ic-snum" id="payouts-today">0</div><div class="ic-slbl">Payouts today</div></div>
+      <div class="ic-card"><div class="ic-snum" id="avg-trust-score">0</div><div class="ic-slbl">Avg trust score</div></div>
+      <div class="ic-card"><div class="ic-snum" id="pending-count">0</div><div class="ic-slbl">Pending review</div></div>
+      <div class="ic-card"><div class="ic-snum" id="approved-count">0</div><div class="ic-slbl">Approved</div></div>
+      <div class="ic-card"><div class="ic-snum" id="rejected-count">0</div><div class="ic-slbl">Rejected</div></div>
+      <div class="ic-card"><div class="ic-snum" id="active-alerts">0</div><div class="ic-slbl">Active weather alerts</div></div>
+    </div>
+    <div style="font-size:12px;color:var(--text-secondary);text-align:center;margin-bottom:16px;">
+      📊 Data from your simulation | <span id="last-update">Last update: --</span>
+    </div>
+    <div style="text-align:center;">
+      <button id="viewHistoryBtn" class="kv-btn-primary" style="background: var(--primary);">📜 View payout history</button>
+      <button id="clearHistoryBtn" class="kv-btn-ghost" style="margin-left:12px;">🗑️ Clear history</button>
     </div>
   </div>
 </section>
 
+<!-- History Modal -->
+<div id="historyModal">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+    <h3 style="color:var(--text);">📋 Payout History</h3>
+    <button id="closeModalBtn" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;">&times;</button>
+  </div>
+  <div id="historyList" style="max-height:400px;overflow-y:auto;"></div>
+</div>
+<div id="modalOverlay"></div>
+
 <div class="kv-divider"></div>
 
-<!-- IMPACT — HANEESH -->
+<!-- SECTION 7: IMPACT CALCULATOR -->
 <section id="impact">
   <div class="kv-section">
-    <div class="kv-section-label">Impact</div>
+    <div class="kv-section-label">Financial impact</div>
     <div class="ic-stats">
       <div class="ic-card"><div class="ic-snum" data-target="15000000">0</div><div class="ic-slbl">Delivery workers in India</div></div>
       <div class="ic-card"><div class="ic-snum" data-target="2500">0</div><div class="ic-slbl">Avg income lost per weather event</div></div>
@@ -508,6 +541,7 @@
 
 <div class="kv-divider"></div>
 
+<!-- SECTION 8: TEAM -->
 <section id="team">
   <div class="kv-section" style="padding-bottom:40px">
     <div class="kv-section-label">Team GuideX</div>
@@ -527,125 +561,346 @@
   <div>Financial protection for India's gig workers · Team GuideX · DEV Trails 2026</div>
 </footer>
 
-<a href="#simulation" class="kv-sticky" id="sticky">Watch demo ↓</a>
+<a href="#simulation" class="kv-sticky" id="sticky">🎬 Watch live demo ↓</a>
 <div class="arch-tip" id="arch-tip"></div>
 
 <script>
-/* sticky */
-window.addEventListener('scroll',function(){document.getElementById('sticky').classList.toggle('show',window.scrollY>400)});
+/* ── STICKY ── */
+window.addEventListener('scroll', function () {
+  document.getElementById('sticky').classList.toggle('show', window.scrollY > 400);
+});
 
-/* simulation */
-var sR=false,sD=false;
-function startSim(){
-  if(sR)return;
-  if(sD){resetSim();return;}
-  sR=true;
-  var btn=document.getElementById('sim-btn');
-  btn.textContent='Running...';btn.disabled=true;
-  var steps=[
-    {id:'step-1',delay:0,lbl:'IMD API: red alert received...'},
-    {id:'step-2',delay:1200,lbl:'Zone grid: 14 cells activated'},
-    {id:'step-3',delay:2200,lbl:'Eligibility engine: 3 checks passed'},
-    {id:'step-4',delay:3400,lbl:'ML scoring: 6 signals evaluated'},
-    {id:'step-5',delay:5200,lbl:'UPI transfer: ₹400 → Rajan'},
-    {id:'step-6',delay:6400,lbl:'Ledger entry: written to Hyperledger'}
+/* ── DYNAMIC PAYOUT AMOUNT BASED ON TRUST SCORE ── */
+function calculatePayoutAmount(trustScore) {
+  if (trustScore >= 85) return 400;      // Full payout for highly genuine
+  if (trustScore >= 75) return 350;      // Slightly reduced
+  if (trustScore >= 65) return 250;      // Medium risk
+  if (trustScore >= 45) return 150;      // High risk - partial payout
+  return 0;                               // Rejected
+}
+
+/* ── MONITORING DASHBOARD ── */
+function getDashboardStats() {
+  var payouts = JSON.parse(localStorage.getItem('kavach_payouts') || '[]');
+  var today = new Date().toDateString();
+  var todayPayouts = payouts.filter(function(p){ return new Date(p.timestamp).toDateString() === today; });
+  var approved = payouts.filter(function(p){ return p.status === 'approved'; }).length;
+  var pending  = payouts.filter(function(p){ return p.status === 'pending';  }).length;
+  var rejected = payouts.filter(function(p){ return p.status === 'rejected'; }).length;
+  var totalScore = 0;
+  for (var i = 0; i < payouts.length; i++) { totalScore += payouts[i].trustScore; }
+  var avgScore = payouts.length ? Math.round(totalScore / payouts.length) : 0;
+  var activeAlerts = Math.random() > 0.8 ? 2 : (Math.random() > 0.5 ? 1 : 0);
+  return { payoutsToday: todayPayouts.length, avgTrustScore: avgScore, pending: pending, approved: approved, rejected: rejected, activeAlerts: activeAlerts };
+}
+
+function updateDashboard() {
+  var stats = getDashboardStats();
+  var map = {
+    'payouts-today': stats.payoutsToday,
+    'avg-trust-score': stats.avgTrustScore,
+    'pending-count': stats.pending,
+    'approved-count': stats.approved,
+    'rejected-count': stats.rejected,
+    'active-alerts': stats.activeAlerts
+  };
+  Object.keys(map).forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.innerText = map[id];
+  });
+  var lu = document.getElementById('last-update');
+  if (lu) lu.innerText = 'Last update: ' + new Date().toLocaleTimeString();
+}
+
+/* ── HISTORY MODAL ── */
+function showHistory() {
+  var payouts = JSON.parse(localStorage.getItem('kavach_payouts') || '[]');
+  var historyList = document.getElementById('historyList');
+  var modal = document.getElementById('historyModal');
+  var overlay = document.getElementById('modalOverlay');
+  
+  if (payouts.length === 0) {
+    historyList.innerHTML = '<div style="color: var(--text-secondary); text-align: center; padding: 20px;">No payouts yet. Trigger a storm first!</div>';
+  } else {
+    var html = '<table class="history-table"><thead><tr><th>Time</th><th>Score</th><th>Payout</th><th>Status</th></tr></thead><tbody>';
+    for (var i = payouts.length - 1; i >= 0; i--) {
+      var p = payouts[i];
+      var date = new Date(p.timestamp).toLocaleTimeString();
+      var statusColor = p.status === 'approved' ? '#4ade80' : (p.status === 'pending' ? '#FFD166' : '#FF5A5F');
+      var statusIcon = p.status === 'approved' ? '✅' : (p.status === 'pending' ? '⏳' : '❌');
+      html += '<tr style="border-bottom:0.5px solid var(--border);">';
+      html += '<td style="padding:8px;font-size:12px;">' + date + '</td>';
+      html += '<td style="padding:8px;font-size:12px;">' + p.trustScore + '</td>';
+      html += '<td style="padding:8px;font-size:12px;">₹' + p.amount + '</td>';
+      html += '<td style="padding:8px;font-size:12px;color:' + statusColor + ';">' + statusIcon + ' ' + p.status.toUpperCase() + '</td>';
+      html += '</tr>';
+    }
+    html += '</tbody></table>';
+    historyList.innerHTML = html;
+  }
+  modal.style.display = 'block';
+  overlay.style.display = 'block';
+}
+
+function closeHistory() {
+  document.getElementById('historyModal').style.display = 'none';
+  document.getElementById('modalOverlay').style.display = 'none';
+}
+
+function clearHistory() {
+  if (confirm('Are you sure you want to clear all payout history?')) {
+    localStorage.removeItem('kavach_payouts');
+    updateDashboard();
+    if (document.getElementById('historyModal').style.display === 'block') closeHistory();
+  }
+}
+
+/* ── SIMULATION ── */
+var sR = false, sD = false;
+
+function startSim() {
+  if (sR) return;
+  if (sD) { resetSim(); return; }
+  sR = true;
+  var btn = document.getElementById('sim-btn');
+  btn.textContent = 'Running...'; btn.disabled = true;
+  
+  // Get current fraud score from the gauge
+  var trustScoreEl = document.getElementById('fd-gauge');
+  var currentTrustScore = parseInt(trustScoreEl.innerText) || 50;
+  var payoutAmount = calculatePayoutAmount(currentTrustScore);
+  
+  var status = 'approved';
+  var statusText = '';
+  var statusColor = '#4ade80';
+  if (currentTrustScore < 45) {
+    status = 'rejected';
+    statusText = '❌ REJECTED — High fraud risk detected';
+    statusColor = '#FF5A5F';
+  } else if (currentTrustScore < 75) {
+    status = 'pending';
+    statusText = '⏳ PENDING — Manual review required';
+    statusColor = '#FFD166';
+  } else {
+    status = 'approved';
+    statusText = '✅ APPROVED — Auto-payout initiated';
+    statusColor = '#4ade80';
+  }
+  
+  var steps = [
+    { id: 'step-1', delay: 0,    lbl: 'IMD API: red alert received...', detail: 'IMD red alert — coastal Chennai' },
+    { id: 'step-2', delay: 1200, lbl: 'Zone grid: 14 cells activated', detail: '2km×2km cells flip to red-alert status' },
+    { id: 'step-3', delay: 2200, lbl: 'Eligibility engine: 3 checks passed', detail: 'Profile verified, shift window overlaps' },
+    { id: 'step-4', delay: 3400, lbl: 'ML fraud scoring: 6 signals evaluated', detail: 'Trust score: ' + currentTrustScore + '/100' },
+    { id: 'step-5', delay: 5200, lbl: 'Payout decision: ' + statusText, detail: statusText + ' | Amount: ₹' + payoutAmount },
+    { id: 'step-6', delay: 6400, lbl: 'Ledger entry: written to Hyperledger', detail: 'Immutable audit trail recorded' }
   ];
+  
   document.getElementById('zone-ring').classList.add('active');
-  document.getElementById('rider-dot').style.display='block';
-  document.getElementById('map-label').textContent='RED ALERT: Coastal Chennai zones active';
-  document.getElementById('map-label').style.color='#FF5A5F';
-  document.getElementById('sim-status').textContent='Running...';
+  document.getElementById('rider-dot').style.display = 'block';
+  document.getElementById('map-label').textContent = 'RED ALERT: Coastal Chennai zones active';
+  document.getElementById('map-label').style.color = '#FF5A5F';
+  document.getElementById('sim-status').textContent = 'Running...';
   document.getElementById('notif-box').classList.add('visible');
-  var st=Date.now(),pi=setInterval(function(){
-    var p=Math.min(100,Math.round((Date.now()-st)/7200*100));
-    document.getElementById('prog-bar').style.width=p+'%';
-    if(p>=100)clearInterval(pi);
-  },50);
-  steps.forEach(function(s,i){
-    setTimeout(function(){
-      if(i>0){var pr=document.getElementById(steps[i-1].id);pr.classList.remove('active');pr.classList.add('done');pr.querySelector('.kv-step-dot').textContent='✓';}
+  
+  var st = Date.now();
+  var pi = setInterval(function () {
+    var p = Math.min(100, Math.round((Date.now() - st) / 7200 * 100));
+    document.getElementById('prog-bar').style.width = p + '%';
+    if (p >= 100) clearInterval(pi);
+  }, 50);
+  
+  steps.forEach(function (s, i) {
+    setTimeout(function () {
+      if (i > 0) {
+        var pr = document.getElementById(steps[i-1].id);
+        pr.classList.remove('active'); pr.classList.add('done');
+        pr.querySelector('.kv-step-dot').textContent = '✓';
+      }
       document.getElementById(s.id).classList.add('active');
-      document.getElementById('prog-label').textContent=s.lbl;
-    },s.delay);
+      document.getElementById('prog-label').textContent = s.lbl;
+      var detailEl = document.getElementById(s.id).querySelector('.kv-step-detail');
+      if (detailEl) detailEl.textContent = s.detail;
+    }, s.delay);
   });
-  setTimeout(function(){
-    var l=document.getElementById('step-6');l.classList.remove('active');l.classList.add('done');l.querySelector('.kv-step-dot').textContent='✓';
-    document.getElementById('notif-amount').style.display='block';
-    document.getElementById('blockchain-entry').style.display='block';
-    document.getElementById('sim-status').textContent='✓ Complete — 7.2s elapsed';
-    document.getElementById('sim-status').style.color='#4ade80';
-    document.getElementById('prog-label').textContent='Rajan has been paid. Ledger updated.';
-    btn.textContent='Run again';btn.disabled=false;sR=false;sD=true;
-  },7200);
-}
-function resetSim(){
-  sD=false;
-  var btn=document.getElementById('sim-btn');btn.textContent='Trigger storm';
-  document.getElementById('sim-status').textContent='Ready';document.getElementById('sim-status').style.color='';
-  document.getElementById('zone-ring').classList.remove('active');
-  document.getElementById('rider-dot').style.display='none';
-  document.getElementById('map-label').textContent='Chennai grid · All zones nominal';document.getElementById('map-label').style.color='';
-  document.getElementById('notif-box').classList.remove('visible');
-  document.getElementById('notif-amount').style.display='none';
-  document.getElementById('blockchain-entry').style.display='none';
-  document.getElementById('prog-bar').style.width='0%';
-  document.getElementById('prog-label').textContent='Press "Trigger storm" to start';
-  [1,2,3,4,5,6].forEach(function(n){var el=document.getElementById('step-'+n);el.classList.remove('active','done');el.querySelector('.kv-step-dot').textContent=n;});
+  
+  setTimeout(function () {
+    var l = document.getElementById('step-6');
+    l.classList.remove('active'); l.classList.add('done');
+    l.querySelector('.kv-step-dot').textContent = '✓';
+    
+    var notifMsg = document.getElementById('notif-msg');
+    var notifAmount = document.getElementById('notif-amount');
+    var blockchainScore = document.getElementById('blockchain-score');
+    var blockchainStatus = document.getElementById('blockchain-status');
+    var blockchainAmount = document.getElementById('blockchain-amount');
+    var reAmount = document.getElementById('re-s3-amount');
+    var reStatus = document.getElementById('re-s3-status');
+    
+    if (status === 'approved') {
+      notifMsg.innerHTML = '✅ Payout approved! ₹' + payoutAmount + ' credited to your account.';
+      notifAmount.style.display = 'block';
+      notifAmount.style.color = '#4ade80';
+      notifAmount.innerHTML = '₹' + payoutAmount + ' credited ✓';
+      blockchainScore.innerHTML = 'score: ' + currentTrustScore + ' → tier_1_auto';
+      blockchainStatus.innerHTML = 'status: APPROVED ✓';
+      blockchainAmount.innerHTML = 'amount: ₹' + payoutAmount + ' via UPI';
+      if (reAmount) reAmount.innerHTML = '₹' + payoutAmount + ' credited';
+      if (reStatus) reStatus.innerHTML = 'Approved · ₹' + payoutAmount;
+    } else if (status === 'pending') {
+      notifMsg.innerHTML = '⏳ Payout pending manual review. We will notify you within 24 hours.';
+      notifAmount.style.display = 'none';
+      blockchainScore.innerHTML = 'score: ' + currentTrustScore + ' → tier_2_hold';
+      blockchainStatus.innerHTML = 'status: PENDING REVIEW';
+      blockchainAmount.innerHTML = 'amount: pending approval';
+      if (reAmount) reAmount.innerHTML = 'Pending review';
+      if (reStatus) reStatus.innerHTML = 'Under review';
+    } else {
+      notifMsg.innerHTML = '❌ Payout rejected due to fraud detection. Please contact support.';
+      notifAmount.style.display = 'none';
+      blockchainScore.innerHTML = 'score: ' + currentTrustScore + ' → tier_3_reject';
+      blockchainStatus.innerHTML = 'status: REJECTED';
+      blockchainAmount.innerHTML = 'amount: ₹0';
+      if (reAmount) reAmount.innerHTML = 'Claim rejected';
+      if (reStatus) reStatus.innerHTML = 'Rejected';
+    }
+    
+    document.getElementById('blockchain-entry').style.display = 'block';
+    document.getElementById('sim-status').textContent = '✓ Complete — 7.2s elapsed';
+    document.getElementById('sim-status').style.color = statusColor;
+    document.getElementById('prog-label').textContent = status === 'approved' ? 'Rajan has been paid. Ledger updated.' : (status === 'pending' ? 'Payout pending review.' : 'Payout rejected.');
+    
+    // Store payout
+    var payouts = JSON.parse(localStorage.getItem('kavach_payouts') || '[]');
+    payouts.push({ 
+        timestamp: new Date().toISOString(), 
+        trustScore: currentTrustScore, 
+        status: status, 
+        amount: payoutAmount 
+    });
+    localStorage.setItem('kavach_payouts', JSON.stringify(payouts));
+    
+    btn.textContent = 'Run again'; btn.disabled = false;
+    sR = false; sD = true;
+    updateDashboard();
+  }, 7200);
 }
 
-/* arch tooltips */
-(function(){
-  var tip=document.getElementById('arch-tip');
-  document.querySelectorAll('.arch-node').forEach(function(n){
-    var t=n.getAttribute('data-tip');if(!t)return;
-    n.addEventListener('mouseenter',function(e){tip.innerHTML=t;tip.classList.add('visible');mv(e);});
-    n.addEventListener('mousemove',mv);
-    n.addEventListener('mouseleave',function(){tip.classList.remove('visible');});
+function resetSim() {
+  sD = false;
+  var btn = document.getElementById('sim-btn');
+  btn.textContent = 'Trigger storm';
+  document.getElementById('sim-status').textContent = 'Ready';
+  document.getElementById('sim-status').style.color = '';
+  document.getElementById('zone-ring').classList.remove('active');
+  document.getElementById('rider-dot').style.display = 'none';
+  document.getElementById('map-label').textContent = 'Chennai grid · All zones nominal';
+  document.getElementById('map-label').style.color = '';
+  document.getElementById('notif-box').classList.remove('visible');
+  document.getElementById('notif-amount').style.display = 'none';
+  document.getElementById('blockchain-entry').style.display = 'none';
+  document.getElementById('prog-bar').style.width = '0%';
+  document.getElementById('prog-label').textContent = 'Press "Trigger storm" to start';
+  [1,2,3,4,5,6].forEach(function (n) {
+    var el = document.getElementById('step-' + n);
+    el.classList.remove('active','done');
+    el.querySelector('.kv-step-dot').textContent = n;
+    if (n === 4) { var d4 = el.querySelector('.kv-step-detail'); if (d4) d4.textContent = 'Analyzing 6 signals...'; }
+    if (n === 5) { var d5 = el.querySelector('.kv-step-detail'); if (d5) d5.textContent = 'Processing...'; }
   });
-  function mv(e){var x=e.clientX+14,y=e.clientY+14,w=tip.offsetWidth||240,h=tip.offsetHeight||60;if(x+w>window.innerWidth)x=e.clientX-w-10;if(y+h>window.innerHeight)y=e.clientY-h-10;tip.style.left=x+'px';tip.style.top=y+'px';}
+}
+
+/* ── ARCH TOOLTIPS ── */
+(function () {
+  var tip = document.getElementById('arch-tip');
+  document.querySelectorAll('.arch-node').forEach(function (n) {
+    var t = n.getAttribute('data-tip'); if (!t) return;
+    n.addEventListener('mouseenter', function (e) { tip.innerHTML = t; tip.classList.add('visible'); mv(e); });
+    n.addEventListener('mousemove', mv);
+    n.addEventListener('mouseleave', function () { tip.classList.remove('visible'); });
+  });
+  function mv(e) {
+    var x = e.clientX + 14, y = e.clientY + 14, w = tip.offsetWidth || 240, h = tip.offsetHeight || 60;
+    if (x + w > window.innerWidth)  x = e.clientX - w - 10;
+    if (y + h > window.innerHeight) y = e.clientY - h - 10;
+    tip.style.left = x + 'px'; tip.style.top = y + 'px';
+  }
 })();
 
-/* rider rain */
-(function(){var r=document.getElementById('re-rain');if(!r)return;for(var i=0;i<22;i++){var d=document.createElement('div');d.className='re-rd';d.style.cssText='left:'+Math.random()*100+'%;height:'+(14+Math.random()*22)+'px;animation-duration:'+(0.4+Math.random()*0.5)+'s;animation-delay:'+(-Math.random()*1.5)+'s';r.appendChild(d);}})();
+/* ── RIDER RAIN ── */
+(function () {
+  var r = document.getElementById('re-rain'); if (!r) return;
+  for (var i = 0; i < 22; i++) {
+    var d = document.createElement('div'); d.className = 're-rd';
+    d.style.cssText = 'left:' + Math.random()*100 + '%;height:' + (14+Math.random()*22) + 'px;animation-duration:' + (0.4+Math.random()*0.5) + 's;animation-delay:-' + Math.random()*1.5 + 's';
+    r.appendChild(d);
+  }
+})();
 
-/* fraud */
-var fdS=['fd1','fd2','fd3','fd4','fd5','fd6'].map(function(id){return document.getElementById(id);});
-function fdClr(s){return s<45?'#FF5A5F':s<75?'#FFD166':'#4ade80';}
-function fdUpd(){
-  var v=fdS.map(function(s){return+s.value;}),sc=Math.round(v.reduce(function(a,b){return a+b;})/v.length);
-  var g=document.getElementById('fd-gauge');g.innerText=sc;g.style.background=fdClr(sc);
-  var d=document.getElementById('fd-dec');
-  if(sc<45){d.innerText='Tier 3 — Payout paused. Human review queued.';d.style.color='#FF5A5F';}
-  else if(sc<75){d.innerText='Tier 2 — Short hold. Verification requested.';d.style.color='#FFD166';}
-  else{d.innerText='Tier 1 — Auto-approved. UPI transfer initiated.';d.style.color='#4ade80';}
-  var lb=['GPS trajectory','Motion sensors','Barometric pressure','Cell tower match','Work history','Order validation'];
-  var pr=v.map(function(val,i){return{v:val,l:lb[i]};}).sort(function(a,b){return b.v-a.v;});
-  document.getElementById('fd-exp').innerText='Strongest signals: '+pr.slice(0,2).map(function(p){return p.l;}).join(', ');
+/* ── FRAUD DETECTION ── */
+var fdS = ['fd1','fd2','fd3','fd4','fd5','fd6'].map(function(id){ return document.getElementById(id); });
+function fdClr(s){ return s < 45 ? '#FF5A5F' : s < 75 ? '#FFD166' : '#4ade80'; }
+function fdUpd() {
+  var v = fdS.map(function(s){ return +s.value; });
+  var sc = Math.round(v.reduce(function(a,b){ return a+b; }) / v.length);
+  var g = document.getElementById('fd-gauge');
+  g.innerText = sc; g.style.background = fdClr(sc);
+  var d = document.getElementById('fd-dec');
+  if (sc < 45)      { d.innerText = 'Tier 3 — Payout paused. Human review queued.'; d.style.color = '#FF5A5F'; }
+  else if (sc < 75) { d.innerText = 'Tier 2 — Short hold. Verification requested.';  d.style.color = '#FFD166'; }
+  else              { d.innerText = 'Tier 1 — Auto-approved. UPI transfer initiated.'; d.style.color = '#4ade80'; }
+  var lb = ['GPS trajectory','Motion sensors','Barometric pressure','Cell tower match','Work history','Order validation'];
+  var pr = v.map(function(val,i){ return {v:val,l:lb[i]}; }).sort(function(a,b){ return b.v - a.v; });
+  document.getElementById('fd-exp').innerText = 'Strongest signals: ' + pr.slice(0,2).map(function(p){ return p.l; }).join(', ');
 }
-function fdSet(a){fdS.forEach(function(s,i){s.value=a[i];});fdUpd();}
-fdS.forEach(function(s){s.addEventListener('input',fdUpd);});fdUpd();
+function fdSet(a){ fdS.forEach(function(s,i){ s.value = a[i]; }); fdUpd(); }
+fdS.forEach(function(s){ s.addEventListener('input', fdUpd); }); fdUpd();
 
-/* impact */
-function icF(n){return'₹'+n.toLocaleString('en-IN');}
-function icN(n){return n.toLocaleString('en-IN');}
-function icA(id,end,fmt){var el=document.getElementById(id),s=0,step=Math.max(1,Math.ceil(end/50));function r(){s+=step;if(s>=end){el.textContent=fmt(end);}else{el.textContent=fmt(s);requestAnimationFrame(r);}}r();}
+/* ── IMPACT CALCULATOR ── */
+function icF(n){ return '₹' + n.toLocaleString('en-IN'); }
+function icN(n){ return n.toLocaleString('en-IN'); }
+function icA(id, end, fmt){
+  var el = document.getElementById(id), s = 0, step = Math.max(1, Math.ceil(end/50));
+  function r(){ s += step; if (s >= end){ el.textContent = fmt(end); } else { el.textContent = fmt(s); requestAnimationFrame(r); } } r();
+}
 function icUpd(){
-  var p=+document.getElementById('icp').value,r=+document.getElementById('icr').value,e=+document.getElementById('ict').value;
-  document.getElementById('icPv').textContent=p;document.getElementById('icRv').textContent=icN(r);
-  icA('ic-tr',p*r,icN);icA('ic-ir',e*1850,icF);icA('ic-ti',p*r*e*1850,icF);icA('ic-mr',p*r*100,icF);
+  var p = +document.getElementById('icp').value, r = +document.getElementById('icr').value, e = +document.getElementById('ict').value;
+  document.getElementById('icPv').textContent = p;
+  document.getElementById('icRv').textContent = icN(r);
+  icA('ic-tr', p*r, icN); icA('ic-ir', e*1850, icF); icA('ic-ti', p*r*e*1850, icF); icA('ic-mr', p*r*100, icF);
 }
-document.getElementById('icp').oninput=icUpd;document.getElementById('icr').oninput=icUpd;document.getElementById('ict').onchange=icUpd;icUpd();
-var icObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var el=e.target,t=+el.dataset.target,c=0,step=Math.ceil(t/60);function r(){c+=step;if(c>=t){el.textContent=icN(t);}else{el.textContent=icN(c);requestAnimationFrame(r);}}r();icObs.unobserve(el);}});},{threshold:0.5});
-document.querySelectorAll('.ic-snum[data-target]').forEach(function(c){icObs.observe(c);});
-
-async function getFraudScore(signals) {
-  const res = await fetch("http://127.0.0.1:8000/fraud-score", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(signals)
+document.getElementById('icp').oninput = icUpd;
+document.getElementById('icr').oninput = icUpd;
+document.getElementById('ict').onchange = icUpd;
+icUpd();
+var icObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if (e.isIntersecting){
+      var el = e.target, t = +el.dataset.target, c = 0, step = Math.ceil(t/60);
+      function r(){ c += step; if (c >= t){ el.textContent = icN(t); } else { el.textContent = icN(c); requestAnimationFrame(r); } } r();
+      icObs.unobserve(el);
+    }
   });
-  return await res.json();
-}
+}, { threshold: 0.5 });
+document.querySelectorAll('.ic-snum[data-target]').forEach(function(c){ icObs.observe(c); });
+
+/* ── INIT DASHBOARD ── */
+updateDashboard();
+setInterval(updateDashboard, 5000);
+
+/* ── EVENT LISTENERS ── */
+document.getElementById('viewHistoryBtn').addEventListener('click', showHistory);
+document.getElementById('closeModalBtn').addEventListener('click', closeHistory);
+document.getElementById('modalOverlay').addEventListener('click', closeHistory);
+document.getElementById('clearHistoryBtn').addEventListener('click', clearHistory);
+
+/* ── EXPOSE TO WINDOW ── */
+window.updateDashboard = updateDashboard;
+window.startSim = startSim;
+window.resetSim = resetSim;
+window.fdUpd = fdUpd;
+window.fdSet = fdSet;
+window.showHistory = showHistory;
 </script>
 </body>
 </html>
