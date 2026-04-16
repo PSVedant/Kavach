@@ -196,7 +196,6 @@
   </style>
 </head>
 <body>
-
 <nav class="kv-nav">
   <div class="kv-logo">Kavach</div>
   <div class="kv-nav-links">
@@ -207,11 +206,12 @@
     <a href="#rider-experience" class="kv-nav-link">Rider Journey</a>
     <a href="#monitoring" class="kv-nav-link">Monitoring</a>
     <a href="#impact" class="kv-nav-link">Impact</a>
+    <a href="#registration" class="kv-nav-link">Register</a>
+    <a href="#policy" class="kv-nav-link">Policy</a>
     <a href="#simulation" class="kv-nav-cta">Try Demo →</a>
   </div>
   <span class="kv-pill">DEV Trails 2026</span>
 </nav>
-
 <!-- HERO SECTION -->
 <div class="kv-hero">
   <div class="kv-eyebrow">Team GuideX · Guidewire DevTrails 2026</div>
@@ -222,9 +222,7 @@
     <a href="#problem" class="kv-btn-ghost">The problem</a>
   </div>
 </div>
-
 <div class="kv-divider"></div>
-
 <!-- SECTION 1: THE PROBLEM - Why this matters -->
 <section id="problem">
   <div class="kv-section">
@@ -242,9 +240,7 @@
     </div>
   </div>
 </section>
-
 <div class="kv-divider"></div>
-
 <!-- SECTION 2: FRAUD DETECTION - How we ensure fairness (BEFORE showing the simulation) -->
 <section id="fraud">
   <div class="kv-section">
@@ -273,9 +269,7 @@
     </div>
   </div>
 </section>
-
 <div class="kv-divider"></div>
-
 <!-- SECTION 3: LIVE SIMULATION - See it in action -->
 <section id="simulation">
   <div class="kv-section">
@@ -338,9 +332,7 @@
     </div>
   </div>
 </section>
-
 <div class="kv-divider"></div>
-
 <!-- SECTION 4: SYSTEM ARCHITECTURE - How it works under the hood -->
 <section id="architecture">
   <div class="kv-section">
@@ -405,9 +397,7 @@
     </div>
   </div>
 </section>
-
 <div class="kv-divider"></div>
-
 <!-- SECTION 5: RIDER EXPERIENCE - What the user sees -->
 <section id="rider-experience">
   <div class="re-inner">
@@ -477,9 +467,7 @@
     </div>
   </div>
 </section>
-
 <div class="kv-divider"></div>
-
 <!-- SECTION 6: LIVE MONITORING - Track real payouts -->
 <section id="monitoring">
   <div class="kv-section">
@@ -501,7 +489,6 @@
     </div>
   </div>
 </section>
-
 <!-- History Modal -->
 <div id="historyModal">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
@@ -511,9 +498,7 @@
   <div id="historyList" style="max-height:400px;overflow-y:auto;"></div>
 </div>
 <div id="modalOverlay"></div>
-
 <div class="kv-divider"></div>
-
 <!-- SECTION 7: IMPACT CALCULATOR -->
 <section id="impact">
   <div class="kv-section">
@@ -538,9 +523,67 @@
     </div>
   </div>
 </section>
-
 <div class="kv-divider"></div>
-
+<!-- SECTION: REGISTRATION -->
+<section id="registration">
+  <div class="kv-section">
+    <div class="kv-section-label">Rider Registration</div>
+    <div class="kv-sim-box" style="padding: 40px; position: relative; overflow: hidden;">
+      <div class="kv-story-bg" style="opacity: 0.05;"></div>
+      <div id="reg-form-container">
+        <h2 style="font-family:'DM Serif Display',serif; font-size: 32px; margin-bottom: 24px; color: var(--text);">Join the shield</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 32px; max-width: 400px;">Register your vehicle to activate your automatic weather payout protection.</p>
+        <form id="kavach-reg-form" style="display: grid; gap: 24px; max-width: 500px;">
+          <div class="kv-form-group">
+            <label style="display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 8px; letter-spacing: 0.05em;">Full Name</label>
+            <input type="text" id="reg-name" required placeholder="Name on Aadhaar/License" style="width: 100%; padding: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none;">
+          </div>
+          <div class="kv-form-group">
+            <label style="display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 8px; letter-spacing: 0.05em;">Phone Number</label>
+            <input type="tel" id="reg-phone" required placeholder="+91 XXXXX XXXXX" style="width: 100%; padding: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none;">
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="kv-form-group">
+              <label style="display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 8px; letter-spacing: 0.05em;">Primary Zone</label>
+              <select id="reg-zone" required style="width: 100%; padding: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; appearance: none; cursor: pointer;">
+                <option value="MA13">MA13 (Chennai Central)</option>
+                <option value="MA14">MA14 (OMR/ECR)</option>
+                <option value="BLR01">BLR01 (Whitefield)</option>
+                <option value="CO01">CO01 (Kochi North)</option>
+                <option value="CO02">CO02 (Kochi South)</option>
+              </select>
+            </div>
+            <div class="kv-form-group">
+              <label style="display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 8px; letter-spacing: 0.05em;">Vehicle Type</label>
+              <select id="reg-vehicle" required style="width: 100%; padding: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; cursor: pointer;">
+                <option value="Bike">Heavy Bike</option>
+                <option value="Scooter">Scooter / Moped</option>
+                <option value="Cycle">Electric Cycle</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="kv-btn-primary" style="padding: 16px; margin-top: 12px; font-size: 15px;">Activate My Protection →</button>
+        </form>
+      </div>
+      <div id="reg-success" style="display: none; text-align: center; padding: 40px 0;">
+        <div style="width: 80px; height: 80px; background: rgba(74, 222, 128, 0.1); border: 1px solid #4ade80; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; animation: rePB 1.5s infinite;">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#4ade80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h2 style="font-family:'DM Serif Display',serif; font-size: 36px; margin-bottom: 12px; color: var(--text);">You're covered!</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 36px; font-size: 16px;">Welcome aboard. Your policy is now active and monitoring weather signals.</p>
+        <button onclick="document.getElementById('policy').scrollIntoView({behavior:'smooth'})" class="kv-btn-ghost" style="border-color: var(--text);">View Active Policy</button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- SECTION: POLICY -->
+<section id="policy">
+  <div class="kv-section" style="padding-top: 0;">
+    <div class="kv-section-label">Your Active Policy</div>
+    <div id="policy-content"></div>
+  </div>
+</section>
+<div class="kv-divider"></div>
 <!-- SECTION 8: TEAM -->
 <section id="team">
   <div class="kv-section" style="padding-bottom:40px">
@@ -555,21 +598,17 @@
     <div style="margin-top:20px;font-size:13px;color:var(--text-secondary)">Built at DEV Trails 2026. Rajan should not have to borrow money from his neighbour when it rains. That is the whole point.</div>
   </div>
 </section>
-
 <footer class="kv-footer">
   <div class="kv-footer-logo">Kavach</div>
   <div>Financial protection for India's gig workers · Team GuideX · DEV Trails 2026</div>
 </footer>
-
 <a href="#simulation" class="kv-sticky" id="sticky">🎬 Watch live demo ↓</a>
 <div class="arch-tip" id="arch-tip"></div>
-
 <script>
 /* ── STICKY ── */
 window.addEventListener('scroll', function () {
   document.getElementById('sticky').classList.toggle('show', window.scrollY > 400);
 });
-
 /* ── DYNAMIC PAYOUT AMOUNT BASED ON TRUST SCORE ── */
 function calculatePayoutAmount(trustScore) {
   if (trustScore >= 85) return 400;      // Full payout for highly genuine
@@ -578,7 +617,6 @@ function calculatePayoutAmount(trustScore) {
   if (trustScore >= 45) return 150;      // High risk - partial payout
   return 0;                               // Rejected
 }
-
 /* ── MONITORING DASHBOARD ── */
 function getDashboardStats() {
   var payouts = JSON.parse(localStorage.getItem('kavach_payouts') || '[]');
@@ -593,7 +631,6 @@ function getDashboardStats() {
   var activeAlerts = Math.random() > 0.8 ? 2 : (Math.random() > 0.5 ? 1 : 0);
   return { payoutsToday: todayPayouts.length, avgTrustScore: avgScore, pending: pending, approved: approved, rejected: rejected, activeAlerts: activeAlerts };
 }
-
 function updateDashboard() {
   var stats = getDashboardStats();
   var map = {
@@ -611,7 +648,6 @@ function updateDashboard() {
   var lu = document.getElementById('last-update');
   if (lu) lu.innerText = 'Last update: ' + new Date().toLocaleTimeString();
 }
-
 /* ── HISTORY MODAL ── */
 function showHistory() {
   var payouts = JSON.parse(localStorage.getItem('kavach_payouts') || '[]');
@@ -641,12 +677,10 @@ function showHistory() {
   modal.style.display = 'block';
   overlay.style.display = 'block';
 }
-
 function closeHistory() {
   document.getElementById('historyModal').style.display = 'none';
   document.getElementById('modalOverlay').style.display = 'none';
 }
-
 function clearHistory() {
   if (confirm('Are you sure you want to clear all payout history?')) {
     localStorage.removeItem('kavach_payouts');
@@ -654,10 +688,8 @@ function clearHistory() {
     if (document.getElementById('historyModal').style.display === 'block') closeHistory();
   }
 }
-
 /* ── SIMULATION ── */
 var sR = false, sD = false;
-
 function startSim() {
   if (sR) return;
   if (sD) { resetSim(); return; }
@@ -785,7 +817,6 @@ function startSim() {
     updateDashboard();
   }, 7200);
 }
-
 function resetSim() {
   sD = false;
   var btn = document.getElementById('sim-btn');
@@ -809,7 +840,6 @@ function resetSim() {
     if (n === 5) { var d5 = el.querySelector('.kv-step-detail'); if (d5) d5.textContent = 'Processing...'; }
   });
 }
-
 /* ── ARCH TOOLTIPS ── */
 (function () {
   var tip = document.getElementById('arch-tip');
@@ -826,7 +856,6 @@ function resetSim() {
     tip.style.left = x + 'px'; tip.style.top = y + 'px';
   }
 })();
-
 /* ── RIDER RAIN ── */
 (function () {
   var r = document.getElementById('re-rain'); if (!r) return;
@@ -836,7 +865,6 @@ function resetSim() {
     r.appendChild(d);
   }
 })();
-
 /* ── FRAUD DETECTION ── */
 var fdS = ['fd1','fd2','fd3','fd4','fd5','fd6'].map(function(id){ return document.getElementById(id); });
 function fdClr(s){ return s < 45 ? '#FF5A5F' : s < 75 ? '#FFD166' : '#4ade80'; }
@@ -855,7 +883,6 @@ function fdUpd() {
 }
 function fdSet(a){ fdS.forEach(function(s,i){ s.value = a[i]; }); fdUpd(); }
 fdS.forEach(function(s){ s.addEventListener('input', fdUpd); }); fdUpd();
-
 /* ── IMPACT CALCULATOR ── */
 function icF(n){ return '₹' + n.toLocaleString('en-IN'); }
 function icN(n){ return n.toLocaleString('en-IN'); }
@@ -883,17 +910,75 @@ var icObs = new IntersectionObserver(function(entries){
   });
 }, { threshold: 0.5 });
 document.querySelectorAll('.ic-snum[data-target]').forEach(function(c){ icObs.observe(c); });
-
 /* ── INIT DASHBOARD ── */
 updateDashboard();
 setInterval(updateDashboard, 5000);
-
+/* ── RIDER REGISTRATION & POLICY ── */
+(function() {
+  const riderKey = 'kavach_rider';
+  const form = document.getElementById('kavach-reg-form');
+  const regContainer = document.getElementById('reg-form-container');
+  const successContainer = document.getElementById('reg-success');
+  const policyContent = document.getElementById('policy-content');
+  const formatDate = (date) => date.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+  function renderPolicy() {
+    const rider = JSON.parse(localStorage.getItem(riderKey));
+    if (!rider) {
+      policyContent.innerHTML = `<div class="kv-sim-box" style="padding: 60px; text-align: center; border-style: dashed;"><p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 16px;">Please register first to see your policy details.</p><button onclick="document.getElementById('registration').scrollIntoView({behavior:'smooth'})" class="kv-btn-ghost">Take me to registration</button></div>`;
+      return;
+    }
+    policyContent.innerHTML = `
+      <div class="kv-story-card" style="border: 1px solid var(--accent); background: linear-gradient(135deg, var(--card) 0%, #1a231f 100%);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
+          <div><div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 6px; font-weight: 600;">Active Protection</div><div style="font-family:'DM Serif Display',serif; font-size: 38px;">${rider.policyId}</div></div>
+          <div style="text-align: right;"><div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); margin-bottom: 8px;">Network Status</div><div style="display: flex; align-items: center; gap: 8px; background: rgba(74, 222, 128, 0.1); padding: 6px 14px; border-radius: 50px; border: 1px solid rgba(74, 222, 128, 0.2);"><span style="width: 8px; height: 8px; background: #4ade80; border-radius: 50%; display: inline-block;"></span><span style="color: #4ade80; font-size: 12px; font-weight: 600;">ACTIVE IN ${rider.zone}</span></div></div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 40px; margin-bottom: 48px;">
+          <div><div style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.05em;">Coverage Limit</div><div style="font-size: 22px; font-weight: 500;">₹5,000 <small style="font-size: 13px; opacity:0.6">/ event</small></div></div>
+          <div><div style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.05em;">Weekly Premium</div><div style="font-size: 22px; font-weight: 500;">₹50</div></div>
+          <div><div style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.05em;">Rider Profile</div><div style="font-size: 17px; font-weight: 500;">${rider.name}</div><div style="font-size: 12px; opacity: 0.5;">${rider.vehicle} · ${rider.phone}</div></div>
+        </div>
+        <div style="border-top: 1px solid var(--border); padding-top: 30px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+          <div style="display: flex; gap: 40px;"><div><div style="font-size: 10px; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 4px;">Effective Date</div><div style="font-size: 14px; color: var(--text);">${rider.startDate}</div></div><div><div style="font-size: 10px; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 4px;">Expiry Date</div><div style="font-size: 14px; color: var(--accent); font-weight: 600;">${rider.expiryDate}</div></div></div>
+          <button id="renew-btn" class="kv-btn-ghost" style="padding: 10px 24px; font-size: 13px; border-color: rgba(255,255,255,0.15);">Extend Protection (1 yr)</button>
+        </div>
+      </div>
+    `;
+    document.getElementById('renew-btn')?.addEventListener('click', function() {
+      const currentExpiry = new Date(rider.expiryDate);
+      currentExpiry.setFullYear(currentExpiry.getFullYear() + 1);
+      rider.expiryDate = formatDate(currentExpiry);
+      localStorage.setItem(riderKey, JSON.stringify(rider));
+      alert('Policy renewed successfully until ' + rider.expiryDate);
+      renderPolicy();
+    });
+  }
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const today = new Date();
+    const expiry = new Date();
+    expiry.setFullYear(today.getFullYear() + 1);
+    const riderData = {
+      name: document.getElementById('reg-name').value,
+      phone: document.getElementById('reg-phone').value,
+      zone: document.getElementById('reg-zone').value,
+      vehicle: document.getElementById('reg-vehicle').value,
+      policyId: 'POL-' + Math.random().toString(36).substring(2, 8).toUpperCase(),
+      startDate: formatDate(today),
+      expiryDate: formatDate(expiry)
+    };
+    localStorage.setItem(riderKey, JSON.stringify(riderData));
+    regContainer.style.display = 'none';
+    successContainer.style.display = 'block';
+    renderPolicy();
+  });
+  window.addEventListener('load', renderPolicy);
+})();
 /* ── EVENT LISTENERS ── */
 document.getElementById('viewHistoryBtn').addEventListener('click', showHistory);
 document.getElementById('closeModalBtn').addEventListener('click', closeHistory);
 document.getElementById('modalOverlay').addEventListener('click', closeHistory);
 document.getElementById('clearHistoryBtn').addEventListener('click', clearHistory);
-
 /* ── EXPOSE TO WINDOW ── */
 window.updateDashboard = updateDashboard;
 window.startSim = startSim;
@@ -904,3 +989,6 @@ window.showHistory = showHistory;
 </script>
 </body>
 </html>
+
+ 
+ 
