@@ -151,6 +151,42 @@ The underwriter prices risk per zone per season using the historical weather and
 
 During an event, they have read access to the Hyperledger Fabric ledger in real time. Every payout, every signal bundle that produced the decision, every fraud flag — all of it is visible as it happens. After the event they get a full actuarial report. No black box. No dispute over what was paid and why.
 
+## Rider Onboarding & Policy Management
+
+Kavach now includes a lightweight rider onboarding and policy management layer to simulate how workers enroll and track coverage.
+
+### Registration
+
+Riders can register through a simple interface by entering:
+- Name
+- Phone number
+- Operating zone
+- Vehicle type
+
+This creates a local policy profile stored in the browser (for demo purposes).
+
+### Policy Dashboard
+
+Once registered, the rider can view:
+- Unique Policy ID (generated at registration)
+- Coverage amount (₹5,000 per event)
+- Weekly premium (₹50)
+- Policy start and expiry dates
+- Assigned operating zone
+
+### Policy Lifecycle
+
+- Policies are valid for one year from registration
+- Riders can renew their policy directly from the dashboard
+- Renewal extends the expiry date by one year
+
+### Demo Note
+
+For the hackathon prototype:
+- Data is stored using browser localStorage
+- No real backend or payment is connected
+- This simulates how onboarding and policy tracking would work in production
+
 ---
 
 ## Tech Stack
