@@ -196,6 +196,110 @@
   </style>
 </head>
 <body>
+<div id="gateWindow">
+
+
+<section id="registration" style="background: var(--surface); color: var(--text); padding: 2.5rem; border: 1px solid var(--border); border-radius: 12px; margin: 2rem 0;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+      <h2 style="color: var(--primary); margin: 0;">Rider Registration</h2>
+      <button onclick="resetSession()" style="background: transparent; color: var(--text-secondary); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Reset Session</button>
+    </div>
+
+  <form id="registrationForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; transition: all 0.3s ease;">
+    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+      <label style="color: var(--text-secondary); font-size: 0.9rem;">Full Name</label>
+      <input type="text" id="regName" placeholder="Enter full name" style="background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 0.8rem; border-radius: 8px;">
+
+</div>
+    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+      <label style="color: var(--text-secondary); font-size: 0.9rem;">Phone Number</label>
+      <input type="tel" id="regPhone" placeholder="Enter phone number" style="background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 0.8rem; border-radius: 8px;">
+
+</div>
+    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+      <label style="color: var(--text-secondary); font-size: 0.9rem;">Zone</label>
+      <select id="regZone" style="background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 0.8rem; border-radius: 8px;">
+
+        <option value="" disabled selected>Select Zone</option>
+        <option value="MA13">MA13</option>
+        <option value="MA14">MA14</option>
+        <option value="BLR01">BLR01</option>
+        <option value="CO01">CO01</option>
+        <option value="CO02">CO02</option>
+      </select>
+
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+      <label style="color: var(--text-secondary); font-size: 0.9rem;">Vehicle Type</label>
+      <select id="regVehicle" style="background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 0.8rem; border-radius: 8px;">
+
+        <option value="" disabled selected>Select Vehicle</option>
+        <option value="Bike">Bike</option>
+        <option value="Scooter">Scooter</option>
+        <option value="Cycle">Cycle</option>
+      </select>
+
+    </div>
+    <button type="button" onclick="registerRider()" style="grid-column: span 2; background: var(--accent); color: var(--navy); border: none; padding: 1rem; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1rem;">Register Now</button>
+  </form>
+  <div id="regSuccess" style="display: none; text-align: center; background: rgba(52, 211, 153, 0.1); border: 1px solid #34d399; padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
+    <p style="color: #34d399; font-weight: 500; margin: 0;">✓ Registration successful! Your policy is now active.</p>
+  </div>
+</section>
+
+<section id="policy" style="background: var(--surface); color: var(--text); padding: 2.5rem; border: 1px solid var(--border); border-radius: 12px; margin: 2rem 0; min-height: 250px;">
+  <!-- State A: No Rider -->
+  <div id="stateNoPolicy" style="text-align: center;">
+    <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem;">No active policy found</h3>
+    <a href="#registration" onclick="scrollToPolicy()" style="background: var(--primary); color: var(--navy); text-decoration: none; display: inline-block; padding: 0.8rem 2rem; border-radius: 8px; cursor: pointer; font-weight: 500;">Register Now</a>
+  </div>
+
+  <!-- State B: Has Rider -->
+  <div id="stateActivePolicy" style="display: none;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
+      <h2 style="color: var(--primary); margin: 0;">Active Policy</h2>
+      <span id="polID" style="background: var(--navy); color: var(--accent); padding: 0.5rem 1rem; border-radius: 30px; font-weight: 700; font-family: monospace; letter-spacing: 1px;"></span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem;">
+      <div>
+        <p style="color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; margin: 0;">Rider Name</p>
+        <p id="polName" style="font-weight: 600; margin: 0.4rem 0; font-size: 1.1rem;"></p>
+      </div>
+      <div>
+        <p style="color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; margin: 0;">Coverage</p>
+        <p style="font-weight: 600; margin: 0.4rem 0; font-size: 1.1rem;">₹5,000</p>
+      </div>
+      <div>
+        <p style="color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; margin: 0;">Premium</p>
+        <p id="polPremium" style="font-weight: 600; margin: 0.4rem 0; font-size: 1.1rem;"></p>
+      </div>
+      <div>
+        <p style="color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; margin: 0;">Zone</p>
+        <p id="polZone" style="font-weight: 600; margin: 0.4rem 0; font-size: 1.1rem;"></p>
+      </div>
+      <div>
+        <p style="color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; margin: 0;">Vehicle</p>
+        <p id="polVehicle" style="font-weight: 600; margin: 0.4rem 0; font-size: 1.1rem;"></p>
+      </div>
+      <div>
+        <p style="color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; margin: 0;">Start Date</p>
+        <p id="polStart" style="font-weight: 600; margin: 0.4rem 0; font-size: 1.1rem;"></p>
+      </div>
+      <div>
+        <p style="color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; margin: 0;">Expiry Date</p>
+        <p id="polExpiry" style="font-weight: 600; margin: 0.4rem 0; font-size: 1.1rem; color: var(--accent);"></p>
+      </div>
+    </div>
+    <button onclick="renewPolicy()" style="margin-top: 1rem; background: var(--surface); color: var(--text); border: 1px solid var(--border); padding: 1.2rem; border-radius: 8px; cursor: pointer; font-weight: 600; width: 100%; font-size: 1rem; transition: opacity 0.2s; margin-bottom: 1rem;">Renew Policy (1 Year)</button>
+    <div id="redirMessage" style="background: rgba(255, 209, 102, 0.1); border: 1px dashed var(--accent); color: var(--accent); padding: 1.2rem; border-radius: 8px; text-align: center; font-weight: 600; font-size: 1.1rem; display: none;">
+        Redirection to main page in 5 seconds...
+    </div>
+  </div>
+
+</section>
+</div> <!-- End gateWindow -->
+
+<div id="mainWindow" style="display: none;">
 <nav class="kv-nav">
   <div class="kv-logo">Kavach</div>
   <div class="kv-nav-links">
@@ -206,8 +310,7 @@
     <a href="#rider-experience" class="kv-nav-link">Rider Journey</a>
     <a href="#monitoring" class="kv-nav-link">Monitoring</a>
     <a href="#impact" class="kv-nav-link">Impact</a>
-    <a href="#registration" class="kv-nav-link">Register</a>
-    <a href="#policy" class="kv-nav-link">Policy</a>
+    <a href="#team" class="kv-nav-link">Team</a>
     <a href="#simulation" class="kv-nav-cta">Try Demo →</a>
   </div>
   <span class="kv-pill">DEV Trails 2026</span>
@@ -269,7 +372,9 @@
     </div>
   </div>
 </section>
+
 <div class="kv-divider"></div>
+
 <!-- SECTION 3: LIVE SIMULATION - See it in action -->
 <section id="simulation">
   <div class="kv-section">
@@ -511,76 +616,21 @@
     </div>
     <div class="ic-calc">
       <h2>Calculate Kavach's impact</h2>
-      <div class="ic-ig"><label>Platform partners: <span id="icPv">2</span></label><input type="range" id="icp" min="1" max="10" value="2"></div>
-      <div class="ic-ig"><label>Riders per platform: <span id="icRv">50,000</span></label><input type="range" id="icr" min="10000" max="100000" step="10000" value="50000"></div>
+      <div class="ic-ig"><label>Platform partners: <span id="icPv">2</span></label><input type="range" id="icp" min="1" max="5" value="2"></div>
+      <div class="ic-ig"><label>Riders per platform: <span id="icRv">500</span></label><input type="range" id="icr" min="100" max="1000" step="50" value="500"></div>
+
+
+
       <div class="ic-ig"><label>City tier</label><select id="ict"><option value="14">Tier 1 (14 events/year)</option><option value="9">Tier 2 (9 events/year)</option><option value="6">Tier 3 (6 events/year)</option></select></div>
       <div class="ic-outputs">
         <div class="ic-oc"><div class="ic-ov" id="ic-tr">0</div><div class="ic-ol">Total riders enrolled</div></div>
         <div class="ic-oc"><div class="ic-ov" id="ic-ir">0</div><div class="ic-ol">Income protected / rider / year</div></div>
         <div class="ic-oc"><div class="ic-ov" id="ic-ti">0</div><div class="ic-ol">Total income protected</div></div>
         <div class="ic-oc"><div class="ic-ov" id="ic-mr">0</div><div class="ic-ol">Monthly platform revenue</div></div>
+
+
       </div>
     </div>
-  </div>
-</section>
-<div class="kv-divider"></div>
-<!-- SECTION: REGISTRATION -->
-<section id="registration">
-  <div class="kv-section">
-    <div class="kv-section-label">Rider Registration</div>
-    <div class="kv-sim-box" style="padding: 40px; position: relative; overflow: hidden;">
-      <div class="kv-story-bg" style="opacity: 0.05;"></div>
-      <div id="reg-form-container">
-        <h2 style="font-family:'DM Serif Display',serif; font-size: 32px; margin-bottom: 24px; color: var(--text);">Join the shield</h2>
-        <p style="color: var(--text-secondary); margin-bottom: 32px; max-width: 400px;">Register your vehicle to activate your automatic weather payout protection.</p>
-        <form id="kavach-reg-form" style="display: grid; gap: 24px; max-width: 500px;">
-          <div class="kv-form-group">
-            <label style="display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 8px; letter-spacing: 0.05em;">Full Name</label>
-            <input type="text" id="reg-name" required placeholder="Name on Aadhaar/License" style="width: 100%; padding: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none;">
-          </div>
-          <div class="kv-form-group">
-            <label style="display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 8px; letter-spacing: 0.05em;">Phone Number</label>
-            <input type="tel" id="reg-phone" required placeholder="+91 XXXXX XXXXX" style="width: 100%; padding: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none;">
-          </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-            <div class="kv-form-group">
-              <label style="display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 8px; letter-spacing: 0.05em;">Primary Zone</label>
-              <select id="reg-zone" required style="width: 100%; padding: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; appearance: none; cursor: pointer;">
-                <option value="MA13">MA13 (Chennai Central)</option>
-                <option value="MA14">MA14 (OMR/ECR)</option>
-                <option value="BLR01">BLR01 (Whitefield)</option>
-                <option value="CO01">CO01 (Kochi North)</option>
-                <option value="CO02">CO02 (Kochi South)</option>
-              </select>
-            </div>
-            <div class="kv-form-group">
-              <label style="display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 8px; letter-spacing: 0.05em;">Vehicle Type</label>
-              <select id="reg-vehicle" required style="width: 100%; padding: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; cursor: pointer;">
-                <option value="Bike">Heavy Bike</option>
-                <option value="Scooter">Scooter / Moped</option>
-                <option value="Cycle">Electric Cycle</option>
-              </select>
-            </div>
-          </div>
-          <button type="submit" class="kv-btn-primary" style="padding: 16px; margin-top: 12px; font-size: 15px;">Activate My Protection →</button>
-        </form>
-      </div>
-      <div id="reg-success" style="display: none; text-align: center; padding: 40px 0;">
-        <div style="width: 80px; height: 80px; background: rgba(74, 222, 128, 0.1); border: 1px solid #4ade80; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; animation: rePB 1.5s infinite;">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#4ade80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <h2 style="font-family:'DM Serif Display',serif; font-size: 36px; margin-bottom: 12px; color: var(--text);">You're covered!</h2>
-        <p style="color: var(--text-secondary); margin-bottom: 36px; font-size: 16px;">Welcome aboard. Your policy is now active and monitoring weather signals.</p>
-        <button onclick="document.getElementById('policy').scrollIntoView({behavior:'smooth'})" class="kv-btn-ghost" style="border-color: var(--text);">View Active Policy</button>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- SECTION: POLICY -->
-<section id="policy">
-  <div class="kv-section" style="padding-top: 0;">
-    <div class="kv-section-label">Your Active Policy</div>
-    <div id="policy-content"></div>
   </div>
 </section>
 <div class="kv-divider"></div>
@@ -604,6 +654,7 @@
 </footer>
 <a href="#simulation" class="kv-sticky" id="sticky">🎬 Watch live demo ↓</a>
 <div class="arch-tip" id="arch-tip"></div>
+</div> <!-- End mainWindow -->
 <script>
 /* ── STICKY ── */
 window.addEventListener('scroll', function () {
@@ -886,7 +937,10 @@ fdS.forEach(function(s){ s.addEventListener('input', fdUpd); }); fdUpd();
 /* ── IMPACT CALCULATOR ── */
 function icF(n){ return '₹' + n.toLocaleString('en-IN'); }
 function icN(n){ return n.toLocaleString('en-IN'); }
+
 function icA(id, end, fmt){
+
+
   var el = document.getElementById(id), s = 0, step = Math.max(1, Math.ceil(end/50));
   function r(){ s += step; if (s >= end){ el.textContent = fmt(end); } else { el.textContent = fmt(s); requestAnimationFrame(r); } } r();
 }
@@ -894,8 +948,13 @@ function icUpd(){
   var p = +document.getElementById('icp').value, r = +document.getElementById('icr').value, e = +document.getElementById('ict').value;
   document.getElementById('icPv').textContent = p;
   document.getElementById('icRv').textContent = icN(r);
-  icA('ic-tr', p*r, icN); icA('ic-ir', e*1850, icF); icA('ic-ti', p*r*e*1850, icF); icA('ic-mr', p*r*100, icF);
+  icA('ic-tr', p*r, icN); 
+  icA('ic-ir', e*1850, icF); 
+  icA('ic-ti', p*r*e*1850, icF); 
+  icA('ic-mr', p*r*100, icF);
 }
+
+
 document.getElementById('icp').oninput = icUpd;
 document.getElementById('icr').oninput = icUpd;
 document.getElementById('ict').onchange = icUpd;
@@ -913,72 +972,163 @@ document.querySelectorAll('.ic-snum[data-target]').forEach(function(c){ icObs.ob
 /* ── INIT DASHBOARD ── */
 updateDashboard();
 setInterval(updateDashboard, 5000);
-/* ── RIDER REGISTRATION & POLICY ── */
-(function() {
-  const riderKey = 'kavach_rider';
-  const form = document.getElementById('kavach-reg-form');
-  const regContainer = document.getElementById('reg-form-container');
-  const successContainer = document.getElementById('reg-success');
-  const policyContent = document.getElementById('policy-content');
-  const formatDate = (date) => date.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
-  function renderPolicy() {
-    const rider = JSON.parse(localStorage.getItem(riderKey));
-    if (!rider) {
-      policyContent.innerHTML = `<div class="kv-sim-box" style="padding: 60px; text-align: center; border-style: dashed;"><p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 16px;">Please register first to see your policy details.</p><button onclick="document.getElementById('registration').scrollIntoView({behavior:'smooth'})" class="kv-btn-ghost">Take me to registration</button></div>`;
-      return;
-    }
-    policyContent.innerHTML = `
-      <div class="kv-story-card" style="border: 1px solid var(--accent); background: linear-gradient(135deg, var(--card) 0%, #1a231f 100%);">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
-          <div><div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 6px; font-weight: 600;">Active Protection</div><div style="font-family:'DM Serif Display',serif; font-size: 38px;">${rider.policyId}</div></div>
-          <div style="text-align: right;"><div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); margin-bottom: 8px;">Network Status</div><div style="display: flex; align-items: center; gap: 8px; background: rgba(74, 222, 128, 0.1); padding: 6px 14px; border-radius: 50px; border: 1px solid rgba(74, 222, 128, 0.2);"><span style="width: 8px; height: 8px; background: #4ade80; border-radius: 50%; display: inline-block;"></span><span style="color: #4ade80; font-size: 12px; font-weight: 600;">ACTIVE IN ${rider.zone}</span></div></div>
-        </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 40px; margin-bottom: 48px;">
-          <div><div style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.05em;">Coverage Limit</div><div style="font-size: 22px; font-weight: 500;">₹5,000 <small style="font-size: 13px; opacity:0.6">/ event</small></div></div>
-          <div><div style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.05em;">Weekly Premium</div><div style="font-size: 22px; font-weight: 500;">₹50</div></div>
-          <div><div style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.05em;">Rider Profile</div><div style="font-size: 17px; font-weight: 500;">${rider.name}</div><div style="font-size: 12px; opacity: 0.5;">${rider.vehicle} · ${rider.phone}</div></div>
-        </div>
-        <div style="border-top: 1px solid var(--border); padding-top: 30px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
-          <div style="display: flex; gap: 40px;"><div><div style="font-size: 10px; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 4px;">Effective Date</div><div style="font-size: 14px; color: var(--text);">${rider.startDate}</div></div><div><div style="font-size: 10px; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 4px;">Expiry Date</div><div style="font-size: 14px; color: var(--accent); font-weight: 600;">${rider.expiryDate}</div></div></div>
-          <button id="renew-btn" class="kv-btn-ghost" style="padding: 10px 24px; font-size: 13px; border-color: rgba(255,255,255,0.15);">Extend Protection (1 yr)</button>
-        </div>
-      </div>
-    `;
-    document.getElementById('renew-btn')?.addEventListener('click', function() {
-      const currentExpiry = new Date(rider.expiryDate);
-      currentExpiry.setFullYear(currentExpiry.getFullYear() + 1);
-      rider.expiryDate = formatDate(currentExpiry);
-      localStorage.setItem(riderKey, JSON.stringify(rider));
-      alert('Policy renewed successfully until ' + rider.expiryDate);
-      renderPolicy();
-    });
+function registerRider() {
+  const name = document.getElementById('regName').value.trim();
+  const phone = document.getElementById('regPhone').value.trim();
+  const zone = document.getElementById('regZone').value;
+  const vehicle = document.getElementById('regVehicle').value;
+
+  if (!name || !phone || !zone || !vehicle) {
+    alert("Please fill in all fields (Name, Phone, Zone, and Vehicle).");
+    return;
   }
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const today = new Date();
-    const expiry = new Date();
-    expiry.setFullYear(today.getFullYear() + 1);
-    const riderData = {
-      name: document.getElementById('reg-name').value,
-      phone: document.getElementById('reg-phone').value,
-      zone: document.getElementById('reg-zone').value,
-      vehicle: document.getElementById('reg-vehicle').value,
-      policyId: 'POL-' + Math.random().toString(36).substring(2, 8).toUpperCase(),
-      startDate: formatDate(today),
-      expiryDate: formatDate(expiry)
-    };
-    localStorage.setItem(riderKey, JSON.stringify(riderData));
-    regContainer.style.display = 'none';
-    successContainer.style.display = 'block';
-    renderPolicy();
-  });
-  window.addEventListener('load', renderPolicy);
-})();
+
+
+  let price = 50;
+  if (zone === "MA13" || zone === "MA14") price = 70;
+  else if (zone === "CO01" || zone === "CO02") price = 60;
+
+  const polId = "POL-" + Math.random().toString(36).substring(2, 8).toUpperCase();
+  const start = new Date();
+  const expiry = new Date();
+  expiry.setFullYear(start.getFullYear() + 1);
+
+  const riderData = {
+    policyId: polId,
+    name: name,
+    phone: phone,
+    zone: zone,
+    vehicle: vehicle,
+    premium: "₹" + price,
+    startDate: start.toLocaleDateString('en-IN'),
+    expiryDate: expiry.toLocaleDateString('en-IN')
+  };
+
+  localStorage.setItem("kavach_rider", JSON.stringify(riderData));
+
+  const form = document.getElementById('registrationForm');
+  form.style.opacity = "0.5";
+  form.style.pointerEvents = "none";
+  const successMsg = document.getElementById('regSuccess');
+  successMsg.style.display = "block";
+  const redirMsg = document.getElementById('redirMessage');
+  redirMsg.style.display = "block";
+  let secondsLeft = 5;
+  redirMsg.innerText = `Redirection to main page in ${secondsLeft} seconds...`;
+
+  const countdown = setInterval(() => {
+    secondsLeft--;
+    if (secondsLeft > 0) {
+      redirMsg.innerText = `Redirection to main page in ${secondsLeft} seconds...`;
+    } else {
+      clearInterval(countdown);
+    }
+  }, 1000);
+
+  loadPolicy();
+  
+  // Scroll to policy section so user sees the newly filled info
+  document.getElementById('policy').scrollIntoView({ behavior: 'smooth' });
+
+  // Auto-redirect to dashboard after 5 seconds
+  setTimeout(() => {
+    enterDashboard();
+  }, 5000);
+}
+
+
+function updatePreview() {
+  // Preview functionality removed per user request
+}
+
+
+function loadPolicy() {
+
+  const data = localStorage.getItem("kavach_rider");
+  const gate = document.getElementById('gateWindow');
+  const main = document.getElementById('mainWindow');
+  const stateNo = document.getElementById('stateNoPolicy');
+  const stateActive = document.getElementById('stateActivePolicy');
+
+  if (!data) {
+    if (stateNo) stateNo.style.display = "block";
+    if (stateActive) stateActive.style.display = "none";
+    
+    // Explicitly clear fields to ensure no stray info is visible in DOM
+    const fields = ['polID', 'polName', 'polPremium', 'polZone', 'polVehicle', 'polStart', 'polExpiry'];
+    fields.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = "";
+    });
+  } else {
+    const rider = JSON.parse(data);
+    if (stateNo) stateNo.style.display = "none";
+    if (stateActive) stateActive.style.display = "block";
+
+
+    document.getElementById('polID').textContent = rider.policyId;
+    document.getElementById('polName').textContent = rider.name;
+    document.getElementById('polPremium').textContent = rider.premium;
+    document.getElementById('polZone').textContent = rider.zone;
+    document.getElementById('polVehicle').textContent = rider.vehicle;
+    document.getElementById('polStart').textContent = rider.startDate;
+    document.getElementById('polExpiry').textContent = rider.expiryDate;
+    
+    // Remove preview badge if it exists
+    const badge = document.getElementById('previewBadge');
+    if (badge) badge.remove();
+    if (stateActive) stateActive.style.border = "none";
+  }
+}
+
+
+function enterDashboard() {
+  document.getElementById('gateWindow').style.display = 'none';
+  document.getElementById('mainWindow').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function renewPolicy() {
+
+  const data = localStorage.getItem("kavach_rider");
+  if (!data) return;
+
+  const rider = JSON.parse(data);
+  const parts = rider.expiryDate.split('/');
+  const currentExpiry = parts.length === 3 ? new Date(parts[2], parts[1] - 1, parts[0]) : new Date(rider.expiryDate);
+  
+  currentExpiry.setFullYear(currentExpiry.getFullYear() + 1);
+  rider.expiryDate = currentExpiry.toLocaleDateString('en-IN');
+
+  localStorage.setItem("kavach_rider", JSON.stringify(rider));
+  loadPolicy();
+  alert("Policy renewed! Your new expiry date is: " + rider.expiryDate);
+}
+
+function scrollToPolicy() {
+  document.getElementById('policy').scrollIntoView({ behavior: 'smooth' });
+}
+
 /* ── EVENT LISTENERS ── */
 document.getElementById('viewHistoryBtn').addEventListener('click', showHistory);
 document.getElementById('closeModalBtn').addEventListener('click', closeHistory);
 document.getElementById('modalOverlay').addEventListener('click', closeHistory);
 document.getElementById('clearHistoryBtn').addEventListener('click', clearHistory);
+
+function resetSession() {
+  localStorage.removeItem('kavach_rider');
+  localStorage.removeItem('kavach_history');
+  window.location.reload();
+}
+
+/* ── DOM CONTENT LOADED ── */
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadPolicy();
+    updateDashboard();
+    setInterval(updateDashboard, 5000);
+});
+
 /* ── EXPOSE TO WINDOW ── */
 window.updateDashboard = updateDashboard;
 window.startSim = startSim;
@@ -986,9 +1136,12 @@ window.resetSim = resetSim;
 window.fdUpd = fdUpd;
 window.fdSet = fdSet;
 window.showHistory = showHistory;
+window.registerRider = registerRider;
+window.loadPolicy = loadPolicy;
+window.renewPolicy = renewPolicy;
+window.scrollToPolicy = scrollToPolicy;
+window.resetSession = resetSession;
 </script>
+
 </body>
 </html>
-
- 
- 
