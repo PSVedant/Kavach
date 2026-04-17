@@ -4,6 +4,16 @@ Team: GuideX | DEV Trails 2026
 
 ---
 
+---
+
+## Pitch Deck
+
+Pitch Deck – Upload your pitch deck (Drive or any accessible platform), make it publicly accessible, and include the link in your README under the header “Pitch Deck.”
+
+https://drive.google.com/file/d/1H6U9t46XsCQSRtiExZf5CCE_pAppoCnh/view?usp=sharing
+
+---
+
 ## The Problem
 
 There are over 15 million delivery workers in India. They ride for Swiggy, Zomato, Dunzo, and a dozen other platforms. Every one of them earns per delivery. No delivery, no money. That is the whole equation.
