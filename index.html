@@ -9,9 +9,12 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--primary:#73877B;--primary-light:#8DA196;--primary-dark:#5C6D63;--primary-soft:#2A3A33;--accent:#FFD166;--accent-dark:#E6B800;--accent-soft:#3A3A2A;--secondary-accent:#7A6C8F;--navy:#0F1412;--text:#F4F7F5;--text-secondary:#AAB7B0;--muted:#AAB7B0;--border:#1F2A26;--card:#1A201E;--surface:#1A201E;--alert:#FF5A5F}
+    :root{--primary:#73877B;--primary-light:#8DA196;--primary-dark:#5C6D63;--primary-soft:#2A3A33;--accent:#FFD166;--accent-dark:#E6B800;--accent-soft:#3A3A2A;--secondary-accent:#7A6C8F;--navy:#0F1412;--text:#F4F7F5;--text-secondary:#AAB7B0;--muted:#AAB7B0;--border:#1F2A26;--card:#1A201E;--surface:#1A201E;--alert:#FF5A5F;
+    --tier-platinum:#E5E4E2;--tier-gold:#FFD700;--tier-silver:#C0C0C0;--tier-bronze:#CD7F32;--tier-risk:#FF5A5F}
     html{scroll-behavior:smooth}
     body{font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;color:var(--text);background:var(--navy)}
+
+    /* ── NAV ── */
     .kv-nav{display:flex;align-items:center;justify-content:space-between;padding:14px 32px;border-bottom:0.5px solid var(--border);background:var(--card);position:sticky;top:0;z-index:200}
     .kv-logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--primary);letter-spacing:-0.5px}
     .kv-nav-links{display:flex;align-items:center;gap:2px}
@@ -20,6 +23,8 @@
     .kv-nav-cta{font-size:12px;background:var(--accent);color:var(--navy);border:none;border-radius:8px;padding:7px 16px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;margin-left:6px;text-decoration:none;white-space:nowrap}
     .kv-pill{font-size:11px;font-weight:500;background:var(--primary-soft);color:var(--primary-light);border-radius:20px;padding:4px 10px;border:0.5px solid var(--primary-light);margin-left:8px}
     @media(max-width:768px){.kv-nav-links{display:none}.kv-nav{padding:14px 20px}}
+
+    /* ── SHARED ── */
     .kv-section{padding:72px 32px;max-width:900px;margin:0 auto}
     .kv-section-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:36px;display:flex;align-items:center;gap:12px}
     .kv-section-label::after{content:'';flex:1;height:0.5px;background:var(--border)}
@@ -28,6 +33,8 @@
     .kv-btn-primary:hover{background:var(--accent-dark)}
     .kv-btn-ghost{background:transparent;color:var(--text);border:0.5px solid var(--border);border-radius:8px;padding:13px 26px;font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;text-decoration:none;display:inline-block}
     .kv-btn-ghost:hover{background:var(--surface)}
+
+    /* ── HERO ── */
     .kv-hero{padding:80px 32px 64px;max-width:900px;margin:0 auto}
     .kv-eyebrow{font-size:12px;font-weight:500;letter-spacing:0.08em;color:var(--primary);text-transform:uppercase;margin-bottom:18px}
     .kv-h1{font-family:'DM Serif Display',serif;font-size:52px;line-height:1.08;letter-spacing:-1.5px;color:var(--text);margin-bottom:22px}
@@ -35,6 +42,8 @@
     .kv-hero-sub{font-size:17px;color:var(--text-secondary);max-width:540px;line-height:1.7;margin-bottom:38px}
     .kv-cta-row{display:flex;gap:12px;flex-wrap:wrap}
     @media(max-width:600px){.kv-h1{font-size:34px}}
+
+    /* ── STORY ── */
     .kv-story-card{background:var(--navy);border-radius:20px;padding:40px 44px;color:#fff;position:relative;overflow:hidden;border:1px solid var(--border)}
     .kv-story-bg{position:absolute;top:-50px;right:-50px;width:240px;height:240px;border-radius:50%;background:rgba(115,135,123,0.1);pointer-events:none}
     .kv-story-name{font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px}
@@ -45,6 +54,8 @@
     .kv-stat-num{font-family:'DM Serif Display',serif;font-size:32px;color:var(--primary);line-height:1;margin-bottom:6px}
     .kv-stat-label{font-size:12px;color:var(--text-secondary);line-height:1.5}
     @media(max-width:560px){.kv-stats-grid{grid-template-columns:1fr 1fr}.kv-story-card{padding:28px 24px}.kv-story-quote{font-size:20px}}
+
+    /* ── SIMULATION ── */
     .kv-sim-box{background:var(--card);border:0.5px solid var(--border);border-radius:18px;overflow:hidden}
     .kv-sim-header{padding:20px 26px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--card)}
     .kv-sim-title{font-weight:500;font-size:14px;color:var(--text)}
@@ -79,6 +90,8 @@
     .kv-progress-track{height:4px;background:var(--surface);border-radius:4px;overflow:hidden}
     .kv-progress-bar{height:100%;background:var(--primary);border-radius:4px;width:0%;transition:width 0.3s linear}
     .kv-progress-label{font-size:11px;color:var(--text-secondary);margin-top:5px}
+
+    /* ── ARCHITECTURE ── */
     .arch-card{width:100%;background:var(--card);border-radius:1.5rem;box-shadow:0 4px 12px rgba(0,0,0,0.3);border:1px solid var(--border);overflow:hidden}
     .arch-header{padding:1rem 2rem;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:0.8rem}
     .arch-title{font-weight:600;font-size:1rem;letter-spacing:-0.2px;color:var(--text);font-family:'Inter',sans-serif}
@@ -93,6 +106,8 @@
     @keyframes archDF{to{stroke-dashoffset:-22}}
     .arch-pulse{animation:archPulse 2.5s ease-in-out infinite;transform-origin:center}
     @keyframes archPulse{0%,100%{transform:scale(1);opacity:0.4}50%{transform:scale(1.05);opacity:0.15}}
+
+    /* ── RIDER EXPERIENCE ── */
     #rider-experience{background:var(--navy);position:relative;overflow:hidden}
     .re-inner{max-width:900px;margin:0 auto;padding:72px 32px}
     .re-lbl{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:36px;display:flex;align-items:center;gap:12px}
@@ -152,6 +167,8 @@
     .re-s3-utxt{font-size:8px;font-weight:500;color:rgba(255,255,255,0.5)}
     .re-s3-tag{font-size:8px;color:rgba(255,255,255,0.28);line-height:1.6;margin-top:10px}
     @media(max-width:520px){.re-stage{gap:10px}}
+
+    /* ── FRAUD DETECTION ── */
     .fd-wrap{color:var(--text)}
     .fd-presets{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
     .fd-presets button{padding:8px 14px;border:none;background:var(--primary);color:var(--navy);border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;transition:background 0.15s}
@@ -164,6 +181,8 @@
     .fd-gauge{width:160px;height:160px;border-radius:50%;margin:auto;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:600;color:#fff;transition:background 0.5s ease}
     .fd-dec{text-align:center;margin-top:14px;font-weight:600;font-size:13px}
     .fd-exp{text-align:center;margin-top:8px;font-size:12px;color:var(--text-secondary)}
+
+    /* ── IMPACT ── */
     .ic-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:36px}
     .ic-card{background:var(--surface);border:0.5px solid var(--border);padding:22px;border-radius:14px;text-align:center;transition:transform 0.3s ease}
     .ic-card:hover{transform:translateY(-3px)}
@@ -179,339 +198,182 @@
     .ic-oc{background:var(--primary);color:var(--navy);padding:18px;border-radius:12px}
     .ic-ov{font-size:20px;font-weight:700}
     .ic-ol{font-size:12px;margin-top:4px;opacity:0.88;color:var(--navy)}
+
+    /* ── TEAM ── */
     .kv-team-row{display:flex;gap:10px;flex-wrap:wrap}
     .kv-team-chip{background:var(--surface);border:0.5px solid var(--border);border-radius:10px;padding:12px 18px}
     .kv-team-chip-name{font-weight:500;font-size:13px;margin-bottom:2px;color:var(--text)}
     .kv-team-chip-role{font-size:11px;color:var(--text-secondary)}
+
+    /* ── FOOTER ── */
     .kv-footer{border-top:0.5px solid var(--border);padding:28px 32px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--text-secondary);flex-wrap:wrap;gap:12px;background:var(--card)}
     .kv-footer-logo{font-family:'DM Serif Display',serif;font-size:20px;color:var(--primary)}
     .kv-sticky{position:fixed;bottom:28px;right:28px;background:var(--accent);color:var(--navy);border:none;border-radius:50px;padding:13px 22px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;z-index:300;box-shadow:0 4px 20px rgba(255,209,102,0.4);text-decoration:none;display:none;transition:transform 0.15s,box-shadow 0.15s}
     .kv-sticky:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(255,209,102,0.5)}
     .kv-sticky.show{display:inline-block}
+
+    /* ── HISTORY MODAL ── */
     #historyModal{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;max-width:500px;width:90%;max-height:70vh;overflow-y:auto;z-index:1000;box-shadow:0 10px 40px rgba(0,0,0,0.5)}
     #modalOverlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:999}
     .history-table{width:100%;border-collapse:collapse}
     .history-table th,.history-table td{padding:8px;text-align:left;border-bottom:0.5px solid var(--border)}
     .history-table th{color:var(--primary);font-weight:600}
 
-    /* ── REGISTRATION GATE ── */
-    #gateWindow {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--navy);
-      padding: 24px 16px;
-      position: relative;
-      overflow: hidden;
-    }
-    #gateWindow::before {
-      content: '';
-      position: absolute;
-      top: -200px; left: 50%; transform: translateX(-50%);
-      width: 700px; height: 700px;
-      background: radial-gradient(ellipse at center, rgba(115,135,123,0.08) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .gate-card {
-      width: 100%;
-      max-width: 480px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
-      position: relative;
-      z-index: 1;
-    }
-    .gate-header {
-      padding: 32px 36px 24px;
-      border-bottom: 1px solid var(--border);
-      text-align: center;
-      background: var(--surface);
-    }
-    .gate-logo {
-      font-family: 'DM Serif Display', serif;
-      font-size: 28px;
-      color: var(--primary);
-      letter-spacing: -0.5px;
-      margin-bottom: 6px;
-    }
-    .gate-tagline {
-      font-size: 12px;
-      color: var(--text-secondary);
-      letter-spacing: 0.04em;
-    }
-    .gate-body {
-      padding: 32px 36px;
-    }
-    .gate-steps {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-      margin-bottom: 28px;
-    }
-    .gate-step-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-    }
-    .gate-step-circle {
-      width: 30px; height: 30px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 600;
-      border: 1.5px solid var(--border);
-      color: var(--text-secondary);
-      background: var(--surface);
-      transition: all 0.3s;
-    }
-    .gate-step-circle.active {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: #fff;
-    }
-    .gate-step-circle.done {
-      background: #1a3a28;
-      border-color: #4ade80;
-      color: #4ade80;
-    }
-    .gate-step-label {
-      font-size: 10px;
-      color: var(--text-secondary);
-      white-space: nowrap;
-      text-align: center;
-    }
-    .gate-step-label.active { color: var(--primary-light); font-weight: 500; }
-    .gate-step-connector {
-      width: 40px; height: 1px;
-      background: var(--border);
-      margin: 0 4px;
-      margin-bottom: 18px;
-      flex-shrink: 0;
-    }
-    .gate-step-connector.done { background: var(--primary); }
-    .gate-panel { display: none; }
-    .gate-panel.active { display: block; }
-    .gate-field { margin-bottom: 16px; }
-    .gate-field label {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      margin-bottom: 6px;
-    }
-    .gate-input {
-      width: 100%;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 11px 14px;
-      border-radius: 10px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .gate-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(115,135,123,0.15);
-    }
-    .gate-input::placeholder { color: rgba(170,183,176,0.5); }
-    .gate-input-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    @media(max-width:440px){ .gate-input-row { grid-template-columns: 1fr; } }
-    .gate-phone-wrap {
-      display: flex;
-      gap: 0;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .gate-phone-wrap:focus-within {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(115,135,123,0.15);
-    }
-    .gate-phone-prefix {
-      background: var(--navy);
-      color: var(--text-secondary);
-      font-size: 13px;
-      font-weight: 500;
-      padding: 11px 12px;
-      border-right: 1px solid var(--border);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .gate-phone-input {
-      flex: 1;
-      background: var(--surface);
-      border: none;
-      color: var(--text);
-      padding: 11px 14px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      outline: none;
-    }
-    .gate-phone-input::placeholder { color: rgba(170,183,176,0.5); }
-    .otp-group {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin: 4px 0 12px;
-    }
-    .otp-box {
-      width: 48px; height: 52px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      text-align: center;
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      caret-color: var(--accent);
-    }
-    .otp-box:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(115,135,123,0.15);
-    }
-    .otp-box.filled {
-      border-color: var(--primary);
-      background: rgba(115,135,123,0.1);
-    }
-    .otp-info {
-      font-size: 12px;
-      color: var(--text-secondary);
-      text-align: center;
-      margin-bottom: 16px;
-      line-height: 1.5;
-    }
-    .otp-info strong { color: var(--text); }
-    .otp-resend {
-      font-size: 12px;
-      text-align: center;
-      margin-top: 12px;
-      color: var(--text-secondary);
-    }
-    .otp-resend button {
-      background: none;
-      border: none;
-      color: var(--primary-light);
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      text-decoration: underline;
-      padding: 0;
-    }
-    .otp-resend button:disabled { color: var(--text-secondary); text-decoration: none; cursor: default; }
-    .gate-btn {
-      width: 100%;
-      background: var(--accent);
-      color: var(--navy);
-      border: none;
-      border-radius: 10px;
-      padding: 13px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 6px;
-      transition: background 0.15s, transform 0.1s;
-    }
-    .gate-btn:hover { background: var(--accent-dark); }
-    .gate-btn:active { transform: scale(0.99); }
-    .gate-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-    .gate-tabs {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-    .gate-tab {
-      flex: 1;
-      padding: 9px 12px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text-secondary);
-      font-size: 12px;
-      font-weight: 500;
-      font-family: 'DM Sans', sans-serif;
-      cursor: pointer;
-      text-align: center;
-      transition: all 0.2s;
-    }
-    .gate-tab.active {
-      background: var(--primary-soft);
-      border-color: var(--primary);
-      color: var(--primary-light);
-    }
-    .gate-alert {
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 12px;
-      margin-bottom: 14px;
-      display: none;
-    }
-    .gate-alert.error { background: rgba(255,90,95,0.1); border: 1px solid rgba(255,90,95,0.3); color: #FF5A5F; }
-    .gate-alert.success { background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.3); color: #4ade80; }
-    .gate-alert.info { background: rgba(115,135,123,0.1); border: 1px solid var(--border); color: var(--text-secondary); }
-    .gate-divider-label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      margin: 20px 0 16px;
-    }
-    .gate-divider-label::before, .gate-divider-label::after {
-      content: ''; flex: 1; height: 0.5px; background: var(--border);
-    }
-    .gate-spinner {
-      width: 16px; height: 16px;
-      border: 2px solid rgba(15,20,18,0.3);
-      border-top-color: var(--navy);
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      display: inline-block; vertical-align: middle; margin-right: 6px;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    #policy {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--surface);
-      color: var(--text);
-      padding: 2.5rem;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      margin: 2rem 0;
-      min-height: 250px;
-    }
-    #policy > div { width: 100%; }
+    /* ════════════════════════════════════════════
+       ── [NEW] REGISTRATION GATE ──
+    ════════════════════════════════════════════ */
+    #gateWindow{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--navy);padding:24px 16px;position:relative;overflow:hidden}
+    #gateWindow::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(ellipse at center,rgba(115,135,123,0.08) 0%,transparent 65%);pointer-events:none}
+    .gate-card{width:100%;max-width:480px;background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.5);position:relative;z-index:1}
+    .gate-header{padding:32px 36px 24px;border-bottom:1px solid var(--border);text-align:center;background:var(--surface)}
+    .gate-logo{font-family:'DM Serif Display',serif;font-size:28px;color:var(--primary);letter-spacing:-0.5px;margin-bottom:6px}
+    .gate-tagline{font-size:12px;color:var(--text-secondary);letter-spacing:0.04em}
+    .gate-body{padding:32px 36px}
+    .gate-steps{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:28px}
+    .gate-step-item{display:flex;flex-direction:column;align-items:center;gap:6px}
+    .gate-step-circle{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;border:1.5px solid var(--border);color:var(--text-secondary);background:var(--surface);transition:all 0.3s}
+    .gate-step-circle.active{background:var(--primary);border-color:var(--primary);color:#fff}
+    .gate-step-circle.done{background:#1a3a28;border-color:#4ade80;color:#4ade80}
+    .gate-step-label{font-size:10px;color:var(--text-secondary);white-space:nowrap;text-align:center}
+    .gate-step-label.active{color:var(--primary-light);font-weight:500}
+    .gate-step-connector{width:40px;height:1px;background:var(--border);margin:0 4px;margin-bottom:18px;flex-shrink:0}
+    .gate-step-connector.done{background:var(--primary)}
+    .gate-panel{display:none}
+    .gate-panel.active{display:block}
+    .gate-field{margin-bottom:16px}
+    .gate-field label{display:block;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:6px}
+    .gate-input{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:11px 14px;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color 0.2s,box-shadow 0.2s}
+    .gate-input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(115,135,123,0.15)}
+    .gate-input::placeholder{color:rgba(170,183,176,0.5)}
+    .gate-input-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:440px){.gate-input-row{grid-template-columns:1fr}}
+    .gate-phone-wrap{display:flex;gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:border-color 0.2s,box-shadow 0.2s}
+    .gate-phone-wrap:focus-within{border-color:var(--primary);box-shadow:0 0 0 3px rgba(115,135,123,0.15)}
+    .gate-phone-prefix{background:var(--navy);color:var(--text-secondary);font-size:13px;font-weight:500;padding:11px 12px;border-right:1px solid var(--border);white-space:nowrap;flex-shrink:0}
+    .gate-phone-input{flex:1;background:var(--surface);border:none;color:var(--text);padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none}
+    .gate-phone-input::placeholder{color:rgba(170,183,176,0.5)}
+    .otp-group{display:flex;gap:10px;justify-content:center;margin:4px 0 12px}
+    .otp-box{width:48px;height:52px;background:var(--surface);border:1px solid var(--border);border-radius:10px;text-align:center;font-size:20px;font-weight:600;color:var(--text);font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s,box-shadow 0.2s;caret-color:var(--accent)}
+    .otp-box:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(115,135,123,0.15)}
+    .otp-box.filled{border-color:var(--primary);background:rgba(115,135,123,0.1)}
+    .otp-info{font-size:12px;color:var(--text-secondary);text-align:center;margin-bottom:16px;line-height:1.5}
+    .otp-info strong{color:var(--text)}
+    .otp-resend{font-size:12px;text-align:center;margin-top:12px;color:var(--text-secondary)}
+    .otp-resend button{background:none;border:none;color:var(--primary-light);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;text-decoration:underline;padding:0}
+    .otp-resend button:disabled{color:var(--text-secondary);text-decoration:none;cursor:default}
+    .gate-btn{width:100%;background:var(--accent);color:var(--navy);border:none;border-radius:10px;padding:13px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;margin-top:6px;transition:background 0.15s,transform 0.1s}
+    .gate-btn:hover{background:var(--accent-dark)}
+    .gate-btn:active{transform:scale(0.99)}
+    .gate-btn:disabled{opacity:0.5;cursor:not-allowed}
+    .gate-tabs{display:flex;gap:8px;margin-bottom:20px}
+    .gate-tab{flex:1;padding:9px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text-secondary);font-size:12px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;text-align:center;transition:all 0.2s}
+    .gate-tab.active{background:var(--primary-soft);border-color:var(--primary);color:var(--primary-light)}
+    .gate-alert{border-radius:8px;padding:10px 14px;font-size:12px;margin-bottom:14px;display:none}
+    .gate-alert.error{background:rgba(255,90,95,0.1);border:1px solid rgba(255,90,95,0.3);color:#FF5A5F}
+    .gate-alert.success{background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);color:#4ade80}
+    .gate-alert.info{background:rgba(115,135,123,0.1);border:1px solid var(--border);color:var(--text-secondary)}
+    .gate-spinner{width:16px;height:16px;border:2px solid rgba(15,20,18,0.3);border-top-color:var(--navy);border-radius:50%;animation:spin 0.7s linear infinite;display:inline-block;vertical-align:middle;margin-right:6px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    /* OTP console hint */
+    .otp-console-hint{background:rgba(0,0,0,0.4);border:1px dashed rgba(115,135,123,0.4);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--text-secondary);text-align:center;margin-bottom:14px;font-family:monospace}
+    .otp-console-hint span{color:var(--accent);font-weight:700;font-size:18px;letter-spacing:4px}
+
+    /* ════════════════════════════════════════════
+       ── [NEW] SUBSCRIPTION PLAN SELECTION ──
+    ════════════════════════════════════════════ */
+    #planWindow{display:none;min-height:100vh;background:var(--navy);padding:40px 20px;position:relative;overflow:hidden}
+    #planWindow::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(ellipse at center,rgba(115,135,123,0.08) 0%,transparent 65%);pointer-events:none}
+    .plan-container{max-width:860px;margin:0 auto;position:relative;z-index:1}
+    .plan-header{text-align:center;margin-bottom:48px}
+    .plan-logo{font-family:'DM Serif Display',serif;font-size:24px;color:var(--primary);letter-spacing:-0.5px;margin-bottom:20px}
+    .plan-title{font-family:'DM Serif Display',serif;font-size:36px;line-height:1.1;letter-spacing:-1px;color:var(--text);margin-bottom:12px}
+    .plan-title em{font-style:italic;color:var(--accent)}
+    .plan-subtitle{font-size:15px;color:var(--text-secondary);max-width:460px;margin:0 auto}
+    /* Trust score reveal */
+    .trust-reveal{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:32px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .trust-circle-wrap{flex-shrink:0}
+    .trust-circle{width:72px;height:72px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;border:3px solid;position:relative;overflow:hidden}
+    .trust-circle-score{font-size:24px;font-weight:700;line-height:1}
+    .trust-circle-lbl{font-size:8px;letter-spacing:0.08em;text-transform:uppercase;opacity:0.7;margin-top:2px}
+    .trust-info{flex:1;min-width:200px}
+    .trust-welcome{font-size:16px;font-weight:600;color:var(--text);margin-bottom:4px}
+    .trust-meta{font-size:13px;color:var(--text-secondary)}
+    .trust-tier-badge{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border:1px solid;margin-left:auto;align-self:flex-start;flex-shrink:0}
+    /* Plan grid */
+    .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}
+    @media(max-width:640px){.plan-grid{grid-template-columns:1fr}}
+    .plan-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;position:relative;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;cursor:pointer}
+    .plan-card:hover:not(.plan-locked){border-color:var(--primary);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+    .plan-card.selected{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 8px 24px rgba(255,209,102,0.15)}
+    .plan-card.plan-locked{opacity:0.45;cursor:not-allowed}
+    .plan-popular{position:absolute;top:-1px;right:18px;background:var(--accent);color:var(--navy);font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:0 0 8px 8px}
+    .plan-name{font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:10px}
+    .plan-price{font-family:'DM Serif Display',serif;font-size:32px;color:var(--text);line-height:1;margin-bottom:4px}
+    .plan-price span{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-secondary);font-weight:400}
+    .plan-coverage{font-size:12px;color:var(--primary-light);font-weight:500;margin-bottom:16px}
+    .plan-features{list-style:none;margin-bottom:20px}
+    .plan-features li{font-size:12px;color:var(--text-secondary);padding:4px 0;display:flex;align-items:center;gap:8px;line-height:1.4}
+    .plan-features li::before{content:'✓';color:var(--primary);font-weight:700;flex-shrink:0}
+    .plan-locked-note{font-size:10px;color:var(--alert);text-align:center;margin-top:8px}
+    .plan-select-btn{width:100%;background:var(--primary-soft);color:var(--primary-light);border:1px solid var(--border);border-radius:8px;padding:10px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.15s}
+    .plan-select-btn:hover:not(:disabled){background:var(--primary);color:var(--navy);border-color:var(--primary)}
+    .plan-select-btn:disabled{opacity:0.4;cursor:not-allowed}
+    .plan-card.selected .plan-select-btn{background:var(--accent);color:var(--navy);border-color:var(--accent)}
+    .plan-proceed-wrap{text-align:center}
+    .plan-proceed-btn{background:var(--accent);color:var(--navy);border:none;border-radius:10px;padding:14px 36px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:background 0.15s,transform 0.1s;opacity:0.4;pointer-events:none}
+    .plan-proceed-btn.enabled{opacity:1;pointer-events:all}
+    .plan-proceed-btn.enabled:hover{background:var(--accent-dark);transform:translateY(-1px)}
+    .plan-fraud-warn{background:rgba(255,90,95,0.08);border:1px solid rgba(255,90,95,0.3);border-radius:12px;padding:16px 20px;margin-bottom:24px;display:flex;align-items:flex-start;gap:12px}
+    .plan-fraud-icon{font-size:20px;flex-shrink:0}
+    .plan-fraud-text{font-size:13px;color:#FF5A5F;line-height:1.5}
+    .plan-fraud-text strong{display:block;margin-bottom:3px;font-size:14px}
+
+    /* ════════════════════════════════════════════
+       ── [NEW] POLICY CONFIRMED PANEL ──
+    ════════════════════════════════════════════ */
+    #panel3 .policy-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:18px}
+
+    /* ════════════════════════════════════════════
+       ── [NEW] RIDER DASHBOARD BANNER ──
+    ════════════════════════════════════════════ */
+    #riderDashBanner{background:linear-gradient(135deg,var(--card) 0%,rgba(42,58,51,0.6) 100%);border-bottom:1px solid var(--border);padding:20px 32px;display:none}
+    .rdb-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+    .rdb-avatar{width:44px;height:44px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);flex-shrink:0}
+    .rdb-info{flex:1;min-width:0}
+    .rdb-name{font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .rdb-meta{font-size:12px;color:var(--text-secondary)}
+    .rdb-stats{display:flex;gap:12px;flex-wrap:wrap;margin-left:auto}
+    .rdb-stat{background:var(--surface);border:0.5px solid var(--border);border-radius:10px;padding:8px 14px;text-align:center;min-width:80px}
+    .rdb-stat-val{font-size:16px;font-weight:700;color:var(--text);line-height:1}
+    .rdb-stat-lbl{font-size:10px;color:var(--text-secondary);margin-top:2px;text-transform:uppercase;letter-spacing:0.04em}
+    .rdb-tier-badge{padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border:1px solid;align-self:center}
+    .rdb-plan-tag{font-size:11px;background:var(--primary-soft);color:var(--primary-light);border:0.5px solid var(--border);border-radius:6px;padding:4px 8px}
+    .rdb-reset{background:none;border:0.5px solid var(--border);color:var(--text-secondary);border-radius:6px;padding:5px 10px;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-left:8px}
+    .rdb-reset:hover{color:var(--text);border-color:var(--text-secondary)}
+    /* Tier color helpers */
+    .tier-platinum{color:var(--tier-platinum);border-color:var(--tier-platinum)}
+    .tier-gold{color:var(--tier-gold);border-color:var(--tier-gold)}
+    .tier-silver{color:var(--tier-silver);border-color:var(--tier-silver)}
+    .tier-bronze{color:var(--tier-bronze);border-color:var(--tier-bronze)}
+    .tier-risk{color:var(--tier-risk);border-color:var(--tier-risk)}
+    .tier-bg-platinum{background:rgba(229,228,226,0.1)}
+    .tier-bg-gold{background:rgba(255,215,0,0.1)}
+    .tier-bg-silver{background:rgba(192,192,192,0.1)}
+    .tier-bg-bronze{background:rgba(205,127,50,0.1)}
+    .tier-bg-risk{background:rgba(255,90,95,0.1)}
   </style>
 </head>
 <body>
+
+<!-- ══════════════════════════════════════════════
+     [EXISTING + MODIFIED] REGISTRATION GATE
+══════════════════════════════════════════════ -->
 <div id="gateWindow">
   <div class="gate-card">
     <div class="gate-header">
       <div class="gate-logo">Kavach</div>
       <div class="gate-tagline">Financial protection for India's gig workers</div>
     </div>
-
     <div class="gate-body">
       <div class="gate-steps">
         <div class="gate-step-item">
@@ -573,7 +435,7 @@
         <button class="gate-btn" onclick="goToVerify()">Continue to Verification →</button>
       </div>
 
-      <!-- PANEL 2: OTP Verification -->
+      <!-- PANEL 2: OTP Verification [MODIFIED — dynamic OTP] -->
       <div class="gate-panel" id="panel2">
         <div id="otpAlert" class="gate-alert error"></div>
         <div class="gate-tabs">
@@ -583,6 +445,11 @@
         <div class="otp-info" id="otpInfoText">
           OTP sent to <strong id="otpTarget">+91 XXXXXXXXXX</strong>
         </div>
+        <!-- [NEW] Dynamic OTP console hint instead of hardcoded 123456 -->
+        <div class="otp-console-hint" id="otpConsoleHint">
+          Demo OTP: <span id="otpDisplayValue">------</span>
+          <div style="font-size:10px;margin-top:4px;opacity:0.6;">(Also logged to browser console)</div>
+        </div>
         <div class="otp-group" id="otpGroup">
           <input class="otp-box" maxlength="1" type="text" inputmode="numeric" id="otp0">
           <input class="otp-box" maxlength="1" type="text" inputmode="numeric" id="otp1">
@@ -591,47 +458,171 @@
           <input class="otp-box" maxlength="1" type="text" inputmode="numeric" id="otp4">
           <input class="otp-box" maxlength="1" type="text" inputmode="numeric" id="otp5">
         </div>
-        <div id="otpHint" class="gate-alert info" style="display:block; text-align:center;">
-          💡 For this demo, use OTP: <strong>123456</strong>
-        </div>
         <button class="gate-btn" id="verifyBtn" onclick="verifyOtp()">Verify &amp; Activate Policy</button>
         <div class="otp-resend">
           <span id="resendTimer">Resend OTP in <strong id="resendCountdown">30s</strong></span>
           <button id="resendBtn" onclick="resendOtp()" disabled style="display:none;">Resend OTP</button>
         </div>
-        <div style="margin-top:14px; text-align:center;">
+        <div style="margin-top:14px;text-align:center;">
           <button onclick="goBack()" style="background:none;border:none;color:var(--text-secondary);cursor:pointer;font-size:12px;font-family:'DM Sans',sans-serif;">← Edit details</button>
         </div>
       </div>
 
-      <!-- PANEL 3: Policy confirmed -->
+      <!-- PANEL 3: Policy confirmed [MODIFIED] -->
       <div class="gate-panel" id="panel3">
-        <div style="text-align:center; padding: 10px 0 20px;">
+        <div style="text-align:center;padding:10px 0 20px;">
           <div style="width:56px;height:56px;border-radius:50%;background:rgba(74,222,128,0.1);border:2px solid #4ade80;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:24px;">✓</div>
-          <div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:6px;">Policy Activated!</div>
-          <div style="font-size:13px;color:var(--text-secondary);">Your Kavach policy is now live and protecting you.</div>
+          <div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:6px;">Identity Verified!</div>
+          <div style="font-size:13px;color:var(--text-secondary);">Choose your protection plan to activate Kavach.</div>
         </div>
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:18px;">
+        <div class="policy-card">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-            <div><div style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);margin-bottom:3px;">Policy ID</div><div id="polID3" style="font-size:13px;font-weight:700;color:var(--accent);font-family:monospace;"></div></div>
             <div><div style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);margin-bottom:3px;">Rider</div><div id="polName3" style="font-size:13px;font-weight:600;"></div></div>
             <div><div style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);margin-bottom:3px;">Zone</div><div id="polZone3" style="font-size:13px;font-weight:600;"></div></div>
+            <div><div style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);margin-bottom:3px;">Vehicle</div><div id="polVehicle3" style="font-size:13px;font-weight:600;"></div></div>
             <div><div style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);margin-bottom:3px;">Coverage</div><div style="font-size:13px;font-weight:600;">₹5,000</div></div>
-            <div><div style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);margin-bottom:3px;">Premium</div><div id="polPremium3" style="font-size:13px;font-weight:600;"></div></div>
-            <div><div style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);margin-bottom:3px;">Expires</div><div id="polExpiry3" style="font-size:13px;font-weight:600;color:var(--accent);"></div></div>
           </div>
         </div>
-        <div id="redirMessage" style="background: rgba(255,209,102,0.08); border: 1px dashed var(--accent); color: var(--accent); padding: 1rem; border-radius: 8px; text-align: center; font-weight: 600; font-size:13px; margin-bottom:14px;">
-          Redirecting to dashboard in 5 seconds...
-        </div>
-        <button class="gate-btn" onclick="enterDashboard()">Enter Dashboard →</button>
+        <button class="gate-btn" onclick="goToPlanSelection()">Choose Protection Plan →</button>
       </div>
-
     </div>
   </div>
 </div>
 
-<div id="mainWindow" style="display: none;">
+<!-- ══════════════════════════════════════════════
+     [NEW] SUBSCRIPTION PLAN SELECTION WINDOW
+══════════════════════════════════════════════ -->
+<div id="planWindow">
+  <div class="plan-container">
+    <div class="plan-header">
+      <div class="plan-logo">Kavach</div>
+      <h1 class="plan-title">Choose your <em>protection</em> plan</h1>
+      <p class="plan-subtitle">Every plan covers weather-triggered payouts directly to your UPI. No forms, no wait.</p>
+    </div>
+
+    <!-- Trust score reveal -->
+    <div class="trust-reveal" id="trustRevealBox">
+      <div class="trust-circle-wrap">
+        <div class="trust-circle" id="planTrustCircle">
+          <div class="trust-circle-score" id="planTrustScore">--</div>
+          <div class="trust-circle-lbl">Trust</div>
+        </div>
+      </div>
+      <div class="trust-info">
+        <div class="trust-welcome">Welcome, <span id="planWelcomeName">Rider</span> 👋</div>
+        <div class="trust-meta" id="planTrustMeta">Calculating your trust score...</div>
+      </div>
+      <div class="trust-tier-badge" id="planTierBadge">--</div>
+    </div>
+
+    <!-- Fraud warning (shown only for score < 45) -->
+    <div class="plan-fraud-warn" id="planFraudWarn" style="display:none;">
+      <div class="plan-fraud-icon">🚨</div>
+      <div class="plan-fraud-text">
+        <strong>Fraud Risk Detected — Payout Blocked</strong>
+        Your current trust score is below the minimum threshold. Payouts are blocked pending verification. You can still subscribe to build your trust history.
+      </div>
+    </div>
+
+    <!-- Low score warning (score < 30 — restrict yearly) -->
+    <div class="plan-fraud-warn" id="planRestrictWarn" style="display:none;background:rgba(255,209,102,0.06);border-color:rgba(255,209,102,0.3);">
+      <div class="plan-fraud-icon" style="font-size:18px;">⚠️</div>
+      <div class="plan-fraud-text" style="color:var(--accent);">
+        <strong>Plan Restriction Active</strong>
+        Yearly plans require a minimum trust score of 30. Your score is too low to unlock this plan.
+      </div>
+    </div>
+
+    <!-- Plan cards -->
+    <div class="plan-grid" id="planGrid">
+
+      <!-- Weekly Plan -->
+      <div class="plan-card" id="planCard-weekly" onclick="selectPlan('weekly')">
+        <div class="plan-name">Weekly Plan</div>
+        <div class="plan-price">₹35 <span>/ week</span></div>
+        <div class="plan-coverage">Up to ₹600 payout / event</div>
+        <ul class="plan-features">
+          <li>7-day weather cover</li>
+          <li>UPI payout in &lt;15 min</li>
+          <li>All weather events</li>
+          <li>Basic fraud protection</li>
+        </ul>
+        <button class="plan-select-btn" id="planBtn-weekly">Select Weekly</button>
+      </div>
+
+      <!-- Monthly Plan (popular) -->
+      <div class="plan-card" id="planCard-monthly" onclick="selectPlan('monthly')">
+        <div class="plan-popular">Most Popular</div>
+        <div class="plan-name">Monthly Plan</div>
+        <div class="plan-price">₹150 <span>/ month</span></div>
+        <div class="plan-coverage">Up to ₹1,200 payout / event</div>
+        <ul class="plan-features">
+          <li>30-day weather cover</li>
+          <li>UPI payout in &lt;15 min</li>
+          <li>All weather events</li>
+          <li>Priority trust scoring</li>
+          <li>Payout history access</li>
+        </ul>
+        <button class="plan-select-btn" id="planBtn-monthly">Select Monthly</button>
+      </div>
+
+      <!-- Yearly Plan -->
+      <div class="plan-card" id="planCard-yearly" onclick="selectPlanYearly()">
+        <div class="plan-name">Yearly Plan</div>
+        <div class="plan-price">₹1,100 <span>/ year</span></div>
+        <div class="plan-coverage">Up to ₹5,000 payout / event</div>
+        <ul class="plan-features">
+          <li>365-day full cover</li>
+          <li>UPI payout in &lt;15 min</li>
+          <li>All weather events</li>
+          <li>Tier bonus payouts</li>
+          <li>Priority claim review</li>
+          <li>No excess fee</li>
+        </ul>
+        <button class="plan-select-btn" id="planBtn-yearly">Select Yearly</button>
+        <div class="plan-locked-note" id="yearlyLockedNote" style="display:none;">🔒 Requires Trust Score ≥ 30</div>
+      </div>
+
+    </div>
+
+    <div class="plan-proceed-wrap">
+      <button class="plan-proceed-btn" id="planProceedBtn" onclick="activateWithPlan()">
+        Activate Kavach →
+      </button>
+      <div style="font-size:11px;color:var(--text-secondary);margin-top:10px;">Select a plan to continue</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     [EXISTING + MODIFIED] MAIN DASHBOARD WINDOW
+══════════════════════════════════════════════ -->
+<div id="mainWindow" style="display:none;">
+
+<!-- [NEW] Rider Dashboard Banner -->
+<div id="riderDashBanner">
+  <div class="rdb-inner">
+    <div class="rdb-avatar" id="rdbAvatar">R</div>
+    <div class="rdb-info">
+      <div class="rdb-name" id="rdbName">Rider</div>
+      <div class="rdb-meta" id="rdbMeta">Zone — · Vehicle</div>
+    </div>
+    <div class="rdb-stats">
+      <div class="rdb-stat">
+        <div class="rdb-stat-val" id="rdbScore">--</div>
+        <div class="rdb-stat-lbl">Trust Score</div>
+      </div>
+      <div class="rdb-stat">
+        <div class="rdb-stat-val" id="rdbWallet">₹0</div>
+        <div class="rdb-stat-lbl">Wallet</div>
+      </div>
+    </div>
+    <div class="rdb-tier-badge" id="rdbTierBadge">--</div>
+    <div id="rdbPlanTag" class="rdb-plan-tag">--</div>
+    <button class="rdb-reset" onclick="resetSession()">↺ Reset</button>
+  </div>
+</div>
+
 <nav class="kv-nav">
   <div class="kv-logo">Kavach</div>
   <div class="kv-nav-links">
@@ -647,6 +638,7 @@
   </div>
   <span class="kv-pill">DEV Trails 2026</span>
 </nav>
+
 <div class="kv-hero">
   <div class="kv-eyebrow">Team GuideX · Guidewire DevTrails 2026</div>
   <h1 class="kv-h1">When the storm hits,<br><em>the money already moved.</em></h1>
@@ -657,6 +649,7 @@
   </div>
 </div>
 <div class="kv-divider"></div>
+
 <section id="problem">
   <div class="kv-section">
     <div class="kv-section-label">The problem</div>
@@ -674,6 +667,7 @@
   </div>
 </section>
 <div class="kv-divider"></div>
+
 <section id="fraud">
   <div class="kv-section">
     <div class="kv-section-label">How we prevent fraud</div>
@@ -702,6 +696,7 @@
   </div>
 </section>
 <div class="kv-divider"></div>
+
 <section id="simulation">
   <div class="kv-section">
     <div class="kv-section-label">Live simulation</div>
@@ -764,6 +759,7 @@
   </div>
 </section>
 <div class="kv-divider"></div>
+
 <section id="architecture">
   <div class="kv-section">
     <div class="kv-section-label">System architecture</div>
@@ -828,6 +824,7 @@
   </div>
 </section>
 <div class="kv-divider"></div>
+
 <section id="rider-experience">
   <div class="re-inner">
     <div class="re-lbl">Rider experience</div>
@@ -897,9 +894,26 @@
   </div>
 </section>
 <div class="kv-divider"></div>
+
 <section id="monitoring">
   <div class="kv-section">
     <div class="kv-section-label">Live monitoring dashboard</div>
+    <!-- [NEW] Rider summary card in monitoring -->
+    <div id="monitoringRiderCard" style="display:none;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:20px;">
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:14px;">Your Policy Summary</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;">
+        <div><div style="font-size:10px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:3px;">Trust Score</div><div style="font-size:22px;font-weight:700;" id="monTrustScore">--</div></div>
+        <div><div style="font-size:10px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:3px;">Tier</div><div style="font-size:14px;font-weight:700;" id="monTier">--</div></div>
+        <div><div style="font-size:10px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:3px;">Wallet Balance</div><div style="font-size:22px;font-weight:700;color:#4ade80;" id="monWallet">₹0</div></div>
+        <div><div style="font-size:10px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:3px;">Plan</div><div style="font-size:14px;font-weight:600;" id="monPlan">--</div></div>
+        <div><div style="font-size:10px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:3px;">Policy ID</div><div style="font-size:12px;font-weight:600;color:var(--accent);font-family:monospace;" id="monPolicyId">--</div></div>
+        <div><div style="font-size:10px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:3px;">Expires</div><div style="font-size:12px;font-weight:600;color:var(--accent);" id="monExpiry">--</div></div>
+      </div>
+      <!-- Fraud warning in monitoring -->
+      <div id="monFraudWarn" style="display:none;margin-top:14px;background:rgba(255,90,95,0.08);border:1px solid rgba(255,90,95,0.3);border-radius:8px;padding:10px 14px;font-size:12px;color:#FF5A5F;">
+        🚨 <strong>Fraud Risk Active:</strong> Payouts are blocked. Trust score below minimum threshold. Contact support.
+      </div>
+    </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:20px;">
       <div class="ic-card"><div class="ic-snum" id="payouts-today">0</div><div class="ic-slbl">Payouts today</div></div>
       <div class="ic-card"><div class="ic-snum" id="avg-trust-score">0</div><div class="ic-slbl">Avg trust score</div></div>
@@ -912,11 +926,12 @@
       📊 Data from your simulation | <span id="last-update">Last update: --</span>
     </div>
     <div style="text-align:center;">
-      <button id="viewHistoryBtn" class="kv-btn-primary" style="background: var(--primary);">📜 View payout history</button>
+      <button id="viewHistoryBtn" class="kv-btn-primary" style="background:var(--primary);">📜 View payout history</button>
       <button id="clearHistoryBtn" class="kv-btn-ghost" style="margin-left:12px;">🗑️ Clear history</button>
     </div>
   </div>
 </section>
+
 <div id="historyModal">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
     <h3 style="color:var(--text);">📋 Payout History</h3>
@@ -926,6 +941,7 @@
 </div>
 <div id="modalOverlay"></div>
 <div class="kv-divider"></div>
+
 <section id="impact">
   <div class="kv-section">
     <div class="kv-section-label">Financial impact</div>
@@ -950,6 +966,7 @@
   </div>
 </section>
 <div class="kv-divider"></div>
+
 <section id="team">
   <div class="kv-section" style="padding-bottom:40px">
     <div class="kv-section-label">Team GuideX</div>
@@ -963,39 +980,98 @@
     <div style="margin-top:20px;font-size:13px;color:var(--text-secondary)">Built at DEV Trails 2026. Rajan should not have to borrow money from his neighbour when it rains. That is the whole point.</div>
   </div>
 </section>
+
 <footer class="kv-footer">
   <div class="kv-footer-logo">Kavach</div>
   <div>Financial protection for India's gig workers · Team GuideX · DEV Trails 2026</div>
 </footer>
+
 <a href="#simulation" class="kv-sticky" id="sticky">🎬 Watch live demo ↓</a>
 <div class="arch-tip" id="arch-tip"></div>
-</div>
+
+</div><!-- /mainWindow -->
 
 <script>
-/* ── STICKY ── */
+/* ════════════════════════════════════════════════════════
+   [NEW] ── TRUST SCORE & PAYOUT SYSTEM ──
+   Core reusable functions
+════════════════════════════════════════════════════════ */
+
+/**
+ * generateTrustScore()
+ * Returns a random integer 0–100 simulating ML-derived rider trust
+ */
+function generateTrustScore() {
+  // Weighted distribution: most riders fall in 45–90 range
+  var base = Math.floor(Math.random() * 100);
+  // Bias toward mid-high range (more realistic)
+  if (base < 15) base = Math.floor(Math.random() * 45);        // ~15% low
+  else if (base < 40) base = Math.floor(Math.random() * 30) + 45; // ~25% mid
+  else base = Math.floor(Math.random() * 26) + 60;             // ~60% solid
+  return Math.min(100, Math.max(0, base));
+}
+
+/**
+ * getTierFromScore(score)
+ * Returns { tier, tierClass, emoji, color, payout }
+ */
+function getTierFromScore(score) {
+  if (score >= 90) return { tier: 'Platinum', tierClass: 'tier-platinum', tierBg: 'tier-bg-platinum', emoji: '💎', color: '#E5E4E2', payout: 600 };
+  if (score >= 75) return { tier: 'Gold',     tierClass: 'tier-gold',     tierBg: 'tier-bg-gold',     emoji: '🥇', color: '#FFD700', payout: 500 };
+  if (score >= 60) return { tier: 'Silver',   tierClass: 'tier-silver',   tierBg: 'tier-bg-silver',   emoji: '🥈', color: '#C0C0C0', payout: 400 };
+  if (score >= 45) return { tier: 'Bronze',   tierClass: 'tier-bronze',   tierBg: 'tier-bg-bronze',   emoji: '🥉', color: '#CD7F32', payout: 300 };
+  return               { tier: 'Risk',     tierClass: 'tier-risk',     tierBg: 'tier-bg-risk',     emoji: '🚨', color: '#FF5A5F', payout: 0   };
+}
+
+/**
+ * calculatePayout(trustScore)
+ * Main payout function — used by sim, dashboard, monitoring
+ * Returns payout amount in ₹
+ */
+function calculatePayout(trustScore) {
+  return getTierFromScore(trustScore).payout;
+}
+
+/* ════════════════════════════════════════════════════════
+   [NEW] ── DYNAMIC OTP SYSTEM ──
+════════════════════════════════════════════════════════ */
+var currentOtp = '';
+
+function generateOtp() {
+  currentOtp = String(Math.floor(100000 + Math.random() * 900000));
+  console.log('%c[KAVACH OTP] ' + currentOtp, 'color:#FFD166;font-size:18px;font-weight:bold;background:#0F1412;padding:4px 8px;border-radius:4px;');
+  console.log('[KAVACH] OTP generated for demo — use the value shown in the UI hint box.');
+  // Display in demo hint (in a real system this would only go to SMS/email)
+  var el = document.getElementById('otpDisplayValue');
+  if (el) el.textContent = currentOtp;
+  return currentOtp;
+}
+
+/* ════════════════════════════════════════════════════════
+   [EXISTING] ── STICKY SCROLL ──
+════════════════════════════════════════════════════════ */
 window.addEventListener('scroll', function () {
   document.getElementById('sticky').classList.toggle('show', window.scrollY > 400);
 });
 
-/* ── REGISTRATION FLOW STATE ── */
+/* ════════════════════════════════════════════════════════
+   [MODIFIED] ── REGISTRATION FLOW STATE ──
+════════════════════════════════════════════════════════ */
 var currentStep = 1;
 var currentOtpChannel = 'sms';
 var resendInterval = null;
 
 function setStepCircle(n, state) {
   var circle = document.getElementById('sc' + n);
-  var label = document.getElementById('sl' + n);
+  var label  = document.getElementById('sl' + n);
   circle.className = 'gate-step-circle ' + state;
-  label.className = 'gate-step-label' + (state === 'active' ? ' active' : '');
-  if (state === 'done') circle.innerHTML = '✓';
-  else circle.innerHTML = n;
+  label.className  = 'gate-step-label' + (state === 'active' ? ' active' : '');
+  circle.innerHTML = (state === 'done') ? '✓' : String(n);
 }
-
 function setConnector(n, done) {
   var c = document.getElementById('conn' + n);
   if (c) c.className = 'gate-step-connector' + (done ? ' done' : '');
 }
-
 function showAlert(id, msg, type) {
   var el = document.getElementById(id);
   el.className = 'gate-alert ' + type;
@@ -1007,19 +1083,22 @@ function hideAlert(id) {
 }
 
 function goToVerify() {
-  var name = document.getElementById('regName').value.trim();
-  var phone = document.getElementById('regPhone').value.trim();
-  var email = document.getElementById('regEmail').value.trim();
-  var zone = document.getElementById('regZone').value;
+  var name    = document.getElementById('regName').value.trim();
+  var phone   = document.getElementById('regPhone').value.trim();
+  var email   = document.getElementById('regEmail').value.trim();
+  var zone    = document.getElementById('regZone').value;
   var vehicle = document.getElementById('regVehicle').value;
 
-  if (!name) { showAlert('regAlert', 'Please enter your full name.', 'error'); return; }
-  if (!phone || phone.length < 10 || !/^\d{10}$/.test(phone)) { showAlert('regAlert', 'Enter a valid 10-digit mobile number.', 'error'); return; }
+  if (!name)                                           { showAlert('regAlert', 'Please enter your full name.', 'error'); return; }
+  if (!phone || !/^\d{10}$/.test(phone))               { showAlert('regAlert', 'Enter a valid 10-digit mobile number.', 'error'); return; }
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showAlert('regAlert', 'Enter a valid email address.', 'error'); return; }
-  if (!zone) { showAlert('regAlert', 'Please select your zone.', 'error'); return; }
-  if (!vehicle) { showAlert('regAlert', 'Please select your vehicle type.', 'error'); return; }
+  if (!zone)                                           { showAlert('regAlert', 'Please select your zone.', 'error'); return; }
+  if (!vehicle)                                        { showAlert('regAlert', 'Please select your vehicle type.', 'error'); return; }
 
   hideAlert('regAlert');
+  // [NEW] Generate fresh OTP each time
+  generateOtp();
+
   document.getElementById('panel1').classList.remove('active');
   document.getElementById('panel2').classList.add('active');
   setStepCircle(1, 'done');
@@ -1033,18 +1112,20 @@ function goToVerify() {
 
 function switchOtpChannel(channel) {
   currentOtpChannel = channel;
-  document.getElementById('tab-sms').className = 'gate-tab' + (channel === 'sms' ? ' active' : '');
+  document.getElementById('tab-sms').className   = 'gate-tab' + (channel === 'sms'   ? ' active' : '');
   document.getElementById('tab-email').className = 'gate-tab' + (channel === 'email' ? ' active' : '');
   updateOtpTarget();
   clearOtpBoxes();
   hideAlert('otpAlert');
+  // [NEW] Regenerate OTP on channel switch
+  generateOtp();
   startResendTimer();
 }
 
 function updateOtpTarget() {
   var phone = document.getElementById('regPhone').value.trim();
   var email = document.getElementById('regEmail').value.trim();
-  var info = document.getElementById('otpInfoText');
+  var info  = document.getElementById('otpInfoText');
   if (currentOtpChannel === 'sms') {
     info.innerHTML = 'OTP sent to <strong>+91 ' + phone.replace(/(\d{5})(\d{5})/, '$1 $2') + '</strong>';
   } else {
@@ -1065,16 +1146,15 @@ function startResendTimer() {
   var sec = 30;
   clearInterval(resendInterval);
   document.getElementById('resendTimer').style.display = 'inline';
-  document.getElementById('resendBtn').style.display = 'none';
+  document.getElementById('resendBtn').style.display   = 'none';
   document.getElementById('resendCountdown').textContent = sec + 's';
-
-  resendInterval = setInterval(function() {
+  resendInterval = setInterval(function () {
     sec--;
     document.getElementById('resendCountdown').textContent = sec + 's';
     if (sec <= 0) {
       clearInterval(resendInterval);
       document.getElementById('resendTimer').style.display = 'none';
-      document.getElementById('resendBtn').style.display = 'inline';
+      document.getElementById('resendBtn').style.display   = 'inline';
     }
   }, 1000);
 }
@@ -1082,9 +1162,11 @@ function startResendTimer() {
 function resendOtp() {
   clearOtpBoxes();
   hideAlert('otpAlert');
+  // [NEW] Generate new OTP on resend
+  generateOtp();
   startResendTimer();
-  showAlert('otpAlert', '✓ OTP resent successfully.', 'success');
-  setTimeout(function(){ hideAlert('otpAlert'); }, 3000);
+  showAlert('otpAlert', '✓ New OTP generated and sent.', 'success');
+  setTimeout(function () { hideAlert('otpAlert'); }, 3000);
   document.getElementById('otp0').focus();
 }
 
@@ -1099,49 +1181,52 @@ function goBack() {
   currentStep = 1;
 }
 
+/* [MODIFIED] verifyOtp — validates against dynamically generated OTP */
 function verifyOtp() {
   var otp = '';
   for (var i = 0; i < 6; i++) otp += document.getElementById('otp' + i).value;
-  
-  if (otp.length < 6) { showAlert('otpAlert', 'Please enter the complete 6-digit OTP.', 'error'); return; }
-  if (otp !== '123456') { showAlert('otpAlert', 'Incorrect OTP. Try 123456 for this demo.', 'error'); return; }
+
+  if (otp.length < 6) {
+    showAlert('otpAlert', 'Please enter the complete 6-digit OTP.', 'error'); return;
+  }
+  if (otp !== currentOtp) {
+    showAlert('otpAlert', 'Incorrect OTP. Check the demo hint box above.', 'error'); return;
+  }
 
   hideAlert('otpAlert');
   var btn = document.getElementById('verifyBtn');
   btn.innerHTML = '<span class="gate-spinner"></span> Verifying...';
   btn.disabled = true;
 
-  setTimeout(function() {
-    registerRider();
-  }, 1200);
+  setTimeout(function () { registerRider(); }, 1200);
 }
 
-/* ── OTP BOX KEYBOARD NAVIGATION ── */
-document.addEventListener('DOMContentLoaded', function() {
-  // ── FIX: Always clear any stored session so registration is always shown ──
+/* ── OTP box keyboard navigation ── */
+document.addEventListener('DOMContentLoaded', function () {
   localStorage.removeItem('kavach_rider');
 
   for (var i = 0; i < 6; i++) {
-    (function(idx) {
+    (function (idx) {
       var box = document.getElementById('otp' + idx);
-      box.addEventListener('input', function() {
+      box.addEventListener('input', function () {
         this.value = this.value.replace(/\D/g, '').slice(-1);
         this.className = 'otp-box' + (this.value ? ' filled' : '');
         if (this.value && idx < 5) document.getElementById('otp' + (idx + 1)).focus();
       });
-      box.addEventListener('keydown', function(e) {
-        if (e.key === 'Backspace' && !this.value && idx > 0) document.getElementById('otp' + (idx - 1)).focus();
+      box.addEventListener('keydown', function (e) {
+        if (e.key === 'Backspace' && !this.value && idx > 0)
+          document.getElementById('otp' + (idx - 1)).focus();
       });
-      box.addEventListener('paste', function(e) {
+      box.addEventListener('paste', function (e) {
         e.preventDefault();
-        var paste = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g,'').slice(0,6);
+        var paste = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, 6);
         for (var j = 0; j < paste.length && j < 6; j++) {
           var b = document.getElementById('otp' + j);
           b.value = paste[j];
           b.className = 'otp-box filled';
         }
-        if (paste.length < 6) document.getElementById('otp' + paste.length).focus();
-        else document.getElementById('otp5').focus();
+        var focusIdx = Math.min(paste.length, 5);
+        document.getElementById('otp' + focusIdx).focus();
       });
     })(i);
   }
@@ -1150,64 +1235,267 @@ document.addEventListener('DOMContentLoaded', function() {
   setInterval(updateDashboard, 5000);
 });
 
-/* ── DYNAMIC PAYOUT AMOUNT ── */
-function calculatePayoutAmount(trustScore) {
-  if (trustScore >= 85) return 400;
-  if (trustScore >= 75) return 350;
-  if (trustScore >= 65) return 250;
-  if (trustScore >= 45) return 150;
-  return 0;
+/* ════════════════════════════════════════════════════════
+   [NEW] ── REGISTER RIDER (modified to include trust score) ──
+════════════════════════════════════════════════════════ */
+function registerRider() {
+  var name    = document.getElementById('regName').value.trim();
+  var phone   = document.getElementById('regPhone').value.trim();
+  var email   = document.getElementById('regEmail').value.trim();
+  var zone    = document.getElementById('regZone').value;
+  var vehicle = document.getElementById('regVehicle').value;
+
+  // [NEW] Generate trust score at registration
+  var trustScore = generateTrustScore();
+  var tierInfo   = getTierFromScore(trustScore);
+
+  var polId  = 'POL-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+  var start  = new Date();
+  var expiry = new Date();
+  expiry.setFullYear(start.getFullYear() + 1);
+
+  var riderData = {
+    policyId:   polId,
+    name:       name,
+    phone:      phone,
+    email:      email,
+    zone:       zone,
+    vehicle:    vehicle,
+    startDate:  start.toLocaleDateString('en-IN'),
+    expiryDate: expiry.toLocaleDateString('en-IN'),
+    trustScore: trustScore,
+    tier:       tierInfo.tier,
+    wallet:     tierInfo.payout, // initial wallet = tier payout amount
+    plan:       null             // will be set after plan selection
+  };
+
+  localStorage.setItem('kavach_rider', JSON.stringify(riderData));
+
+  // Move to panel 3
+  document.getElementById('panel2').classList.remove('active');
+  document.getElementById('panel3').classList.add('active');
+  setStepCircle(2, 'done');
+  setStepCircle(3, 'active');
+  setConnector(2, true);
+
+  document.getElementById('polName3').textContent   = name;
+  document.getElementById('polZone3').textContent   = zone;
+  document.getElementById('polVehicle3').textContent = vehicle;
 }
 
-/* ── MONITORING DASHBOARD ── */
+/* ════════════════════════════════════════════════════════
+   [NEW] ── PLAN SELECTION WINDOW ──
+════════════════════════════════════════════════════════ */
+var selectedPlan = null;
+
+function goToPlanSelection() {
+  document.getElementById('gateWindow').style.display = 'none';
+  document.getElementById('planWindow').style.display = 'block';
+  window.scrollTo(0, 0);
+  initPlanWindow();
+}
+
+function initPlanWindow() {
+  var raw = localStorage.getItem('kavach_rider');
+  if (!raw) return;
+  var rider      = JSON.parse(raw);
+  var tierInfo   = getTierFromScore(rider.trustScore);
+
+  // Populate trust reveal
+  document.getElementById('planWelcomeName').textContent = rider.name.split(' ')[0];
+  document.getElementById('planTrustScore').textContent  = rider.trustScore;
+  document.getElementById('planTrustMeta').textContent   =
+    'Your trust score: ' + rider.trustScore + '/100 · Payout tier: ' + tierInfo.tier + ' · Max payout: ₹' + tierInfo.payout;
+
+  var circle = document.getElementById('planTrustCircle');
+  circle.style.borderColor = tierInfo.color;
+  circle.style.background  = 'rgba(0,0,0,0.3)';
+  document.getElementById('planTrustScore').style.color = tierInfo.color;
+
+  var badge = document.getElementById('planTierBadge');
+  badge.textContent = tierInfo.emoji + ' ' + tierInfo.tier;
+  badge.className   = 'trust-tier-badge ' + tierInfo.tierClass;
+
+  // Fraud warning
+  if (rider.trustScore < 45) {
+    document.getElementById('planFraudWarn').style.display = 'flex';
+  }
+  // Restrict yearly for score < 30
+  if (rider.trustScore < 30) {
+    document.getElementById('planRestrictWarn').style.display = 'flex';
+    lockYearlyPlan();
+  }
+}
+
+function lockYearlyPlan() {
+  var card = document.getElementById('planCard-yearly');
+  var btn  = document.getElementById('planBtn-yearly');
+  var note = document.getElementById('yearlyLockedNote');
+  card.classList.add('plan-locked');
+  btn.disabled = true;
+  note.style.display = 'block';
+}
+
+function selectPlan(planKey) {
+  var locked = document.getElementById('planCard-' + planKey).classList.contains('plan-locked');
+  if (locked) return;
+
+  selectedPlan = planKey;
+
+  // Deselect all
+  ['weekly','monthly','yearly'].forEach(function(k) {
+    document.getElementById('planCard-' + k).classList.remove('selected');
+    var b = document.getElementById('planBtn-' + k);
+    if (!b.disabled) b.textContent = 'Select ' + (k.charAt(0).toUpperCase() + k.slice(1));
+  });
+
+  // Select clicked
+  document.getElementById('planCard-' + planKey).classList.add('selected');
+  document.getElementById('planBtn-' + planKey).textContent = '✓ Selected';
+
+  // Enable proceed
+  var pb = document.getElementById('planProceedBtn');
+  pb.classList.add('enabled');
+}
+
+function selectPlanYearly() {
+  var card = document.getElementById('planCard-yearly');
+  if (card.classList.contains('plan-locked')) return;
+  selectPlan('yearly');
+}
+
+function activateWithPlan() {
+  if (!selectedPlan) return;
+
+  var raw = localStorage.getItem('kavach_rider');
+  if (!raw) return;
+  var rider = JSON.parse(raw);
+
+  var planLabels = { weekly: 'Weekly (₹35/wk)', monthly: 'Monthly (₹150/mo)', yearly: 'Yearly (₹1,100/yr)' };
+  rider.plan = planLabels[selectedPlan];
+  localStorage.setItem('kavach_rider', JSON.stringify(rider));
+
+  enterDashboard();
+}
+
+/* ════════════════════════════════════════════════════════
+   [NEW] ── RIDER DASHBOARD BANNER ──
+════════════════════════════════════════════════════════ */
+function populateDashboardBanner() {
+  var raw = localStorage.getItem('kavach_rider');
+  if (!raw) return;
+  var rider    = JSON.parse(raw);
+  var tierInfo = getTierFromScore(rider.trustScore);
+
+  document.getElementById('riderDashBanner').style.display = 'block';
+
+  // Avatar initial
+  document.getElementById('rdbAvatar').textContent = rider.name.charAt(0).toUpperCase();
+
+  document.getElementById('rdbName').textContent = rider.name;
+  document.getElementById('rdbMeta').textContent = 'Zone ' + rider.zone + ' · ' + rider.vehicle + ' · Policy ' + rider.policyId;
+  document.getElementById('rdbScore').textContent = rider.trustScore;
+  document.getElementById('rdbScore').style.color = tierInfo.color;
+  document.getElementById('rdbWallet').textContent = '₹' + rider.wallet;
+
+  var tierBadge = document.getElementById('rdbTierBadge');
+  tierBadge.textContent = tierInfo.emoji + ' ' + tierInfo.tier;
+  tierBadge.className   = 'rdb-tier-badge ' + tierInfo.tierClass;
+
+  document.getElementById('rdbPlanTag').textContent = rider.plan || 'No plan';
+
+  // Monitoring section
+  document.getElementById('monitoringRiderCard').style.display = 'block';
+  document.getElementById('monTrustScore').textContent  = rider.trustScore;
+  document.getElementById('monTrustScore').style.color  = tierInfo.color;
+  document.getElementById('monTier').textContent        = tierInfo.emoji + ' ' + tierInfo.tier;
+  document.getElementById('monTier').style.color        = tierInfo.color;
+  document.getElementById('monWallet').textContent      = '₹' + rider.wallet;
+  document.getElementById('monPlan').textContent        = rider.plan || 'Not selected';
+  document.getElementById('monPolicyId').textContent    = rider.policyId;
+  document.getElementById('monExpiry').textContent      = rider.expiryDate;
+
+  // Fraud flag
+  if (rider.trustScore < 45) {
+    document.getElementById('monFraudWarn').style.display = 'block';
+  }
+
+  // Rider experience phone — update payout amount to match trust tier
+  var reAmount = document.getElementById('re-s3-amount');
+  var reStatus = document.getElementById('re-s3-status');
+  if (reAmount) reAmount.textContent = '₹' + tierInfo.payout + ' credited';
+  if (reStatus) reStatus.textContent = tierInfo.tier + ' tier payout';
+}
+
+/* ════════════════════════════════════════════════════════
+   [EXISTING + MODIFIED] ── MONITORING DASHBOARD ──
+════════════════════════════════════════════════════════ */
 function getDashboardStats() {
-  var payouts = JSON.parse(localStorage.getItem('kavach_payouts') || '[]');
-  var today = new Date().toDateString();
-  var todayPayouts = payouts.filter(function(p){ return new Date(p.timestamp).toDateString() === today; });
-  var approved = payouts.filter(function(p){ return p.status === 'approved'; }).length;
-  var pending  = payouts.filter(function(p){ return p.status === 'pending';  }).length;
-  var rejected = payouts.filter(function(p){ return p.status === 'rejected'; }).length;
-  var totalScore = 0;
+  var payouts       = JSON.parse(localStorage.getItem('kavach_payouts') || '[]');
+  var today         = new Date().toDateString();
+  var todayPayouts  = payouts.filter(function (p) { return new Date(p.timestamp).toDateString() === today; });
+  var approved      = payouts.filter(function (p) { return p.status === 'approved'; }).length;
+  var pending       = payouts.filter(function (p) { return p.status === 'pending'; }).length;
+  var rejected      = payouts.filter(function (p) { return p.status === 'rejected'; }).length;
+  var totalScore    = 0;
   for (var i = 0; i < payouts.length; i++) { totalScore += payouts[i].trustScore; }
-  var avgScore = payouts.length ? Math.round(totalScore / payouts.length) : 0;
-  var activeAlerts = Math.random() > 0.8 ? 2 : (Math.random() > 0.5 ? 1 : 0);
+  var avgScore      = payouts.length ? Math.round(totalScore / payouts.length) : 0;
+  var activeAlerts  = Math.random() > 0.8 ? 2 : (Math.random() > 0.5 ? 1 : 0);
   return { payoutsToday: todayPayouts.length, avgTrustScore: avgScore, pending: pending, approved: approved, rejected: rejected, activeAlerts: activeAlerts };
 }
+
 function updateDashboard() {
   var stats = getDashboardStats();
-  var map = {'payouts-today': stats.payoutsToday,'avg-trust-score': stats.avgTrustScore,'pending-count': stats.pending,'approved-count': stats.approved,'rejected-count': stats.rejected,'active-alerts': stats.activeAlerts};
-  Object.keys(map).forEach(function(id) { var el = document.getElementById(id); if (el) el.innerText = map[id]; });
+  var map   = {
+    'payouts-today': stats.payoutsToday,
+    'avg-trust-score': stats.avgTrustScore,
+    'pending-count': stats.pending,
+    'approved-count': stats.approved,
+    'rejected-count': stats.rejected,
+    'active-alerts': stats.activeAlerts
+  };
+  Object.keys(map).forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.innerText = map[id];
+  });
   var lu = document.getElementById('last-update');
   if (lu) lu.innerText = 'Last update: ' + new Date().toLocaleTimeString();
 }
 
-/* ── HISTORY MODAL ── */
+/* ── History modal ── */
 function showHistory() {
-  var payouts = JSON.parse(localStorage.getItem('kavach_payouts') || '[]');
+  var payouts     = JSON.parse(localStorage.getItem('kavach_payouts') || '[]');
   var historyList = document.getElementById('historyList');
-  var modal = document.getElementById('historyModal');
-  var overlay = document.getElementById('modalOverlay');
   if (payouts.length === 0) {
-    historyList.innerHTML = '<div style="color: var(--text-secondary); text-align: center; padding: 20px;">No payouts yet. Trigger a storm first!</div>';
+    historyList.innerHTML = '<div style="color:var(--text-secondary);text-align:center;padding:20px;">No payouts yet. Trigger a storm first!</div>';
   } else {
-    var html = '<table class="history-table"><thead><tr><th>Time</th><th>Score</th><th>Payout</th><th>Status</th></tr></thead><tbody>';
+    var html = '<table class="history-table"><thead><tr><th>Time</th><th>Score</th><th>Tier</th><th>Payout</th><th>Status</th></tr></thead><tbody>';
     for (var i = payouts.length - 1; i >= 0; i--) {
-      var p = payouts[i];
-      var date = new Date(p.timestamp).toLocaleTimeString();
+      var p           = payouts[i];
+      var date        = new Date(p.timestamp).toLocaleTimeString();
+      var ti          = getTierFromScore(p.trustScore);
       var statusColor = p.status === 'approved' ? '#4ade80' : (p.status === 'pending' ? '#FFD166' : '#FF5A5F');
-      var statusIcon = p.status === 'approved' ? '✅' : (p.status === 'pending' ? '⏳' : '❌');
-      html += '<tr><td style="padding:8px;font-size:12px;">' + date + '</td><td style="padding:8px;font-size:12px;">' + p.trustScore + '</td><td style="padding:8px;font-size:12px;">₹' + p.amount + '</td><td style="padding:8px;font-size:12px;color:' + statusColor + ';">' + statusIcon + ' ' + p.status.toUpperCase() + '</td></tr>';
+      var statusIcon  = p.status === 'approved' ? '✅' : (p.status === 'pending' ? '⏳' : '❌');
+      html += '<tr>'
+        + '<td style="padding:8px;font-size:12px;">' + date + '</td>'
+        + '<td style="padding:8px;font-size:12px;">' + p.trustScore + '</td>'
+        + '<td style="padding:8px;font-size:12px;color:' + ti.color + ';">' + ti.emoji + ' ' + ti.tier + '</td>'
+        + '<td style="padding:8px;font-size:12px;">₹' + p.amount + '</td>'
+        + '<td style="padding:8px;font-size:12px;color:' + statusColor + ';">' + statusIcon + ' ' + p.status.toUpperCase() + '</td>'
+        + '</tr>';
     }
     html += '</tbody></table>';
     historyList.innerHTML = html;
   }
-  modal.style.display = 'block';
-  overlay.style.display = 'block';
+  document.getElementById('historyModal').style.display  = 'block';
+  document.getElementById('modalOverlay').style.display  = 'block';
 }
+
 function closeHistory() {
   document.getElementById('historyModal').style.display = 'none';
   document.getElementById('modalOverlay').style.display = 'none';
 }
+
 function clearHistory() {
   if (confirm('Are you sure you want to clear all payout history?')) {
     localStorage.removeItem('kavach_payouts');
@@ -1216,118 +1504,189 @@ function clearHistory() {
   }
 }
 
-/* ── SIMULATION ── */
+/* ════════════════════════════════════════════════════════
+   [MODIFIED] ── SIMULATION ──
+   Now uses calculatePayout(trustScore) instead of hardcoded amounts
+════════════════════════════════════════════════════════ */
 var sR = false, sD = false;
+
 function startSim() {
   if (sR) return;
   if (sD) { resetSim(); return; }
   sR = true;
+
   var btn = document.getElementById('sim-btn');
-  btn.textContent = 'Running...'; btn.disabled = true;
-  var trustScoreEl = document.getElementById('fd-gauge');
+  btn.textContent = 'Running...';
+  btn.disabled    = true;
+
+  // [MODIFIED] Read from fraud detection gauge
+  var trustScoreEl      = document.getElementById('fd-gauge');
   var currentTrustScore = parseInt(trustScoreEl.innerText) || 50;
-  var payoutAmount = calculatePayoutAmount(currentTrustScore);
-  var status = 'approved', statusText = '', statusColor = '#4ade80';
-  if (currentTrustScore < 45) { status = 'rejected'; statusText = '❌ REJECTED — High fraud risk detected'; statusColor = '#FF5A5F'; }
-  else if (currentTrustScore < 75) { status = 'pending'; statusText = '⏳ PENDING — Manual review required'; statusColor = '#FFD166'; }
-  else { status = 'approved'; statusText = '✅ APPROVED — Auto-payout initiated'; statusColor = '#4ade80'; }
+
+  // [MODIFIED] Use calculatePayout() with tier-based logic
+  var payoutAmount = calculatePayout(currentTrustScore);
+  var tierInfo     = getTierFromScore(currentTrustScore);
+
+  // [NEW] Fraud prevention: score < 45 blocks payout
+  var status, statusText, statusColor;
+  if (currentTrustScore < 45) {
+    status      = 'rejected';
+    statusText  = '❌ REJECTED — Fraud risk detected · Payout blocked';
+    statusColor = '#FF5A5F';
+  } else if (currentTrustScore < 75) {
+    status      = 'pending';
+    statusText  = '⏳ PENDING — Manual review required';
+    statusColor = '#FFD166';
+  } else {
+    status      = 'approved';
+    statusText  = '✅ APPROVED — ' + tierInfo.tier + ' tier · Auto-payout ₹' + payoutAmount;
+    statusColor = '#4ade80';
+  }
+
   var steps = [
-    { id: 'step-1', delay: 0,    lbl: 'IMD API: red alert received...', detail: 'IMD red alert — coastal Chennai' },
-    { id: 'step-2', delay: 1200, lbl: 'Zone grid: 14 cells activated', detail: '2km×2km cells flip to red-alert status' },
-    { id: 'step-3', delay: 2200, lbl: 'Eligibility engine: 3 checks passed', detail: 'Profile verified, shift window overlaps' },
-    { id: 'step-4', delay: 3400, lbl: 'ML fraud scoring: 6 signals evaluated', detail: 'Trust score: ' + currentTrustScore + '/100' },
-    { id: 'step-5', delay: 5200, lbl: 'Payout decision: ' + statusText, detail: statusText + ' | Amount: ₹' + payoutAmount },
-    { id: 'step-6', delay: 6400, lbl: 'Ledger entry: written to Hyperledger', detail: 'Immutable audit trail recorded' }
+    { id:'step-1', delay:0,    lbl:'IMD API: red alert received...', detail:'IMD red alert — coastal Chennai' },
+    { id:'step-2', delay:1200, lbl:'Zone grid: 14 cells activated',  detail:'2km×2km cells flip to red-alert status' },
+    { id:'step-3', delay:2200, lbl:'Eligibility engine: 3 checks passed', detail:'Profile verified, shift window overlaps' },
+    { id:'step-4', delay:3400, lbl:'ML fraud scoring: 6 signals evaluated', detail:'Trust score: ' + currentTrustScore + '/100 · Tier: ' + tierInfo.tier },
+    { id:'step-5', delay:5200, lbl:'Payout decision: ' + (status === 'approved' ? '✅ Approved' : status === 'pending' ? '⏳ Pending' : '❌ Rejected'), detail: statusText + (payoutAmount > 0 ? ' | ₹' + payoutAmount : '') },
+    { id:'step-6', delay:6400, lbl:'Ledger entry: written to Hyperledger', detail:'Immutable audit trail recorded' }
   ];
+
   document.getElementById('zone-ring').classList.add('active');
   document.getElementById('rider-dot').style.display = 'block';
-  document.getElementById('map-label').textContent = 'RED ALERT: Coastal Chennai zones active';
-  document.getElementById('map-label').style.color = '#FF5A5F';
-  document.getElementById('sim-status').textContent = 'Running...';
+  document.getElementById('map-label').textContent   = 'RED ALERT: Coastal Chennai zones active';
+  document.getElementById('map-label').style.color   = '#FF5A5F';
+  document.getElementById('sim-status').textContent  = 'Running...';
   document.getElementById('notif-box').classList.add('visible');
+
   var st = Date.now();
   var pi = setInterval(function () {
     var p = Math.min(100, Math.round((Date.now() - st) / 7200 * 100));
     document.getElementById('prog-bar').style.width = p + '%';
     if (p >= 100) clearInterval(pi);
   }, 50);
+
   steps.forEach(function (s, i) {
     setTimeout(function () {
-      if (i > 0) { var pr = document.getElementById(steps[i-1].id); pr.classList.remove('active'); pr.classList.add('done'); pr.querySelector('.kv-step-dot').textContent = '✓'; }
+      if (i > 0) {
+        var pr = document.getElementById(steps[i - 1].id);
+        pr.classList.remove('active');
+        pr.classList.add('done');
+        pr.querySelector('.kv-step-dot').textContent = '✓';
+      }
       document.getElementById(s.id).classList.add('active');
       document.getElementById('prog-label').textContent = s.lbl;
       var detailEl = document.getElementById(s.id).querySelector('.kv-step-detail');
       if (detailEl) detailEl.textContent = s.detail;
     }, s.delay);
   });
+
   setTimeout(function () {
     var l = document.getElementById('step-6');
-    l.classList.remove('active'); l.classList.add('done'); l.querySelector('.kv-step-dot').textContent = '✓';
-    var notifMsg = document.getElementById('notif-msg');
+    l.classList.remove('active');
+    l.classList.add('done');
+    l.querySelector('.kv-step-dot').textContent = '✓';
+
+    var notifMsg    = document.getElementById('notif-msg');
     var notifAmount = document.getElementById('notif-amount');
-    var reAmount = document.getElementById('re-s3-amount');
-    var reStatus = document.getElementById('re-s3-status');
+    var reAmount    = document.getElementById('re-s3-amount');
+    var reStatus    = document.getElementById('re-s3-status');
+    var txnId       = 'TXN-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+
+    document.getElementById('blockchain-txn').innerHTML     = 'txn: ' + txnId;
+    document.getElementById('blockchain-trigger').innerHTML = 'trigger: IMD_RED_MA13';
+    document.getElementById('blockchain-score').innerHTML   = 'score: ' + currentTrustScore + ' → ' + tierInfo.tier.toLowerCase();
+    document.getElementById('blockchain-amount').innerHTML  = 'amount: ₹' + payoutAmount + (payoutAmount > 0 ? ' via UPI' : ' (blocked)');
+    document.getElementById('blockchain-status').innerHTML  = 'status: ' + status.toUpperCase() + (status === 'approved' ? ' ✓' : '');
+
     if (status === 'approved') {
-      notifMsg.innerHTML = '✅ Payout approved! ₹' + payoutAmount + ' credited to your account.';
-      notifAmount.style.display = 'block'; notifAmount.style.color = '#4ade80';
-      notifAmount.innerHTML = '₹' + payoutAmount + ' credited ✓';
-      document.getElementById('blockchain-score').innerHTML = 'score: ' + currentTrustScore + ' → tier_1_auto';
-      document.getElementById('blockchain-status').innerHTML = 'status: APPROVED ✓';
-      document.getElementById('blockchain-amount').innerHTML = 'amount: ₹' + payoutAmount + ' via UPI';
+      notifMsg.innerHTML = '✅ ' + tierInfo.emoji + ' ' + tierInfo.tier + ' tier payout! ₹' + payoutAmount + ' credited to your account.';
+      notifAmount.style.display  = 'block';
+      notifAmount.style.color    = '#4ade80';
+      notifAmount.innerHTML      = '₹' + payoutAmount + ' credited ✓';
       if (reAmount) reAmount.innerHTML = '₹' + payoutAmount + ' credited';
-      if (reStatus) reStatus.innerHTML = 'Approved · ₹' + payoutAmount;
+      if (reStatus) reStatus.innerHTML = tierInfo.tier + ' tier · Approved';
+
+      // [NEW] Update rider wallet in localStorage
+      updateRiderWallet(payoutAmount);
     } else if (status === 'pending') {
-      notifMsg.innerHTML = '⏳ Payout pending manual review. We will notify you within 24 hours.';
+      notifMsg.innerHTML        = '⏳ Payout pending manual review. We will notify you within 24 hours.';
       notifAmount.style.display = 'none';
-      document.getElementById('blockchain-score').innerHTML = 'score: ' + currentTrustScore + ' → tier_2_hold';
-      document.getElementById('blockchain-status').innerHTML = 'status: PENDING REVIEW';
-      document.getElementById('blockchain-amount').innerHTML = 'amount: pending approval';
-      if (reAmount) reAmount.innerHTML = 'Pending review'; if (reStatus) reStatus.innerHTML = 'Under review';
+      if (reAmount) reAmount.innerHTML = 'Pending review';
+      if (reStatus) reStatus.innerHTML = 'Under review';
     } else {
-      notifMsg.innerHTML = '❌ Payout rejected due to fraud detection. Please contact support.';
+      notifMsg.innerHTML        = '🚨 Fraud Risk Detected — Payout Blocked. Trust score: ' + currentTrustScore + '. Contact support.';
       notifAmount.style.display = 'none';
-      document.getElementById('blockchain-score').innerHTML = 'score: ' + currentTrustScore + ' → tier_3_reject';
-      document.getElementById('blockchain-status').innerHTML = 'status: REJECTED';
-      document.getElementById('blockchain-amount').innerHTML = 'amount: ₹0';
-      if (reAmount) reAmount.innerHTML = 'Claim rejected'; if (reStatus) reStatus.innerHTML = 'Rejected';
+      if (reAmount) reAmount.innerHTML = 'Payout blocked';
+      if (reStatus) reStatus.innerHTML = 'Fraud risk detected';
     }
+
     document.getElementById('blockchain-entry').style.display = 'block';
-    document.getElementById('sim-status').textContent = '✓ Complete — 7.2s elapsed';
-    document.getElementById('sim-status').style.color = statusColor;
-    document.getElementById('prog-label').textContent = status === 'approved' ? 'Rajan has been paid. Ledger updated.' : (status === 'pending' ? 'Payout pending review.' : 'Payout rejected.');
+    document.getElementById('sim-status').textContent         = '✓ Complete — 7.2s elapsed';
+    document.getElementById('sim-status').style.color         = statusColor;
+    document.getElementById('prog-label').textContent         =
+      status === 'approved'
+        ? tierInfo.emoji + ' ' + tierInfo.tier + ' payout: ₹' + payoutAmount + ' sent. Ledger updated.'
+        : status === 'pending'
+          ? 'Payout pending review.'
+          : '🚨 Fraud risk — payout blocked.';
+
+    // [MODIFIED] Save with tier info
     var payouts = JSON.parse(localStorage.getItem('kavach_payouts') || '[]');
-    payouts.push({ timestamp: new Date().toISOString(), trustScore: currentTrustScore, status: status, amount: payoutAmount });
+    payouts.push({
+      timestamp:  new Date().toISOString(),
+      trustScore: currentTrustScore,
+      tier:       tierInfo.tier,
+      status:     status,
+      amount:     payoutAmount,
+      txnId:      txnId
+    });
     localStorage.setItem('kavach_payouts', JSON.stringify(payouts));
-    btn.textContent = 'Run again'; btn.disabled = false;
+
+    btn.textContent = 'Run again';
+    btn.disabled    = false;
     sR = false; sD = true;
     updateDashboard();
+    populateDashboardBanner(); // refresh wallet display
   }, 7200);
 }
+
 function resetSim() {
   sD = false;
   var btn = document.getElementById('sim-btn');
-  btn.textContent = 'Trigger storm';
-  document.getElementById('sim-status').textContent = 'Ready';
-  document.getElementById('sim-status').style.color = '';
+  btn.textContent = '🌧️ Trigger storm';
+  document.getElementById('sim-status').textContent  = 'Ready';
+  document.getElementById('sim-status').style.color  = '';
   document.getElementById('zone-ring').classList.remove('active');
   document.getElementById('rider-dot').style.display = 'none';
-  document.getElementById('map-label').textContent = 'Chennai grid · All zones nominal';
-  document.getElementById('map-label').style.color = '';
+  document.getElementById('map-label').textContent   = 'Chennai grid · All zones nominal';
+  document.getElementById('map-label').style.color   = '';
   document.getElementById('notif-box').classList.remove('visible');
-  document.getElementById('notif-amount').style.display = 'none';
+  document.getElementById('notif-amount').style.display   = 'none';
   document.getElementById('blockchain-entry').style.display = 'none';
-  document.getElementById('prog-bar').style.width = '0%';
-  document.getElementById('prog-label').textContent = 'Press "Trigger storm" to start';
-  [1,2,3,4,5,6].forEach(function (n) {
+  document.getElementById('prog-bar').style.width    = '0%';
+  document.getElementById('prog-label').textContent  = 'Press "Trigger storm" to start';
+  [1, 2, 3, 4, 5, 6].forEach(function (n) {
     var el = document.getElementById('step-' + n);
-    el.classList.remove('active','done');
+    el.classList.remove('active', 'done');
     el.querySelector('.kv-step-dot').textContent = n;
     if (n === 4) { var d4 = el.querySelector('.kv-step-detail'); if (d4) d4.textContent = 'Analyzing 6 signals...'; }
     if (n === 5) { var d5 = el.querySelector('.kv-step-detail'); if (d5) d5.textContent = 'Processing...'; }
   });
 }
 
-/* ── ARCH TOOLTIPS ── */
+/* [NEW] Update rider wallet balance in localStorage */
+function updateRiderWallet(addAmount) {
+  var raw = localStorage.getItem('kavach_rider');
+  if (!raw) return;
+  var rider   = JSON.parse(raw);
+  rider.wallet = (rider.wallet || 0) + addAmount;
+  localStorage.setItem('kavach_rider', JSON.stringify(rider));
+}
+
+/* ════════════════════════════════════════════════════════
+   [EXISTING] ── ARCHITECTURE TOOLTIPS ──
+════════════════════════════════════════════════════════ */
 (function () {
   var tip = document.getElementById('arch-tip');
   document.querySelectorAll('.arch-node').forEach(function (n) {
@@ -1344,119 +1703,106 @@ function resetSim() {
   }
 })();
 
-/* ── RIDER RAIN ── */
+/* ════════════════════════════════════════════════════════
+   [EXISTING] ── RIDER RAIN ANIMATION ──
+════════════════════════════════════════════════════════ */
 (function () {
   var r = document.getElementById('re-rain'); if (!r) return;
   for (var i = 0; i < 22; i++) {
-    var d = document.createElement('div'); d.className = 're-rd';
-    d.style.cssText = 'left:' + Math.random()*100 + '%;height:' + (14+Math.random()*22) + 'px;animation-duration:' + (0.4+Math.random()*0.5) + 's;animation-delay:-' + Math.random()*1.5 + 's';
+    var d = document.createElement('div');
+    d.className    = 're-rd';
+    d.style.cssText = 'left:' + Math.random() * 100 + '%;height:' + (14 + Math.random() * 22) + 'px;animation-duration:' + (0.4 + Math.random() * 0.5) + 's;animation-delay:-' + Math.random() * 1.5 + 's';
     r.appendChild(d);
   }
 })();
 
-/* ── FRAUD DETECTION ── */
-var fdS = ['fd1','fd2','fd3','fd4','fd5','fd6'].map(function(id){ return document.getElementById(id); });
-function fdClr(s){ return s < 45 ? '#FF5A5F' : s < 75 ? '#FFD166' : '#4ade80'; }
-function fdUpd() {
-  var v = fdS.map(function(s){ return +s.value; });
-  var sc = Math.round(v.reduce(function(a,b){ return a+b; }) / v.length);
-  var g = document.getElementById('fd-gauge');
-  g.innerText = sc; g.style.background = fdClr(sc);
-  var d = document.getElementById('fd-dec');
-  if (sc < 45) { d.innerText = 'Tier 3 — Payout paused. Human review queued.'; d.style.color = '#FF5A5F'; }
-  else if (sc < 75) { d.innerText = 'Tier 2 — Short hold. Verification requested.'; d.style.color = '#FFD166'; }
-  else { d.innerText = 'Tier 1 — Auto-approved. UPI transfer initiated.'; d.style.color = '#4ade80'; }
-  var lb = ['GPS trajectory','Motion sensors','Barometric pressure','Cell tower match','Work history','Order validation'];
-  var pr = v.map(function(val,i){ return {v:val,l:lb[i]}; }).sort(function(a,b){ return b.v - a.v; });
-  document.getElementById('fd-exp').innerText = 'Strongest signals: ' + pr.slice(0,2).map(function(p){ return p.l; }).join(', ');
-}
-function fdSet(a){ fdS.forEach(function(s,i){ s.value = a[i]; }); fdUpd(); }
-fdS.forEach(function(s){ s.addEventListener('input', fdUpd); }); fdUpd();
+/* ════════════════════════════════════════════════════════
+   [EXISTING + MODIFIED] ── FRAUD DETECTION SLIDERS ──
+════════════════════════════════════════════════════════ */
+var fdS = ['fd1', 'fd2', 'fd3', 'fd4', 'fd5', 'fd6'].map(function (id) { return document.getElementById(id); });
 
-/* ── IMPACT CALCULATOR ── */
-function icF(n){ return '₹' + n.toLocaleString('en-IN'); }
-function icN(n){ return n.toLocaleString('en-IN'); }
-function icA(id, end, fmt){
-  var el = document.getElementById(id), s = 0, step = Math.max(1, Math.ceil(end/50));
-  function r(){ s += step; if (s >= end){ el.textContent = fmt(end); } else { el.textContent = fmt(s); requestAnimationFrame(r); } } r();
+function fdClr(s) {
+  return s < 45 ? '#FF5A5F' : s < 75 ? '#FFD166' : '#4ade80';
 }
-function icUpd(){
-  var p = +document.getElementById('icp').value, r = +document.getElementById('icr').value, e = +document.getElementById('ict').value;
+
+function fdUpd() {
+  var v  = fdS.map(function (s) { return +s.value; });
+  var sc = Math.round(v.reduce(function (a, b) { return a + b; }) / v.length);
+  var g  = document.getElementById('fd-gauge');
+  g.innerText        = sc;
+  g.style.background = fdClr(sc);
+
+  // [MODIFIED] Use tier system
+  var tierInfo = getTierFromScore(sc);
+  var d        = document.getElementById('fd-dec');
+  if (sc < 45) {
+    d.innerText  = '🚨 Tier Risk — Fraud investigation · Payout: ₹0';
+    d.style.color = '#FF5A5F';
+  } else if (sc < 75) {
+    d.innerText  = '⏳ ' + tierInfo.tier + ' Tier — Short hold · Payout: ₹' + tierInfo.payout;
+    d.style.color = '#FFD166';
+  } else {
+    d.innerText  = tierInfo.emoji + ' ' + tierInfo.tier + ' Tier — Auto-approved · Payout: ₹' + tierInfo.payout;
+    d.style.color = '#4ade80';
+  }
+
+  var lb = ['GPS trajectory', 'Motion sensors', 'Barometric pressure', 'Cell tower match', 'Work history', 'Order validation'];
+  var pr = v.map(function (val, i) { return { v: val, l: lb[i] }; }).sort(function (a, b) { return b.v - a.v; });
+  document.getElementById('fd-exp').innerText = 'Strongest signals: ' + pr.slice(0, 2).map(function (p) { return p.l; }).join(', ');
+}
+
+function fdSet(a) { fdS.forEach(function (s, i) { s.value = a[i]; }); fdUpd(); }
+fdS.forEach(function (s) { s.addEventListener('input', fdUpd); });
+fdUpd();
+
+/* ════════════════════════════════════════════════════════
+   [EXISTING] ── IMPACT CALCULATOR ──
+════════════════════════════════════════════════════════ */
+function icF(n) { return '₹' + n.toLocaleString('en-IN'); }
+function icN(n) { return n.toLocaleString('en-IN'); }
+function icA(id, end, fmt) {
+  var el = document.getElementById(id), s = 0, step = Math.max(1, Math.ceil(end / 50));
+  function r() { s += step; if (s >= end) { el.textContent = fmt(end); } else { el.textContent = fmt(s); requestAnimationFrame(r); } }
+  r();
+}
+function icUpd() {
+  var p = +document.getElementById('icp').value,
+      r = +document.getElementById('icr').value,
+      e = +document.getElementById('ict').value;
   document.getElementById('icPv').textContent = p;
   document.getElementById('icRv').textContent = icN(r);
-  icA('ic-tr', p*r, icN); icA('ic-ir', e*1850, icF); icA('ic-ti', p*r*e*1850, icF); icA('ic-mr', p*r*100, icF);
+  icA('ic-tr', p * r, icN);
+  icA('ic-ir', e * 1850, icF);
+  icA('ic-ti', p * r * e * 1850, icF);
+  icA('ic-mr', p * r * 100, icF);
 }
-document.getElementById('icp').oninput = icUpd;
-document.getElementById('icr').oninput = icUpd;
+document.getElementById('icp').oninput  = icUpd;
+document.getElementById('icr').oninput  = icUpd;
 document.getElementById('ict').onchange = icUpd;
 icUpd();
-var icObs = new IntersectionObserver(function(entries){
-  entries.forEach(function(e){
-    if (e.isIntersecting){
-      var el = e.target, t = +el.dataset.target, c = 0, step = Math.ceil(t/60);
-      function r(){ c += step; if (c >= t){ el.textContent = icN(t); } else { el.textContent = icN(c); requestAnimationFrame(r); } } r();
+
+var icObs = new IntersectionObserver(function (entries) {
+  entries.forEach(function (e) {
+    if (e.isIntersecting) {
+      var el = e.target, t = +el.dataset.target, c = 0, step = Math.ceil(t / 60);
+      function r() { c += step; if (c >= t) { el.textContent = icN(t); } else { el.textContent = icN(c); requestAnimationFrame(r); } }
+      r();
       icObs.unobserve(el);
     }
   });
 }, { threshold: 0.5 });
-document.querySelectorAll('.ic-snum[data-target]').forEach(function(c){ icObs.observe(c); });
+document.querySelectorAll('.ic-snum[data-target]').forEach(function (c) { icObs.observe(c); });
 
-/* ── REGISTER RIDER ── */
-function registerRider() {
-  var name = document.getElementById('regName').value.trim();
-  var phone = document.getElementById('regPhone').value.trim();
-  var zone = document.getElementById('regZone').value;
-  var vehicle = document.getElementById('regVehicle').value;
-
-  var price = 50;
-  if (zone === "MA13" || zone === "MA14") price = 70;
-  else if (zone === "CO01" || zone === "CO02") price = 60;
-
-  var polId = "POL-" + Math.random().toString(36).substring(2, 8).toUpperCase();
-  var start = new Date();
-  var expiry = new Date();
-  expiry.setFullYear(start.getFullYear() + 1);
-
-  var riderData = {
-    policyId: polId, name: name, phone: phone, zone: zone, vehicle: vehicle,
-    premium: "₹" + price,
-    startDate: start.toLocaleDateString('en-IN'),
-    expiryDate: expiry.toLocaleDateString('en-IN')
-  };
-
-  localStorage.setItem("kavach_rider", JSON.stringify(riderData));
-
-  document.getElementById('panel2').classList.remove('active');
-  document.getElementById('panel3').classList.add('active');
-  setStepCircle(2, 'done');
-  setStepCircle(3, 'active');
-  setConnector(2, true);
-
-  document.getElementById('polID3').textContent = polId;
-  document.getElementById('polName3').textContent = name;
-  document.getElementById('polZone3').textContent = zone;
-  document.getElementById('polPremium3').textContent = "₹" + price + " / year";
-  document.getElementById('polExpiry3').textContent = expiry.toLocaleDateString('en-IN');
-
-  var sec = 5;
-  var redirMsg = document.getElementById('redirMessage');
-  redirMsg.textContent = 'Redirecting to dashboard in ' + sec + ' seconds...';
-  var cd = setInterval(function(){
-    sec--;
-    if (sec > 0) redirMsg.textContent = 'Redirecting to dashboard in ' + sec + ' seconds...';
-    else { clearInterval(cd); enterDashboard(); }
-  }, 1000);
-}
-
-/* ── !! KEY FIX !! loadPolicy no longer auto-skips to dashboard ── */
-function loadPolicy() {
-  // Always show the registration gate. Do nothing here.
-}
-
+/* ════════════════════════════════════════════════════════
+   [MODIFIED] ── NAVIGATION: enterDashboard / resetSession ──
+════════════════════════════════════════════════════════ */
 function enterDashboard() {
-  document.getElementById('gateWindow').style.display = 'none';
-  document.getElementById('mainWindow').style.display = 'block';
+  document.getElementById('gateWindow').style.display  = 'none';
+  document.getElementById('planWindow').style.display  = 'none';
+  document.getElementById('mainWindow').style.display  = 'block';
   window.scrollTo(0, 0);
+  populateDashboardBanner();
+  updateDashboard();
 }
 
 function resetSession() {
@@ -1465,27 +1811,34 @@ function resetSession() {
   window.location.reload();
 }
 
-/* ── EVENT LISTENERS ── */
+/* ── Event listeners ── */
 document.getElementById('viewHistoryBtn').addEventListener('click', showHistory);
 document.getElementById('closeModalBtn').addEventListener('click', closeHistory);
 document.getElementById('modalOverlay').addEventListener('click', closeHistory);
 document.getElementById('clearHistoryBtn').addEventListener('click', clearHistory);
 
-window.updateDashboard = updateDashboard;
-window.startSim = startSim;
-window.resetSim = resetSim;
-window.fdUpd = fdUpd;
-window.fdSet = fdSet;
-window.showHistory = showHistory;
-window.registerRider = registerRider;
-window.loadPolicy = loadPolicy;
-window.enterDashboard = enterDashboard;
-window.resetSession = resetSession;
-window.goToVerify = goToVerify;
-window.goBack = goBack;
-window.verifyOtp = verifyOtp;
-window.resendOtp = resendOtp;
+/* ── Expose to global (for onclick attrs) ── */
+window.startSim        = startSim;
+window.resetSim        = resetSim;
+window.fdUpd           = fdUpd;
+window.fdSet           = fdSet;
+window.showHistory     = showHistory;
+window.closeHistory    = closeHistory;
+window.clearHistory    = clearHistory;
+window.enterDashboard  = enterDashboard;
+window.resetSession    = resetSession;
+window.goToVerify      = goToVerify;
+window.goBack          = goBack;
+window.verifyOtp       = verifyOtp;
+window.resendOtp       = resendOtp;
 window.switchOtpChannel = switchOtpChannel;
+window.goToPlanSelection = goToPlanSelection;
+window.selectPlan      = selectPlan;
+window.selectPlanYearly = selectPlanYearly;
+window.activateWithPlan = activateWithPlan;
+window.calculatePayout = calculatePayout;
+window.getTierFromScore = getTierFromScore;
+window.generateTrustScore = generateTrustScore;
 </script>
 </body>
 </html>
