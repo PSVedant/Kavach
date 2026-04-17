@@ -1,100 +1,139 @@
+"""
+weather_engine.py – Kavach Parametric Insurance
+Real weather alerts via OpenWeatherMap API.
+Fallback to random simulation if API key is missing or call fails.
+"""
+
+import os
 import random
 import datetime
-import json
-from datetime import timezone
 
-# Weather patterns per city (monthly probability of severe event)
-# Format: {city: {1-12: probability}}
-CITY_WEATHER_RISK = {
-    "chennai": {6: 0.3, 7: 0.4, 8: 0.35, 9: 0.2, 10: 0.25, 11: 0.5, 12: 0.4},
-    "mumbai": {6: 0.4, 7: 0.6, 8: 0.5, 9: 0.3},
-    "kolkata": {5: 0.2, 6: 0.5, 7: 0.6, 8: 0.5, 9: 0.3, 10: 0.2},
-    "bangalore": {8: 0.2, 9: 0.25, 10: 0.2},
-    "default": {1:0.05,2:0.05,3:0.05,4:0.05,5:0.1,6:0.15,7:0.15,8:0.15,9:0.1,10:0.05,11:0.05,12:0.05}
-}
+try:
+    import requests
+    REQUESTS_AVAILABLE = True
+except ImportError:
+    REQUESTS_AVAILABLE = False
+    print("[WARNING] 'requests' library not installed. Run: pip install requests")
 
-def get_monthly_risk(city):
-    """Returns the probability of severe weather for current month."""
-    current_month = datetime.datetime.now().month
-    risks = CITY_WEATHER_RISK.get(city.lower(), CITY_WEATHER_RISK["default"])
-    return risks.get(current_month, 0.1)  # default 10% if month not listed
+try:
+    from dotenv import load_dotenv
+    load_dotenv()  # loads .env file from current directory
+except ImportError:
+    print("[WARNING] 'python-dotenv' not installed. Run: pip install python-dotenv")
+    print("[WARNING] Falling back to os.environ only.")
 
-def check_alert(city, zone_id):
-    """
-    Simulates real‑time weather alert cross‑validation.
-    - Uses monthly risk probabilities for the city.
-    - Coastal zones (e.g., MA13, MA14) have higher baseline risk.
-    - Random but statistically consistent with real weather patterns.
-    """
-    # Determine zone type
-    coastal_zones = ["MA13", "MA14", "CO01", "CO02"]
-    is_coastal = zone_id in coastal_zones
-    
-    # Base probability from city's monthly risk
-    base_prob = get_monthly_risk(city)
-    
-    # Boost for coastal zones
-    if is_coastal:
-        base_prob = min(base_prob * 1.5, 0.9)
-    
-    # Random chance of alert
-    alert_happens = random.random() < base_prob
-    
-    if not alert_happens:
-        return {
-            "alert_confirmed": False,
-            "confidence": round(random.uniform(0, 0.4), 2),
-            "triggered_zones": [],
-            "sources": {"imd": False, "skymet": False, "dma": False},
-            "timestamp": datetime.datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
-            "reason": "No severe weather predicted this month"
-        }
-    
-    # If alert happens, simulate source agreement (more realistic)
-    # IMD is most reliable, Skymet good, DMA variable
-    imd_agrees = random.random() < 0.95
-    skymet_agrees = random.random() < 0.85
-    dma_agrees = random.random() < 0.75
-    
-    sources = {
-        "imd": imd_agrees,
-        "skymet": skymet_agrees,
-        "dma": dma_agrees
-    }
-    
-    # Alert confirmed if at least 2 of 3 agree (consensus)
-    consensus = sum(sources.values()) >= 2
-    confidence = sum(sources.values()) / 3.0
-    
-    triggered = []
-    if consensus:
-        # Determine which zones are affected (simulate spreading)
-        if is_coastal:
-            triggered = [zone_id] + (coastal_zones if random.random() < 0.6 else [])
-        else:
-            triggered = [zone_id]
-    
+# ---------------------------------------------------------------------------
+# Alert condition mapping (OpenWeatherMap "main" weather field)
+# ---------------------------------------------------------------------------
+ALERT_CONDITIONS = {"Rain", "Thunderstorm", "Drizzle", "Cyclone"}
+
+
+def _simulate_fallback(zone_id: str) -> dict:
+    """Original random-based simulation used as a fallback."""
+    alert_confirmed = random.random() < 0.3
     return {
-        "alert_confirmed": consensus,
-        "confidence": round(confidence, 2),
-        "triggered_zones": triggered,
-        "sources": sources,
-        "timestamp": datetime.datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
-        "base_probability": round(base_prob, 2)
+        "alert_confirmed": alert_confirmed,
+        "confidence": round(random.uniform(0.6, 0.95), 2) if alert_confirmed else round(random.uniform(0.05, 0.25), 2),
+        "triggered_zones": [zone_id] if alert_confirmed else [],
+        "sources": {
+            "imd_api": False,
+            "satellite": False,
+            "ground_sensors": False,
+        },
+        "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
+        "note": "SIMULATED – fallback mode (no API key or request failed)",
     }
 
-def main():
-    print("=== Chennai Coastal Zone (MA13) – current month ===")
-    for _ in range(3):  # show 3 runs to see variability
-        result = check_alert("Chennai", "MA13")
-        print(json.dumps(result, indent=2))
-        print("-" * 50)
-    
-    print("\n=== Bangalore Inland Zone (BLR01) – 3 runs ===")
-    for _ in range(3):
-        result = check_alert("Bangalore", "BLR01")
-        print(json.dumps(result, indent=2))
-        print("-" * 50)
 
+def check_alert(city: str, zone_id: str) -> dict:
+    """
+    Check weather alert for a city/zone.
+
+    Parameters
+    ----------
+    city    : City name understood by OpenWeatherMap (e.g. "Chennai")
+    zone_id : Internal zone identifier (e.g. "MA13")
+
+    Returns
+    -------
+    dict with keys:
+        alert_confirmed  – bool
+        confidence       – float 0-1
+        triggered_zones  – list of zone_id strings
+        sources          – dict of bool flags
+        timestamp        – ISO-8601 UTC string
+    """
+    api_key = os.getenv("OPENWEATHER_API_KEY")
+
+    if not api_key:
+        print(f"[WARNING] OPENWEATHER_API_KEY not set. Using random simulation for zone {zone_id}.")
+        return _simulate_fallback(zone_id)
+
+    if not REQUESTS_AVAILABLE:
+        print("[WARNING] 'requests' not available. Using random simulation.")
+        return _simulate_fallback(zone_id)
+
+    url = (
+        f"http://api.openweathermap.org/data/2.5/weather"
+        f"?q={city}&appid={api_key}"
+    )
+
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+
+        weather_main = data["weather"][0]["main"]  # e.g. "Rain", "Clear"
+        alert_confirmed = weather_main in ALERT_CONDITIONS
+
+        print(f"[OpenWeatherMap] City: {city} | Condition: {weather_main} | Alert: {alert_confirmed}")
+
+        return {
+            "alert_confirmed": alert_confirmed,
+            "confidence": 0.9 if alert_confirmed else 0.2,
+            "triggered_zones": [zone_id] if alert_confirmed else [],
+            "sources": {
+                "imd_api": False,
+                "satellite": False,
+                "ground_sensors": False,
+            },
+            "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
+            "weather_condition": weather_main,
+        }
+
+    except requests.exceptions.ConnectionError:
+        print(f"[ERROR] Network error reaching OpenWeatherMap. Falling back to simulation.")
+    except requests.exceptions.Timeout:
+        print(f"[ERROR] OpenWeatherMap API timed out. Falling back to simulation.")
+    except requests.exceptions.HTTPError as e:
+        print(f"[ERROR] HTTP error from OpenWeatherMap: {e}. Falling back to simulation.")
+    except (KeyError, IndexError, ValueError) as e:
+        print(f"[ERROR] Unexpected API response format: {e}. Falling back to simulation.")
+
+    return _simulate_fallback(zone_id)
+
+
+# ---------------------------------------------------------------------------
+# Demo / manual test
+# ---------------------------------------------------------------------------
 if __name__ == "__main__":
-    main()
+    test_cases = [
+        ("Chennai", "MA13"),
+        ("Bengaluru", "BLR01"),
+        ("Mumbai", "MA14"),
+        ("Coimbatore", "CO01"),
+    ]
+
+    print("=" * 55)
+    print("Kavach – Weather Alert Engine")
+    print("=" * 55)
+
+    for city, zone in test_cases:
+        result = check_alert(city, zone)
+        status = "⚠️  ALERT" if result["alert_confirmed"] else "✅  CLEAR"
+        print(f"\n{status}  |  Zone: {zone}  |  City: {city}")
+        print(f"  Confidence     : {result['confidence']}")
+        print(f"  Triggered zones: {result['triggered_zones']}")
+        if "weather_condition" in result:
+            print(f"  OWM Condition  : {result['weather_condition']}")
+        print(f"  Timestamp      : {result['timestamp']}")
