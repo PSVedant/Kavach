@@ -4,8 +4,6 @@ Team: GuideX | DEV Trails 2026
 
 ---
 
----
-
 ## Pitch Deck
 
 Pitch Deck – Upload your pitch deck (Drive or any accessible platform), make it publicly accessible, and include the link in your README under the header “Pitch Deck.”
