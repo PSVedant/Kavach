@@ -193,111 +193,443 @@
     .history-table{width:100%;border-collapse:collapse}
     .history-table th,.history-table td{padding:8px;text-align:left;border-bottom:0.5px solid var(--border)}
     .history-table th{color:var(--primary);font-weight:600}
+
+    /* ── REGISTRATION GATE ── */
+    #gateWindow {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--navy);
+      padding: 24px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    #gateWindow::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(ellipse at center, rgba(115,135,123,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .gate-card {
+      width: 100%;
+      max-width: 480px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 1;
+    }
+    .gate-header {
+      padding: 32px 36px 24px;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+      background: var(--surface);
+    }
+    .gate-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+    .gate-tagline {
+      font-size: 12px;
+      color: var(--text-secondary);
+      letter-spacing: 0.04em;
+    }
+    .gate-body {
+      padding: 32px 36px;
+    }
+    .gate-steps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 28px;
+    }
+    .gate-step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .gate-step-circle {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 600;
+      border: 1.5px solid var(--border);
+      color: var(--text-secondary);
+      background: var(--surface);
+      transition: all 0.3s;
+    }
+    .gate-step-circle.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+    .gate-step-circle.done {
+      background: #1a3a28;
+      border-color: #4ade80;
+      color: #4ade80;
+    }
+    .gate-step-label {
+      font-size: 10px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      text-align: center;
+    }
+    .gate-step-label.active { color: var(--primary-light); font-weight: 500; }
+    .gate-step-connector {
+      width: 40px; height: 1px;
+      background: var(--border);
+      margin: 0 4px;
+      margin-bottom: 18px;
+      flex-shrink: 0;
+    }
+    .gate-step-connector.done { background: var(--primary); }
+    .gate-panel { display: none; }
+    .gate-panel.active { display: block; }
+    .gate-field { margin-bottom: 16px; }
+    .gate-field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+    .gate-input {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 11px 14px;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .gate-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(115,135,123,0.15);
+    }
+    .gate-input::placeholder { color: rgba(170,183,176,0.5); }
+    .gate-input-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media(max-width:440px){ .gate-input-row { grid-template-columns: 1fr; } }
+    .gate-phone-wrap {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .gate-phone-wrap:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(115,135,123,0.15);
+    }
+    .gate-phone-prefix {
+      background: var(--navy);
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 11px 12px;
+      border-right: 1px solid var(--border);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .gate-phone-input {
+      flex: 1;
+      background: var(--surface);
+      border: none;
+      color: var(--text);
+      padding: 11px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      outline: none;
+    }
+    .gate-phone-input::placeholder { color: rgba(170,183,176,0.5); }
+    .otp-group {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin: 4px 0 12px;
+    }
+    .otp-box {
+      width: 48px; height: 52px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      caret-color: var(--accent);
+    }
+    .otp-box:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(115,135,123,0.15);
+    }
+    .otp-box.filled {
+      border-color: var(--primary);
+      background: rgba(115,135,123,0.1);
+    }
+    .otp-info {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .otp-info strong { color: var(--text); }
+    .otp-resend {
+      font-size: 12px;
+      text-align: center;
+      margin-top: 12px;
+      color: var(--text-secondary);
+    }
+    .otp-resend button {
+      background: none;
+      border: none;
+      color: var(--primary-light);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: underline;
+      padding: 0;
+    }
+    .otp-resend button:disabled { color: var(--text-secondary); text-decoration: none; cursor: default; }
+    .gate-btn {
+      width: 100%;
+      background: var(--accent);
+      color: var(--navy);
+      border: none;
+      border-radius: 10px;
+      padding: 13px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .gate-btn:hover { background: var(--accent-dark); }
+    .gate-btn:active { transform: scale(0.99); }
+    .gate-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .gate-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .gate-tab {
+      flex: 1;
+      padding: 9px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 500;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .gate-tab.active {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+      color: var(--primary-light);
+    }
+    .gate-alert {
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12px;
+      margin-bottom: 14px;
+      display: none;
+    }
+    .gate-alert.error { background: rgba(255,90,95,0.1); border: 1px solid rgba(255,90,95,0.3); color: #FF5A5F; }
+    .gate-alert.success { background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.3); color: #4ade80; }
+    .gate-alert.info { background: rgba(115,135,123,0.1); border: 1px solid var(--border); color: var(--text-secondary); }
+    .gate-divider-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin: 20px 0 16px;
+    }
+    .gate-divider-label::before, .gate-divider-label::after {
+      content: ''; flex: 1; height: 0.5px; background: var(--border);
+    }
+    .gate-spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(15,20,18,0.3);
+      border-top-color: var(--navy);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: inline-block; vertical-align: middle; margin-right: 6px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #policy {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface);
+      color: var(--text);
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin: 2rem 0;
+      min-height: 250px;
+    }
+    #policy > div { width: 100%; }
   </style>
 </head>
 <body>
 <div id="gateWindow">
-
-
-<section id="registration" style="background: var(--surface); color: var(--text); padding: 2.5rem; border: 1px solid var(--border); border-radius: 12px; margin: 2rem 0;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-      <h2 style="color: var(--primary); margin: 0;">Rider Registration</h2>
-      <button onclick="resetSession()" style="background: transparent; color: var(--text-secondary); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Reset Session</button>
+  <div class="gate-card">
+    <div class="gate-header">
+      <div class="gate-logo">Kavach</div>
+      <div class="gate-tagline">Financial protection for India's gig workers</div>
     </div>
 
-  <form id="registrationForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; transition: all 0.3s ease;">
-    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-      <label style="color: var(--text-secondary); font-size: 0.9rem;">Full Name</label>
-      <input type="text" id="regName" placeholder="Enter full name" style="background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 0.8rem; border-radius: 8px;">
+    <div class="gate-body">
+      <div class="gate-steps">
+        <div class="gate-step-item">
+          <div class="gate-step-circle active" id="sc1">1</div>
+          <div class="gate-step-label active" id="sl1">Details</div>
+        </div>
+        <div class="gate-step-connector" id="conn1"></div>
+        <div class="gate-step-item">
+          <div class="gate-step-circle" id="sc2">2</div>
+          <div class="gate-step-label" id="sl2">Verify</div>
+        </div>
+        <div class="gate-step-connector" id="conn2"></div>
+        <div class="gate-step-item">
+          <div class="gate-step-circle" id="sc3">3</div>
+          <div class="gate-step-label" id="sl3">Policy</div>
+        </div>
+      </div>
 
+      <!-- PANEL 1: Registration details -->
+      <div class="gate-panel active" id="panel1">
+        <div id="regAlert" class="gate-alert error"></div>
+        <div class="gate-field">
+          <label>Full Name</label>
+          <input class="gate-input" type="text" id="regName" placeholder="e.g. Rajan Kumar" autocomplete="name">
+        </div>
+        <div class="gate-field">
+          <label>Mobile Number</label>
+          <div class="gate-phone-wrap">
+            <span class="gate-phone-prefix">🇮🇳 +91</span>
+            <input class="gate-phone-input" type="tel" id="regPhone" placeholder="98765 43210" maxlength="10" autocomplete="tel">
+          </div>
+        </div>
+        <div class="gate-field">
+          <label>Email Address</label>
+          <input class="gate-input" type="email" id="regEmail" placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div class="gate-input-row">
+          <div class="gate-field">
+            <label>Zone</label>
+            <select class="gate-input" id="regZone">
+              <option value="" disabled selected>Select Zone</option>
+              <option value="MA13">MA13</option>
+              <option value="MA14">MA14</option>
+              <option value="BLR01">BLR01</option>
+              <option value="CO01">CO01</option>
+              <option value="CO02">CO02</option>
+            </select>
+          </div>
+          <div class="gate-field">
+            <label>Vehicle</label>
+            <select class="gate-input" id="regVehicle">
+              <option value="" disabled selected>Select</option>
+              <option value="Bike">Bike</option>
+              <option value="Scooter">Scooter</option>
+              <option value="Cycle">Cycle</option>
+            </select>
+          </div>
+        </div>
+        <button class="gate-btn" onclick="goToVerify()">Continue to Verification →</button>
+      </div>
+
+      <!-- PANEL 2: OTP Verification -->
+      <div class="gate-panel" id="panel2">
+        <div id="otpAlert" class="gate-alert error"></div>
+        <div class="gate-tabs">
+          <div class="gate-tab active" id="tab-sms" onclick="switchOtpChannel('sms')">📱 SMS OTP</div>
+          <div class="gate-tab" id="tab-email" onclick="switchOtpChannel('email')">✉️ Email OTP</div>
+        </div>
+        <div class="otp-info" id="otpInfoText">
+          OTP sent to <strong id="otpTarget">+91 XXXXXXXXXX</strong>
+        </div>
+        <div class="otp-group" id="otpGroup">
+          <input class="otp-box" maxlength="1" type="text" inputmode="numeric" id="otp0">
+          <input class="otp-box" maxlength="1" type="text" inputmode="numeric" id="otp1">
+          <input class="otp-box" maxlength="1" type="text" inputmode="numeric" id="otp2">
+          <input class="otp-box" maxlength="1" type="text" inputmode="numeric" id="otp3">
+          <input class="otp-box" maxlength="1" type="text" inputmode="numeric" id="otp4">
+          <input class="otp-box" maxlength="1" type="text" inputmode="numeric" id="otp5">
+        </div>
+        <div id="otpHint" class="gate-alert info" style="display:block; text-align:center;">
+          💡 For this demo, use OTP: <strong>123456</strong>
+        </div>
+        <button class="gate-btn" id="verifyBtn" onclick="verifyOtp()">Verify &amp; Activate Policy</button>
+        <div class="otp-resend">
+          <span id="resendTimer">Resend OTP in <strong id="resendCountdown">30s</strong></span>
+          <button id="resendBtn" onclick="resendOtp()" disabled style="display:none;">Resend OTP</button>
+        </div>
+        <div style="margin-top:14px; text-align:center;">
+          <button onclick="goBack()" style="background:none;border:none;color:var(--text-secondary);cursor:pointer;font-size:12px;font-family:'DM Sans',sans-serif;">← Edit details</button>
+        </div>
+      </div>
+
+      <!-- PANEL 3: Policy confirmed -->
+      <div class="gate-panel" id="panel3">
+        <div style="text-align:center; padding: 10px 0 20px;">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(74,222,128,0.1);border:2px solid #4ade80;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:24px;">✓</div>
+          <div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:6px;">Policy Activated!</div>
+          <div style="font-size:13px;color:var(--text-secondary);">Your Kavach policy is now live and protecting you.</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:18px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div><div style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);margin-bottom:3px;">Policy ID</div><div id="polID3" style="font-size:13px;font-weight:700;color:var(--accent);font-family:monospace;"></div></div>
+            <div><div style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);margin-bottom:3px;">Rider</div><div id="polName3" style="font-size:13px;font-weight:600;"></div></div>
+            <div><div style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);margin-bottom:3px;">Zone</div><div id="polZone3" style="font-size:13px;font-weight:600;"></div></div>
+            <div><div style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);margin-bottom:3px;">Coverage</div><div style="font-size:13px;font-weight:600;">₹5,000</div></div>
+            <div><div style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);margin-bottom:3px;">Premium</div><div id="polPremium3" style="font-size:13px;font-weight:600;"></div></div>
+            <div><div style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);margin-bottom:3px;">Expires</div><div id="polExpiry3" style="font-size:13px;font-weight:600;color:var(--accent);"></div></div>
+          </div>
+        </div>
+        <div id="redirMessage" style="background: rgba(255,209,102,0.08); border: 1px dashed var(--accent); color: var(--accent); padding: 1rem; border-radius: 8px; text-align: center; font-weight: 600; font-size:13px; margin-bottom:14px;">
+          Redirecting to dashboard in 5 seconds...
+        </div>
+        <button class="gate-btn" onclick="enterDashboard()">Enter Dashboard →</button>
+      </div>
+
+    </div>
+  </div>
 </div>
-    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-      <label style="color: var(--text-secondary); font-size: 0.9rem;">Phone Number</label>
-      <input type="tel" id="regPhone" placeholder="Enter phone number" style="background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 0.8rem; border-radius: 8px;">
-
-</div>
-    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-      <label style="color: var(--text-secondary); font-size: 0.9rem;">Zone</label>
-      <select id="regZone" style="background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 0.8rem; border-radius: 8px;">
-
-        <option value="" disabled selected>Select Zone</option>
-        <option value="MA13">MA13</option>
-        <option value="MA14">MA14</option>
-        <option value="BLR01">BLR01</option>
-        <option value="CO01">CO01</option>
-        <option value="CO02">CO02</option>
-      </select>
-
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-      <label style="color: var(--text-secondary); font-size: 0.9rem;">Vehicle Type</label>
-      <select id="regVehicle" style="background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 0.8rem; border-radius: 8px;">
-
-        <option value="" disabled selected>Select Vehicle</option>
-        <option value="Bike">Bike</option>
-        <option value="Scooter">Scooter</option>
-        <option value="Cycle">Cycle</option>
-      </select>
-
-    </div>
-    <button type="button" onclick="registerRider()" style="grid-column: span 2; background: var(--accent); color: var(--navy); border: none; padding: 1rem; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1rem;">Register Now</button>
-  </form>
-  <div id="regSuccess" style="display: none; text-align: center; background: rgba(52, 211, 153, 0.1); border: 1px solid #34d399; padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
-    <p style="color: #34d399; font-weight: 500; margin: 0;">✓ Registration successful! Your policy is now active.</p>
-  </div>
-</section>
-
-<section id="policy" style="background: var(--surface); color: var(--text); padding: 2.5rem; border: 1px solid var(--border); border-radius: 12px; margin: 2rem 0; min-height: 250px;">
-  <!-- State A: No Rider -->
-  <div id="stateNoPolicy" style="text-align: center;">
-    <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem;">No active policy found</h3>
-    <a href="#registration" onclick="scrollToPolicy()" style="background: var(--primary); color: var(--navy); text-decoration: none; display: inline-block; padding: 0.8rem 2rem; border-radius: 8px; cursor: pointer; font-weight: 500;">Register Now</a>
-  </div>
-
-  <!-- State B: Has Rider -->
-  <div id="stateActivePolicy" style="display: none;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
-      <h2 style="color: var(--primary); margin: 0;">Active Policy</h2>
-      <span id="polID" style="background: var(--navy); color: var(--accent); padding: 0.5rem 1rem; border-radius: 30px; font-weight: 700; font-family: monospace; letter-spacing: 1px;"></span>
-    </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem;">
-      <div>
-        <p style="color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; margin: 0;">Rider Name</p>
-        <p id="polName" style="font-weight: 600; margin: 0.4rem 0; font-size: 1.1rem;"></p>
-      </div>
-      <div>
-        <p style="color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; margin: 0;">Coverage</p>
-        <p style="font-weight: 600; margin: 0.4rem 0; font-size: 1.1rem;">₹5,000</p>
-      </div>
-      <div>
-        <p style="color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; margin: 0;">Premium</p>
-        <p id="polPremium" style="font-weight: 600; margin: 0.4rem 0; font-size: 1.1rem;"></p>
-      </div>
-      <div>
-        <p style="color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; margin: 0;">Zone</p>
-        <p id="polZone" style="font-weight: 600; margin: 0.4rem 0; font-size: 1.1rem;"></p>
-      </div>
-      <div>
-        <p style="color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; margin: 0;">Vehicle</p>
-        <p id="polVehicle" style="font-weight: 600; margin: 0.4rem 0; font-size: 1.1rem;"></p>
-      </div>
-      <div>
-        <p style="color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; margin: 0;">Start Date</p>
-        <p id="polStart" style="font-weight: 600; margin: 0.4rem 0; font-size: 1.1rem;"></p>
-      </div>
-      <div>
-        <p style="color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; margin: 0;">Expiry Date</p>
-        <p id="polExpiry" style="font-weight: 600; margin: 0.4rem 0; font-size: 1.1rem; color: var(--accent);"></p>
-      </div>
-    </div>
-    <button onclick="renewPolicy()" style="margin-top: 1rem; background: var(--surface); color: var(--text); border: 1px solid var(--border); padding: 1.2rem; border-radius: 8px; cursor: pointer; font-weight: 600; width: 100%; font-size: 1rem; transition: opacity 0.2s; margin-bottom: 1rem;">Renew Policy (1 Year)</button>
-    <div id="redirMessage" style="background: rgba(255, 209, 102, 0.1); border: 1px dashed var(--accent); color: var(--accent); padding: 1.2rem; border-radius: 8px; text-align: center; font-weight: 600; font-size: 1.1rem; display: none;">
-        Redirection to main page in 5 seconds...
-    </div>
-  </div>
-
-</section>
-</div> <!-- End gateWindow -->
 
 <div id="mainWindow" style="display: none;">
 <nav class="kv-nav">
@@ -315,7 +647,6 @@
   </div>
   <span class="kv-pill">DEV Trails 2026</span>
 </nav>
-<!-- HERO SECTION -->
 <div class="kv-hero">
   <div class="kv-eyebrow">Team GuideX · Guidewire DevTrails 2026</div>
   <h1 class="kv-h1">When the storm hits,<br><em>the money already moved.</em></h1>
@@ -326,7 +657,6 @@
   </div>
 </div>
 <div class="kv-divider"></div>
-<!-- SECTION 1: THE PROBLEM - Why this matters -->
 <section id="problem">
   <div class="kv-section">
     <div class="kv-section-label">The problem</div>
@@ -344,7 +674,6 @@
   </div>
 </section>
 <div class="kv-divider"></div>
-<!-- SECTION 2: FRAUD DETECTION - How we ensure fairness (BEFORE showing the simulation) -->
 <section id="fraud">
   <div class="kv-section">
     <div class="kv-section-label">How we prevent fraud</div>
@@ -372,10 +701,7 @@
     </div>
   </div>
 </section>
-
 <div class="kv-divider"></div>
-
-<!-- SECTION 3: LIVE SIMULATION - See it in action -->
 <section id="simulation">
   <div class="kv-section">
     <div class="kv-section-label">Live simulation</div>
@@ -438,7 +764,6 @@
   </div>
 </section>
 <div class="kv-divider"></div>
-<!-- SECTION 4: SYSTEM ARCHITECTURE - How it works under the hood -->
 <section id="architecture">
   <div class="kv-section">
     <div class="kv-section-label">System architecture</div>
@@ -503,7 +828,6 @@
   </div>
 </section>
 <div class="kv-divider"></div>
-<!-- SECTION 5: RIDER EXPERIENCE - What the user sees -->
 <section id="rider-experience">
   <div class="re-inner">
     <div class="re-lbl">Rider experience</div>
@@ -573,7 +897,6 @@
   </div>
 </section>
 <div class="kv-divider"></div>
-<!-- SECTION 6: LIVE MONITORING - Track real payouts -->
 <section id="monitoring">
   <div class="kv-section">
     <div class="kv-section-label">Live monitoring dashboard</div>
@@ -594,7 +917,6 @@
     </div>
   </div>
 </section>
-<!-- History Modal -->
 <div id="historyModal">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
     <h3 style="color:var(--text);">📋 Payout History</h3>
@@ -604,7 +926,6 @@
 </div>
 <div id="modalOverlay"></div>
 <div class="kv-divider"></div>
-<!-- SECTION 7: IMPACT CALCULATOR -->
 <section id="impact">
   <div class="kv-section">
     <div class="kv-section-label">Financial impact</div>
@@ -618,23 +939,17 @@
       <h2>Calculate Kavach's impact</h2>
       <div class="ic-ig"><label>Platform partners: <span id="icPv">2</span></label><input type="range" id="icp" min="1" max="5" value="2"></div>
       <div class="ic-ig"><label>Riders per platform: <span id="icRv">500</span></label><input type="range" id="icr" min="100" max="1000" step="50" value="500"></div>
-
-
-
       <div class="ic-ig"><label>City tier</label><select id="ict"><option value="14">Tier 1 (14 events/year)</option><option value="9">Tier 2 (9 events/year)</option><option value="6">Tier 3 (6 events/year)</option></select></div>
       <div class="ic-outputs">
         <div class="ic-oc"><div class="ic-ov" id="ic-tr">0</div><div class="ic-ol">Total riders enrolled</div></div>
         <div class="ic-oc"><div class="ic-ov" id="ic-ir">0</div><div class="ic-ol">Income protected / rider / year</div></div>
         <div class="ic-oc"><div class="ic-ov" id="ic-ti">0</div><div class="ic-ol">Total income protected</div></div>
         <div class="ic-oc"><div class="ic-ov" id="ic-mr">0</div><div class="ic-ol">Monthly platform revenue</div></div>
-
-
       </div>
     </div>
   </div>
 </section>
 <div class="kv-divider"></div>
-<!-- SECTION 8: TEAM -->
 <section id="team">
   <div class="kv-section" style="padding-bottom:40px">
     <div class="kv-section-label">Team GuideX</div>
@@ -654,20 +969,196 @@
 </footer>
 <a href="#simulation" class="kv-sticky" id="sticky">🎬 Watch live demo ↓</a>
 <div class="arch-tip" id="arch-tip"></div>
-</div> <!-- End mainWindow -->
+</div>
+
 <script>
 /* ── STICKY ── */
 window.addEventListener('scroll', function () {
   document.getElementById('sticky').classList.toggle('show', window.scrollY > 400);
 });
-/* ── DYNAMIC PAYOUT AMOUNT BASED ON TRUST SCORE ── */
-function calculatePayoutAmount(trustScore) {
-  if (trustScore >= 85) return 400;      // Full payout for highly genuine
-  if (trustScore >= 75) return 350;      // Slightly reduced
-  if (trustScore >= 65) return 250;      // Medium risk
-  if (trustScore >= 45) return 150;      // High risk - partial payout
-  return 0;                               // Rejected
+
+/* ── REGISTRATION FLOW STATE ── */
+var currentStep = 1;
+var currentOtpChannel = 'sms';
+var resendInterval = null;
+
+function setStepCircle(n, state) {
+  var circle = document.getElementById('sc' + n);
+  var label = document.getElementById('sl' + n);
+  circle.className = 'gate-step-circle ' + state;
+  label.className = 'gate-step-label' + (state === 'active' ? ' active' : '');
+  if (state === 'done') circle.innerHTML = '✓';
+  else circle.innerHTML = n;
 }
+
+function setConnector(n, done) {
+  var c = document.getElementById('conn' + n);
+  if (c) c.className = 'gate-step-connector' + (done ? ' done' : '');
+}
+
+function showAlert(id, msg, type) {
+  var el = document.getElementById(id);
+  el.className = 'gate-alert ' + type;
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+function hideAlert(id) {
+  document.getElementById(id).style.display = 'none';
+}
+
+function goToVerify() {
+  var name = document.getElementById('regName').value.trim();
+  var phone = document.getElementById('regPhone').value.trim();
+  var email = document.getElementById('regEmail').value.trim();
+  var zone = document.getElementById('regZone').value;
+  var vehicle = document.getElementById('regVehicle').value;
+
+  if (!name) { showAlert('regAlert', 'Please enter your full name.', 'error'); return; }
+  if (!phone || phone.length < 10 || !/^\d{10}$/.test(phone)) { showAlert('regAlert', 'Enter a valid 10-digit mobile number.', 'error'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showAlert('regAlert', 'Enter a valid email address.', 'error'); return; }
+  if (!zone) { showAlert('regAlert', 'Please select your zone.', 'error'); return; }
+  if (!vehicle) { showAlert('regAlert', 'Please select your vehicle type.', 'error'); return; }
+
+  hideAlert('regAlert');
+  document.getElementById('panel1').classList.remove('active');
+  document.getElementById('panel2').classList.add('active');
+  setStepCircle(1, 'done');
+  setStepCircle(2, 'active');
+  setConnector(1, true);
+  currentStep = 2;
+
+  updateOtpTarget();
+  startResendTimer();
+}
+
+function switchOtpChannel(channel) {
+  currentOtpChannel = channel;
+  document.getElementById('tab-sms').className = 'gate-tab' + (channel === 'sms' ? ' active' : '');
+  document.getElementById('tab-email').className = 'gate-tab' + (channel === 'email' ? ' active' : '');
+  updateOtpTarget();
+  clearOtpBoxes();
+  hideAlert('otpAlert');
+  startResendTimer();
+}
+
+function updateOtpTarget() {
+  var phone = document.getElementById('regPhone').value.trim();
+  var email = document.getElementById('regEmail').value.trim();
+  var info = document.getElementById('otpInfoText');
+  if (currentOtpChannel === 'sms') {
+    info.innerHTML = 'OTP sent to <strong>+91 ' + phone.replace(/(\d{5})(\d{5})/, '$1 $2') + '</strong>';
+  } else {
+    var masked = email.replace(/(.{2})[^@]+(@.+)/, '$1****$2');
+    info.innerHTML = 'OTP sent to <strong>' + masked + '</strong>';
+  }
+}
+
+function clearOtpBoxes() {
+  for (var i = 0; i < 6; i++) {
+    var box = document.getElementById('otp' + i);
+    box.value = '';
+    box.className = 'otp-box';
+  }
+}
+
+function startResendTimer() {
+  var sec = 30;
+  clearInterval(resendInterval);
+  document.getElementById('resendTimer').style.display = 'inline';
+  document.getElementById('resendBtn').style.display = 'none';
+  document.getElementById('resendCountdown').textContent = sec + 's';
+
+  resendInterval = setInterval(function() {
+    sec--;
+    document.getElementById('resendCountdown').textContent = sec + 's';
+    if (sec <= 0) {
+      clearInterval(resendInterval);
+      document.getElementById('resendTimer').style.display = 'none';
+      document.getElementById('resendBtn').style.display = 'inline';
+    }
+  }, 1000);
+}
+
+function resendOtp() {
+  clearOtpBoxes();
+  hideAlert('otpAlert');
+  startResendTimer();
+  showAlert('otpAlert', '✓ OTP resent successfully.', 'success');
+  setTimeout(function(){ hideAlert('otpAlert'); }, 3000);
+  document.getElementById('otp0').focus();
+}
+
+function goBack() {
+  clearInterval(resendInterval);
+  document.getElementById('panel2').classList.remove('active');
+  document.getElementById('panel1').classList.add('active');
+  setStepCircle(1, 'active');
+  setStepCircle(2, 'gate-step-circle');
+  setConnector(1, false);
+  document.getElementById('sc2').innerHTML = '2';
+  currentStep = 1;
+}
+
+function verifyOtp() {
+  var otp = '';
+  for (var i = 0; i < 6; i++) otp += document.getElementById('otp' + i).value;
+  
+  if (otp.length < 6) { showAlert('otpAlert', 'Please enter the complete 6-digit OTP.', 'error'); return; }
+  if (otp !== '123456') { showAlert('otpAlert', 'Incorrect OTP. Try 123456 for this demo.', 'error'); return; }
+
+  hideAlert('otpAlert');
+  var btn = document.getElementById('verifyBtn');
+  btn.innerHTML = '<span class="gate-spinner"></span> Verifying...';
+  btn.disabled = true;
+
+  setTimeout(function() {
+    registerRider();
+  }, 1200);
+}
+
+/* ── OTP BOX KEYBOARD NAVIGATION ── */
+document.addEventListener('DOMContentLoaded', function() {
+  // ── FIX: Always clear any stored session so registration is always shown ──
+  localStorage.removeItem('kavach_rider');
+
+  for (var i = 0; i < 6; i++) {
+    (function(idx) {
+      var box = document.getElementById('otp' + idx);
+      box.addEventListener('input', function() {
+        this.value = this.value.replace(/\D/g, '').slice(-1);
+        this.className = 'otp-box' + (this.value ? ' filled' : '');
+        if (this.value && idx < 5) document.getElementById('otp' + (idx + 1)).focus();
+      });
+      box.addEventListener('keydown', function(e) {
+        if (e.key === 'Backspace' && !this.value && idx > 0) document.getElementById('otp' + (idx - 1)).focus();
+      });
+      box.addEventListener('paste', function(e) {
+        e.preventDefault();
+        var paste = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g,'').slice(0,6);
+        for (var j = 0; j < paste.length && j < 6; j++) {
+          var b = document.getElementById('otp' + j);
+          b.value = paste[j];
+          b.className = 'otp-box filled';
+        }
+        if (paste.length < 6) document.getElementById('otp' + paste.length).focus();
+        else document.getElementById('otp5').focus();
+      });
+    })(i);
+  }
+
+  updateDashboard();
+  setInterval(updateDashboard, 5000);
+});
+
+/* ── DYNAMIC PAYOUT AMOUNT ── */
+function calculatePayoutAmount(trustScore) {
+  if (trustScore >= 85) return 400;
+  if (trustScore >= 75) return 350;
+  if (trustScore >= 65) return 250;
+  if (trustScore >= 45) return 150;
+  return 0;
+}
+
 /* ── MONITORING DASHBOARD ── */
 function getDashboardStats() {
   var payouts = JSON.parse(localStorage.getItem('kavach_payouts') || '[]');
@@ -684,28 +1175,18 @@ function getDashboardStats() {
 }
 function updateDashboard() {
   var stats = getDashboardStats();
-  var map = {
-    'payouts-today': stats.payoutsToday,
-    'avg-trust-score': stats.avgTrustScore,
-    'pending-count': stats.pending,
-    'approved-count': stats.approved,
-    'rejected-count': stats.rejected,
-    'active-alerts': stats.activeAlerts
-  };
-  Object.keys(map).forEach(function(id) {
-    var el = document.getElementById(id);
-    if (el) el.innerText = map[id];
-  });
+  var map = {'payouts-today': stats.payoutsToday,'avg-trust-score': stats.avgTrustScore,'pending-count': stats.pending,'approved-count': stats.approved,'rejected-count': stats.rejected,'active-alerts': stats.activeAlerts};
+  Object.keys(map).forEach(function(id) { var el = document.getElementById(id); if (el) el.innerText = map[id]; });
   var lu = document.getElementById('last-update');
   if (lu) lu.innerText = 'Last update: ' + new Date().toLocaleTimeString();
 }
+
 /* ── HISTORY MODAL ── */
 function showHistory() {
   var payouts = JSON.parse(localStorage.getItem('kavach_payouts') || '[]');
   var historyList = document.getElementById('historyList');
   var modal = document.getElementById('historyModal');
   var overlay = document.getElementById('modalOverlay');
-  
   if (payouts.length === 0) {
     historyList.innerHTML = '<div style="color: var(--text-secondary); text-align: center; padding: 20px;">No payouts yet. Trigger a storm first!</div>';
   } else {
@@ -715,12 +1196,7 @@ function showHistory() {
       var date = new Date(p.timestamp).toLocaleTimeString();
       var statusColor = p.status === 'approved' ? '#4ade80' : (p.status === 'pending' ? '#FFD166' : '#FF5A5F');
       var statusIcon = p.status === 'approved' ? '✅' : (p.status === 'pending' ? '⏳' : '❌');
-      html += '<tr style="border-bottom:0.5px solid var(--border);">';
-      html += '<td style="padding:8px;font-size:12px;">' + date + '</td>';
-      html += '<td style="padding:8px;font-size:12px;">' + p.trustScore + '</td>';
-      html += '<td style="padding:8px;font-size:12px;">₹' + p.amount + '</td>';
-      html += '<td style="padding:8px;font-size:12px;color:' + statusColor + ';">' + statusIcon + ' ' + p.status.toUpperCase() + '</td>';
-      html += '</tr>';
+      html += '<tr><td style="padding:8px;font-size:12px;">' + date + '</td><td style="padding:8px;font-size:12px;">' + p.trustScore + '</td><td style="padding:8px;font-size:12px;">₹' + p.amount + '</td><td style="padding:8px;font-size:12px;color:' + statusColor + ';">' + statusIcon + ' ' + p.status.toUpperCase() + '</td></tr>';
     }
     html += '</tbody></table>';
     historyList.innerHTML = html;
@@ -739,6 +1215,7 @@ function clearHistory() {
     if (document.getElementById('historyModal').style.display === 'block') closeHistory();
   }
 }
+
 /* ── SIMULATION ── */
 var sR = false, sD = false;
 function startSim() {
@@ -747,29 +1224,13 @@ function startSim() {
   sR = true;
   var btn = document.getElementById('sim-btn');
   btn.textContent = 'Running...'; btn.disabled = true;
-  
-  // Get current fraud score from the gauge
   var trustScoreEl = document.getElementById('fd-gauge');
   var currentTrustScore = parseInt(trustScoreEl.innerText) || 50;
   var payoutAmount = calculatePayoutAmount(currentTrustScore);
-  
-  var status = 'approved';
-  var statusText = '';
-  var statusColor = '#4ade80';
-  if (currentTrustScore < 45) {
-    status = 'rejected';
-    statusText = '❌ REJECTED — High fraud risk detected';
-    statusColor = '#FF5A5F';
-  } else if (currentTrustScore < 75) {
-    status = 'pending';
-    statusText = '⏳ PENDING — Manual review required';
-    statusColor = '#FFD166';
-  } else {
-    status = 'approved';
-    statusText = '✅ APPROVED — Auto-payout initiated';
-    statusColor = '#4ade80';
-  }
-  
+  var status = 'approved', statusText = '', statusColor = '#4ade80';
+  if (currentTrustScore < 45) { status = 'rejected'; statusText = '❌ REJECTED — High fraud risk detected'; statusColor = '#FF5A5F'; }
+  else if (currentTrustScore < 75) { status = 'pending'; statusText = '⏳ PENDING — Manual review required'; statusColor = '#FFD166'; }
+  else { status = 'approved'; statusText = '✅ APPROVED — Auto-payout initiated'; statusColor = '#4ade80'; }
   var steps = [
     { id: 'step-1', delay: 0,    lbl: 'IMD API: red alert received...', detail: 'IMD red alert — coastal Chennai' },
     { id: 'step-2', delay: 1200, lbl: 'Zone grid: 14 cells activated', detail: '2km×2km cells flip to red-alert status' },
@@ -778,91 +1239,65 @@ function startSim() {
     { id: 'step-5', delay: 5200, lbl: 'Payout decision: ' + statusText, detail: statusText + ' | Amount: ₹' + payoutAmount },
     { id: 'step-6', delay: 6400, lbl: 'Ledger entry: written to Hyperledger', detail: 'Immutable audit trail recorded' }
   ];
-  
   document.getElementById('zone-ring').classList.add('active');
   document.getElementById('rider-dot').style.display = 'block';
   document.getElementById('map-label').textContent = 'RED ALERT: Coastal Chennai zones active';
   document.getElementById('map-label').style.color = '#FF5A5F';
   document.getElementById('sim-status').textContent = 'Running...';
   document.getElementById('notif-box').classList.add('visible');
-  
   var st = Date.now();
   var pi = setInterval(function () {
     var p = Math.min(100, Math.round((Date.now() - st) / 7200 * 100));
     document.getElementById('prog-bar').style.width = p + '%';
     if (p >= 100) clearInterval(pi);
   }, 50);
-  
   steps.forEach(function (s, i) {
     setTimeout(function () {
-      if (i > 0) {
-        var pr = document.getElementById(steps[i-1].id);
-        pr.classList.remove('active'); pr.classList.add('done');
-        pr.querySelector('.kv-step-dot').textContent = '✓';
-      }
+      if (i > 0) { var pr = document.getElementById(steps[i-1].id); pr.classList.remove('active'); pr.classList.add('done'); pr.querySelector('.kv-step-dot').textContent = '✓'; }
       document.getElementById(s.id).classList.add('active');
       document.getElementById('prog-label').textContent = s.lbl;
       var detailEl = document.getElementById(s.id).querySelector('.kv-step-detail');
       if (detailEl) detailEl.textContent = s.detail;
     }, s.delay);
   });
-  
   setTimeout(function () {
     var l = document.getElementById('step-6');
-    l.classList.remove('active'); l.classList.add('done');
-    l.querySelector('.kv-step-dot').textContent = '✓';
-    
+    l.classList.remove('active'); l.classList.add('done'); l.querySelector('.kv-step-dot').textContent = '✓';
     var notifMsg = document.getElementById('notif-msg');
     var notifAmount = document.getElementById('notif-amount');
-    var blockchainScore = document.getElementById('blockchain-score');
-    var blockchainStatus = document.getElementById('blockchain-status');
-    var blockchainAmount = document.getElementById('blockchain-amount');
     var reAmount = document.getElementById('re-s3-amount');
     var reStatus = document.getElementById('re-s3-status');
-    
     if (status === 'approved') {
       notifMsg.innerHTML = '✅ Payout approved! ₹' + payoutAmount + ' credited to your account.';
-      notifAmount.style.display = 'block';
-      notifAmount.style.color = '#4ade80';
+      notifAmount.style.display = 'block'; notifAmount.style.color = '#4ade80';
       notifAmount.innerHTML = '₹' + payoutAmount + ' credited ✓';
-      blockchainScore.innerHTML = 'score: ' + currentTrustScore + ' → tier_1_auto';
-      blockchainStatus.innerHTML = 'status: APPROVED ✓';
-      blockchainAmount.innerHTML = 'amount: ₹' + payoutAmount + ' via UPI';
+      document.getElementById('blockchain-score').innerHTML = 'score: ' + currentTrustScore + ' → tier_1_auto';
+      document.getElementById('blockchain-status').innerHTML = 'status: APPROVED ✓';
+      document.getElementById('blockchain-amount').innerHTML = 'amount: ₹' + payoutAmount + ' via UPI';
       if (reAmount) reAmount.innerHTML = '₹' + payoutAmount + ' credited';
       if (reStatus) reStatus.innerHTML = 'Approved · ₹' + payoutAmount;
     } else if (status === 'pending') {
       notifMsg.innerHTML = '⏳ Payout pending manual review. We will notify you within 24 hours.';
       notifAmount.style.display = 'none';
-      blockchainScore.innerHTML = 'score: ' + currentTrustScore + ' → tier_2_hold';
-      blockchainStatus.innerHTML = 'status: PENDING REVIEW';
-      blockchainAmount.innerHTML = 'amount: pending approval';
-      if (reAmount) reAmount.innerHTML = 'Pending review';
-      if (reStatus) reStatus.innerHTML = 'Under review';
+      document.getElementById('blockchain-score').innerHTML = 'score: ' + currentTrustScore + ' → tier_2_hold';
+      document.getElementById('blockchain-status').innerHTML = 'status: PENDING REVIEW';
+      document.getElementById('blockchain-amount').innerHTML = 'amount: pending approval';
+      if (reAmount) reAmount.innerHTML = 'Pending review'; if (reStatus) reStatus.innerHTML = 'Under review';
     } else {
       notifMsg.innerHTML = '❌ Payout rejected due to fraud detection. Please contact support.';
       notifAmount.style.display = 'none';
-      blockchainScore.innerHTML = 'score: ' + currentTrustScore + ' → tier_3_reject';
-      blockchainStatus.innerHTML = 'status: REJECTED';
-      blockchainAmount.innerHTML = 'amount: ₹0';
-      if (reAmount) reAmount.innerHTML = 'Claim rejected';
-      if (reStatus) reStatus.innerHTML = 'Rejected';
+      document.getElementById('blockchain-score').innerHTML = 'score: ' + currentTrustScore + ' → tier_3_reject';
+      document.getElementById('blockchain-status').innerHTML = 'status: REJECTED';
+      document.getElementById('blockchain-amount').innerHTML = 'amount: ₹0';
+      if (reAmount) reAmount.innerHTML = 'Claim rejected'; if (reStatus) reStatus.innerHTML = 'Rejected';
     }
-    
     document.getElementById('blockchain-entry').style.display = 'block';
     document.getElementById('sim-status').textContent = '✓ Complete — 7.2s elapsed';
     document.getElementById('sim-status').style.color = statusColor;
     document.getElementById('prog-label').textContent = status === 'approved' ? 'Rajan has been paid. Ledger updated.' : (status === 'pending' ? 'Payout pending review.' : 'Payout rejected.');
-    
-    // Store payout
     var payouts = JSON.parse(localStorage.getItem('kavach_payouts') || '[]');
-    payouts.push({ 
-        timestamp: new Date().toISOString(), 
-        trustScore: currentTrustScore, 
-        status: status, 
-        amount: payoutAmount 
-    });
+    payouts.push({ timestamp: new Date().toISOString(), trustScore: currentTrustScore, status: status, amount: payoutAmount });
     localStorage.setItem('kavach_payouts', JSON.stringify(payouts));
-    
     btn.textContent = 'Run again'; btn.disabled = false;
     sR = false; sD = true;
     updateDashboard();
@@ -891,6 +1326,7 @@ function resetSim() {
     if (n === 5) { var d5 = el.querySelector('.kv-step-detail'); if (d5) d5.textContent = 'Processing...'; }
   });
 }
+
 /* ── ARCH TOOLTIPS ── */
 (function () {
   var tip = document.getElementById('arch-tip');
@@ -907,6 +1343,7 @@ function resetSim() {
     tip.style.left = x + 'px'; tip.style.top = y + 'px';
   }
 })();
+
 /* ── RIDER RAIN ── */
 (function () {
   var r = document.getElementById('re-rain'); if (!r) return;
@@ -916,6 +1353,7 @@ function resetSim() {
     r.appendChild(d);
   }
 })();
+
 /* ── FRAUD DETECTION ── */
 var fdS = ['fd1','fd2','fd3','fd4','fd5','fd6'].map(function(id){ return document.getElementById(id); });
 function fdClr(s){ return s < 45 ? '#FF5A5F' : s < 75 ? '#FFD166' : '#4ade80'; }
@@ -925,22 +1363,20 @@ function fdUpd() {
   var g = document.getElementById('fd-gauge');
   g.innerText = sc; g.style.background = fdClr(sc);
   var d = document.getElementById('fd-dec');
-  if (sc < 45)      { d.innerText = 'Tier 3 — Payout paused. Human review queued.'; d.style.color = '#FF5A5F'; }
-  else if (sc < 75) { d.innerText = 'Tier 2 — Short hold. Verification requested.';  d.style.color = '#FFD166'; }
-  else              { d.innerText = 'Tier 1 — Auto-approved. UPI transfer initiated.'; d.style.color = '#4ade80'; }
+  if (sc < 45) { d.innerText = 'Tier 3 — Payout paused. Human review queued.'; d.style.color = '#FF5A5F'; }
+  else if (sc < 75) { d.innerText = 'Tier 2 — Short hold. Verification requested.'; d.style.color = '#FFD166'; }
+  else { d.innerText = 'Tier 1 — Auto-approved. UPI transfer initiated.'; d.style.color = '#4ade80'; }
   var lb = ['GPS trajectory','Motion sensors','Barometric pressure','Cell tower match','Work history','Order validation'];
   var pr = v.map(function(val,i){ return {v:val,l:lb[i]}; }).sort(function(a,b){ return b.v - a.v; });
   document.getElementById('fd-exp').innerText = 'Strongest signals: ' + pr.slice(0,2).map(function(p){ return p.l; }).join(', ');
 }
 function fdSet(a){ fdS.forEach(function(s,i){ s.value = a[i]; }); fdUpd(); }
 fdS.forEach(function(s){ s.addEventListener('input', fdUpd); }); fdUpd();
+
 /* ── IMPACT CALCULATOR ── */
 function icF(n){ return '₹' + n.toLocaleString('en-IN'); }
 function icN(n){ return n.toLocaleString('en-IN'); }
-
 function icA(id, end, fmt){
-
-
   var el = document.getElementById(id), s = 0, step = Math.max(1, Math.ceil(end/50));
   function r(){ s += step; if (s >= end){ el.textContent = fmt(end); } else { el.textContent = fmt(s); requestAnimationFrame(r); } } r();
 }
@@ -948,13 +1384,8 @@ function icUpd(){
   var p = +document.getElementById('icp').value, r = +document.getElementById('icr').value, e = +document.getElementById('ict').value;
   document.getElementById('icPv').textContent = p;
   document.getElementById('icRv').textContent = icN(r);
-  icA('ic-tr', p*r, icN); 
-  icA('ic-ir', e*1850, icF); 
-  icA('ic-ti', p*r*e*1850, icF); 
-  icA('ic-mr', p*r*100, icF);
+  icA('ic-tr', p*r, icN); icA('ic-ir', e*1850, icF); icA('ic-ti', p*r*e*1850, icF); icA('ic-mr', p*r*100, icF);
 }
-
-
 document.getElementById('icp').oninput = icUpd;
 document.getElementById('icr').oninput = icUpd;
 document.getElementById('ict').onchange = icUpd;
@@ -969,36 +1400,25 @@ var icObs = new IntersectionObserver(function(entries){
   });
 }, { threshold: 0.5 });
 document.querySelectorAll('.ic-snum[data-target]').forEach(function(c){ icObs.observe(c); });
-/* ── INIT DASHBOARD ── */
-updateDashboard();
-setInterval(updateDashboard, 5000);
+
+/* ── REGISTER RIDER ── */
 function registerRider() {
-  const name = document.getElementById('regName').value.trim();
-  const phone = document.getElementById('regPhone').value.trim();
-  const zone = document.getElementById('regZone').value;
-  const vehicle = document.getElementById('regVehicle').value;
+  var name = document.getElementById('regName').value.trim();
+  var phone = document.getElementById('regPhone').value.trim();
+  var zone = document.getElementById('regZone').value;
+  var vehicle = document.getElementById('regVehicle').value;
 
-  if (!name || !phone || !zone || !vehicle) {
-    alert("Please fill in all fields (Name, Phone, Zone, and Vehicle).");
-    return;
-  }
-
-
-  let price = 50;
+  var price = 50;
   if (zone === "MA13" || zone === "MA14") price = 70;
   else if (zone === "CO01" || zone === "CO02") price = 60;
 
-  const polId = "POL-" + Math.random().toString(36).substring(2, 8).toUpperCase();
-  const start = new Date();
-  const expiry = new Date();
+  var polId = "POL-" + Math.random().toString(36).substring(2, 8).toUpperCase();
+  var start = new Date();
+  var expiry = new Date();
   expiry.setFullYear(start.getFullYear() + 1);
 
-  const riderData = {
-    policyId: polId,
-    name: name,
-    phone: phone,
-    zone: zone,
-    vehicle: vehicle,
+  var riderData = {
+    policyId: polId, name: name, phone: phone, zone: zone, vehicle: vehicle,
     premium: "₹" + price,
     startDate: start.toLocaleDateString('en-IN'),
     expiryDate: expiry.toLocaleDateString('en-IN')
@@ -1006,81 +1426,32 @@ function registerRider() {
 
   localStorage.setItem("kavach_rider", JSON.stringify(riderData));
 
-  const form = document.getElementById('registrationForm');
-  form.style.opacity = "0.5";
-  form.style.pointerEvents = "none";
-  const successMsg = document.getElementById('regSuccess');
-  successMsg.style.display = "block";
-  const redirMsg = document.getElementById('redirMessage');
-  redirMsg.style.display = "block";
-  let secondsLeft = 5;
-  redirMsg.innerText = `Redirection to main page in ${secondsLeft} seconds...`;
+  document.getElementById('panel2').classList.remove('active');
+  document.getElementById('panel3').classList.add('active');
+  setStepCircle(2, 'done');
+  setStepCircle(3, 'active');
+  setConnector(2, true);
 
-  const countdown = setInterval(() => {
-    secondsLeft--;
-    if (secondsLeft > 0) {
-      redirMsg.innerText = `Redirection to main page in ${secondsLeft} seconds...`;
-    } else {
-      clearInterval(countdown);
-    }
+  document.getElementById('polID3').textContent = polId;
+  document.getElementById('polName3').textContent = name;
+  document.getElementById('polZone3').textContent = zone;
+  document.getElementById('polPremium3').textContent = "₹" + price + " / year";
+  document.getElementById('polExpiry3').textContent = expiry.toLocaleDateString('en-IN');
+
+  var sec = 5;
+  var redirMsg = document.getElementById('redirMessage');
+  redirMsg.textContent = 'Redirecting to dashboard in ' + sec + ' seconds...';
+  var cd = setInterval(function(){
+    sec--;
+    if (sec > 0) redirMsg.textContent = 'Redirecting to dashboard in ' + sec + ' seconds...';
+    else { clearInterval(cd); enterDashboard(); }
   }, 1000);
-
-  loadPolicy();
-  
-  // Scroll to policy section so user sees the newly filled info
-  document.getElementById('policy').scrollIntoView({ behavior: 'smooth' });
-
-  // Auto-redirect to dashboard after 5 seconds
-  setTimeout(() => {
-    enterDashboard();
-  }, 5000);
 }
 
-
-function updatePreview() {
-  // Preview functionality removed per user request
-}
-
-
+/* ── !! KEY FIX !! loadPolicy no longer auto-skips to dashboard ── */
 function loadPolicy() {
-
-  const data = localStorage.getItem("kavach_rider");
-  const gate = document.getElementById('gateWindow');
-  const main = document.getElementById('mainWindow');
-  const stateNo = document.getElementById('stateNoPolicy');
-  const stateActive = document.getElementById('stateActivePolicy');
-
-  if (!data) {
-    if (stateNo) stateNo.style.display = "block";
-    if (stateActive) stateActive.style.display = "none";
-    
-    // Explicitly clear fields to ensure no stray info is visible in DOM
-    const fields = ['polID', 'polName', 'polPremium', 'polZone', 'polVehicle', 'polStart', 'polExpiry'];
-    fields.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = "";
-    });
-  } else {
-    const rider = JSON.parse(data);
-    if (stateNo) stateNo.style.display = "none";
-    if (stateActive) stateActive.style.display = "block";
-
-
-    document.getElementById('polID').textContent = rider.policyId;
-    document.getElementById('polName').textContent = rider.name;
-    document.getElementById('polPremium').textContent = rider.premium;
-    document.getElementById('polZone').textContent = rider.zone;
-    document.getElementById('polVehicle').textContent = rider.vehicle;
-    document.getElementById('polStart').textContent = rider.startDate;
-    document.getElementById('polExpiry').textContent = rider.expiryDate;
-    
-    // Remove preview badge if it exists
-    const badge = document.getElementById('previewBadge');
-    if (badge) badge.remove();
-    if (stateActive) stateActive.style.border = "none";
-  }
+  // Always show the registration gate. Do nothing here.
 }
-
 
 function enterDashboard() {
   document.getElementById('gateWindow').style.display = 'none';
@@ -1088,25 +1459,10 @@ function enterDashboard() {
   window.scrollTo(0, 0);
 }
 
-function renewPolicy() {
-
-  const data = localStorage.getItem("kavach_rider");
-  if (!data) return;
-
-  const rider = JSON.parse(data);
-  const parts = rider.expiryDate.split('/');
-  const currentExpiry = parts.length === 3 ? new Date(parts[2], parts[1] - 1, parts[0]) : new Date(rider.expiryDate);
-  
-  currentExpiry.setFullYear(currentExpiry.getFullYear() + 1);
-  rider.expiryDate = currentExpiry.toLocaleDateString('en-IN');
-
-  localStorage.setItem("kavach_rider", JSON.stringify(rider));
-  loadPolicy();
-  alert("Policy renewed! Your new expiry date is: " + rider.expiryDate);
-}
-
-function scrollToPolicy() {
-  document.getElementById('policy').scrollIntoView({ behavior: 'smooth' });
+function resetSession() {
+  localStorage.removeItem('kavach_rider');
+  localStorage.removeItem('kavach_payouts');
+  window.location.reload();
 }
 
 /* ── EVENT LISTENERS ── */
@@ -1115,21 +1471,6 @@ document.getElementById('closeModalBtn').addEventListener('click', closeHistory)
 document.getElementById('modalOverlay').addEventListener('click', closeHistory);
 document.getElementById('clearHistoryBtn').addEventListener('click', clearHistory);
 
-function resetSession() {
-  localStorage.removeItem('kavach_rider');
-  localStorage.removeItem('kavach_history');
-  window.location.reload();
-}
-
-/* ── DOM CONTENT LOADED ── */
-
-document.addEventListener('DOMContentLoaded', () => {
-    loadPolicy();
-    updateDashboard();
-    setInterval(updateDashboard, 5000);
-});
-
-/* ── EXPOSE TO WINDOW ── */
 window.updateDashboard = updateDashboard;
 window.startSim = startSim;
 window.resetSim = resetSim;
@@ -1138,10 +1479,13 @@ window.fdSet = fdSet;
 window.showHistory = showHistory;
 window.registerRider = registerRider;
 window.loadPolicy = loadPolicy;
-window.renewPolicy = renewPolicy;
-window.scrollToPolicy = scrollToPolicy;
+window.enterDashboard = enterDashboard;
 window.resetSession = resetSession;
+window.goToVerify = goToVerify;
+window.goBack = goBack;
+window.verifyOtp = verifyOtp;
+window.resendOtp = resendOtp;
+window.switchOtpChannel = switchOtpChannel;
 </script>
-
 </body>
 </html>
